@@ -2,7 +2,7 @@
 
 angular.module('hackathonApp')
   .controller('MainCtrl', function ($scope, $http) {
-    $http.get('/api/awesomeThings').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
+    $http.get('/api/surfs').success(function(surfs) {
+      $scope.surfs = surfs;
     });
   });
