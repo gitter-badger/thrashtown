@@ -1,0 +1,98 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Log Your Session</h1>
+  </div>
+  <div class="col-sm-12">
+    <form class="form" name="form" ng-model="surf" ng-submit="createSurf(form)" novalidate>
+      
+      <div class="form-group">
+        <label>Surf Spot</label>
+        
+        <input class="form-control" type="text" ng-model="surf.location" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Other Friends</label>
+        
+        <input class="form-control" type="text" ng-model="surf.otherFriends" required>
+      </div>
+
+      <div class="form-group">
+        <label>Wave Quality</label>
+        
+        <select class="form-control" type="number" min="1" max="5" ng-model="surf.waveQuality" required>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Hollowness</label>
+        
+        <select class="form-control" type="number" min="1" max="5" ng-model="surf.hollowness" required>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Fun Factor</label>
+        
+        <select class="form-control" type="number" min="1" max="5" ng-model="surf.funFactor" required>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Crowd Factor</label>
+        
+        <select class="form-control" type="number" min="1" max="5" ng-model="surf.crowdedness" required>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Board</label>
+        
+        <input class="form-control" type="text" ng-model="surf.board" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Session Date</label>
+        
+        <input class="form-control" type="date" ng-model="surf.sessionDate" required>
+      </div>
+
+      <div class="form-group has-error">
+        <p class="help-block" ng-show="form.$invalid">
+           Form invalid: Please enter your session details.
+        </p>              
+        <p class="help-block">{{ errors.other }}</p>
+      </div>
+
+<!--       <button type="submit" class="btn btn-lg btn-primary" ng-disabled="form.$invalid || form.$pristine"> Submit </button> -->
+  
+      <p class="help-block"> {{ message }} </p>
+
+      <button type="submit" class="btn btn-lg btn-primary"> Submit </button>
+
+
+    </form>
+  </div>
+</div>

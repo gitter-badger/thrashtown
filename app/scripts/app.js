@@ -24,6 +24,21 @@ angular.module('hackathonApp', [
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',
         authenticate: true
+      }) 
+      .when('/surf/', {
+        templateUrl: 'partials/createsurf',
+        controller: 'CreateSurfCtrl',
+        authenticate: true
+      })
+      .when('/surfs', {
+        templateUrl: 'partials/surfsessionstable',
+        controller: 'SurfSessionsTableCtrl',
+        authenticate: true        
+      })
+      .when('/dashboard', {
+        templateUrl: 'partials/dashboard',
+        controller: 'DashboardCtrl',
+        authenticate: true        
       })
       .otherwise({
         redirectTo: '/'

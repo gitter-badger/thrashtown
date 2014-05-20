@@ -2,13 +2,12 @@
 
 angular.module('hackathonApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }, {
-      'title': 'Settings',
-      'link': '/settings'
-    }];
+    $scope.menu = [];
+
+    // $scope.menu = [{
+    //   'title': 'Home',
+    //   'link': '/'
+    // }];
     
     $scope.logout = function() {
       Auth.logout()
