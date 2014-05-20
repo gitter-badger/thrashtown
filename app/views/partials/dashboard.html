@@ -2,31 +2,18 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <h1>Your Sessions</h1>
+    <h1>Dashboard</h1>
   </div>
   <div class="col-sm-12">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Location</th>
-          <th>Session Date</th>
-          <th>Other Friends</th>
-          <th>Wave Quality</th>
-          <th>Board</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="surf in surfs">
-          <td>{{surf.location}}</td>
-          <td>{{surf.sessionDate | date:'yyyy-MM-dd'}}</td>
-          <td>{{surf.otherFriends}}</td>
-          <td>{{surf.waveQuality}}</td>
-          <td>{{surf.board}}</td>
-          <td><span class="glyphicon glyphicon-pencil"></span></td>
-          <td><span class="glyphicon glyphicon-remove"></span></td>
-        </tr>
-      </tbody>
-      
-    </table>
+      <rickshaw-chart
+        data="surfs"
+        color="blue"
+        renderer="renderer"
+        width="750"
+        height="450"
+      ></rickshaw-chart>
+    </div>
+
+    </rickshaw-chart>
   </div>
 </div>

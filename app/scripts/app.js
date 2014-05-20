@@ -25,7 +25,7 @@ angular.module('hackathonApp', [
         controller: 'SettingsCtrl',
         authenticate: true
       }) 
-      .when('/surf/', {
+      .when('/surf', {
         templateUrl: 'partials/createsurf',
         controller: 'CreateSurfCtrl',
         authenticate: true
