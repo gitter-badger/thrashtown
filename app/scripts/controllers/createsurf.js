@@ -2,19 +2,10 @@
 
 angular.module('hackathonApp')
   .controller('CreateSurfCtrl', function ($scope, $http) {
+    // Defaults to today.
+    $scope.date = new Date();
+    
     $scope.errors = {};
-    $scope.surf = {
-      location: 'SF - Ocean Beach',
-      otherFriends: 0,
-      waveQuality: 2,
-      hollowness: 3,
-      funFactor: 2,
-      crowdedness: 4,
-      board: 'Fish', //TODO:
-      sessionDate: new Date(),
-    //   waterEntryTime: new Date(),
-    //   waterExitTime: new Date()
-    };
 
     $scope.createSurf = function(form) {
       // $scope.submitted = true;

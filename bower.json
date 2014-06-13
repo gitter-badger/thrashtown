@@ -11,13 +11,17 @@
     "angular-cookies": ">=1.2.*",
     "angular-sanitize": ">=1.2.*",
     "angular-route": ">=1.2.*",
+    "underscore": "~1.6.0",
     "d3": "~3.4.8",
-    "rickshaw": "~1.5.0",
-    "underscore": "~1.6.0"
+    "nvd3": "~1.1.15-beta",
+    "angularjs-nvd3-directives": "~0.0.7"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
     "angular-scenario": ">=1.2.*"
   },
-  "testPath": "test/client/spec"
+  "testPath": "test/client/spec",
+  "resolutions": {
+    "d3": "~3.4.8"
+  }
 }

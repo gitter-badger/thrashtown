@@ -4,7 +4,8 @@ angular.module('hackathonApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'nvd3ChartDirectives'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

@@ -5,93 +5,143 @@
     <h1>Log Your Session</h1>
   </div>
   <div class="col-sm-12">
-    <form class="form" name="form" ng-model="surf" ng-submit="createSurf(form)" novalidate>
+    <form class="form-horizontal" name="form" ng-model="surf" ng-submit="createSurf(form)" novalidate>
       
       <div class="form-group">
-        <label>Surf Spot</label>
-        
-        <input class="form-control" type="text" ng-model="surf.location" required>
-      </div>
-      
-      <div class="form-group">
-        <label>Other Friends</label>
-        
-        <input class="form-control" type="text" ng-model="surf.otherFriends" required>
+        <label class="col-sm-2 control-label">Session Date</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="date" value="{{date | date:'yyyy-MM-dd'}}" required>
+        </div>
       </div>
 
       <div class="form-group">
-        <label>Wave Quality</label>
-        
-        <select class="form-control" type="number" min="1" max="5" ng-model="surf.waveQuality" required>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
+        <label class="col-sm-2 control-label">Surf Spot</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" ng-model="surf.location" required>
+        </div>
       </div>
       
       <div class="form-group">
-        <label>Hollowness</label>
-        
-        <select class="form-control" type="number" min="1" max="5" ng-model="surf.hollowness" required>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
-      
-      <div class="form-group">
-        <label>Fun Factor</label>
-        
-        <select class="form-control" type="number" min="1" max="5" ng-model="surf.funFactor" required>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
-      
-      <div class="form-group">
-        <label>Crowd Factor</label>
-        
-        <select class="form-control" type="number" min="1" max="5" ng-model="surf.crowdedness" required>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
-      
-      <div class="form-group">
-        <label>Board</label>
-        
-        <input class="form-control" type="text" ng-model="surf.board" required>
-      </div>
-      
-      <div class="form-group">
-        <label>Session Date</label>
-        
-        <input class="form-control" type="date" ng-model="surf.sessionDate" required>
+        <label class="col-sm-2 control-label">Other Friends</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" ng-model="surf.otherFriends" required>
+        </div>
       </div>
 
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Wave Quality</label>
+        <div class="col-sm-10">
+          <label class="radio-inline">
+            <input type="radio" value="1" ng-model="surf.waveQuality" required> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="2" ng-model="surf.waveQuality" required> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="3" ng-model="surf.waveQuality" required> 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="4" ng-model="surf.waveQuality" required> 4
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="5" ng-model="surf.waveQuality" required> 5
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Hollowness</label>
+        <div class="col-sm-10">
+          <label class="radio-inline">
+            <input type="radio" value="1" ng-model="surf.hollowness" required> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="2" ng-model="surf.hollowness" required> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="3" ng-model="surf.hollowness" required> 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="4" ng-model="surf.hollowness" required> 4
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="5" ng-model="surf.hollowness" required> 5
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Fun Factor</label>
+        <div class="col-sm-10">
+          <label class="radio-inline">
+            <input type="radio" value="1" ng-model="surf.funFactor" required> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="2" ng-model="surf.funFactor" required> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="3" ng-model="surf.funFactor" required> 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="4" ng-model="surf.funFactor" required> 4
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="5" ng-model="surf.funFactor" required> 5
+          </label>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Crowdedness</label>
+        <div class="col-sm-10">
+          <label class="radio-inline">
+            <input type="radio" value="1" ng-model="surf.crowdFactor" required> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="2" ng-model="surf.crowdFactor" required> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="3" ng-model="surf.crowdFactor" required> 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="4" ng-model="surf.crowdFactor" required> 4
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="5" ng-model="surf.crowdFactor" required> 5
+          </label>
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Board</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" ng-model="surf.board" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Comment</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" rows="3" maxlength="240" type="textarea" ng-model="surf.comment" required></textarea>
+        </div>
+      </div>
+      
       <div class="form-group has-error">
-        <p class="help-block" ng-show="form.$invalid">
-           Form invalid: Please enter your session details.
-        </p>              
-        <p class="help-block">{{ errors.other }}</p>
+        <div class="col-sm-offset-2 col-sm-10">
+          <p class="help-block" ng-show="form.$dirty && form.$invalid">
+             Form invalid: please enter your session details.
+          </p>
+          <p class="help-block">{{ errors.other }}</p>
+        </div>
       </div>
+       
+        <p class="help-block"> {{ message }} </p>
 
-<!--       <button type="submit" class="btn btn-lg btn-primary" ng-disabled="form.$invalid || form.$pristine"> Submit </button> -->
-  
-      <p class="help-block"> {{ message }} </p>
-
-      <button type="submit" class="btn btn-lg btn-primary"> Submit </button>
-
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-lg btn-primary" ng-disabled="form.$invalid || form.$pristine"> Submit </button>
+        </div>
+      </div>
 
     </form>
   </div>

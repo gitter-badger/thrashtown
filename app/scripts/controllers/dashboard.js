@@ -9,26 +9,62 @@ angular.module('hackathonApp')
       url: 'api/surfs',
     })
     .then(function(data) {
-      // var sessions = data.data;
-      // var storage = {};
-      // for (var i = 0; i < sessions.length; i++) {
-      //   var board = sessions[i].board;
-      //   if (storage[board] === undefined) {
-      //     storage[board] = 0;
-      //   }
-      //   storage[board] += 1;
-      // }
+      var sessions = data.data;
+      var storage = {
+        boards: {},
+        surfs: {}
+      };
+      for (var i = 0; i < sessions.length; i++) {
+        var session = sessions[i];
+        var board = session.board;
+        var mon = new Date(session.sessionDate);
+        var monStart = new Date(mon.getFullYear(), mon.getMonth(), 1);
+        if (storage.boards[board] === undefined) {
+          storage.boards[board] = 0;
+        }
+        storage.boards[board] += 1;
+               
+        if (storage.surfs[monStart] === undefined) {
+          storage.surfs[monStart] = 0;
+        }
+        storage.surfs[monStart] += 1;
+      }
 
-      // $scope.surfs = storage
-      //   ._map(function(count, board) {
-      //     return {x: board, y: count};
-      //   })
-      //   ._sortBy(function(obj) {
-      //     return obj.y;
-      //   });
+      $scope.boards = _.map(storage.boards, function(count, board) {
+        return {key: board, y: count};
+      });
 
-      $scope.surfs = [{x: 0, y: 1}, {x: 1, y: 2}, {x:2, y:10}];
-      $scope.renderer = 'line';
+      $scope.exampleData = [{key: 'Sessions by Month'}];
+      $scope.exampleData[0].values = _.map(storage.surfs, function(count, mon) {
+        return [new Date(mon), count];
+      });
+
+      // console.log($scope.exampleData);
+
+      $scope.xAxisTickFormatFunction = function(){
+        return function(d) {
+          return d3.time.format('%Y-%m-%d')(new Date(d));
+        };
+      };
+
+      $scope.xFunction = function(){
+        return function(d) {
+            return d.key;
+        };
+      };
+      
+      $scope.yFunction = function(){
+        return function(d) {
+            return d.y;
+        };
+      };
+
+      $scope.descriptionFunction = function(){
+        return function(d){
+            return d.key;
+        };
+      };
+
     })
     .catch( function() {
       //TODO: revisit this

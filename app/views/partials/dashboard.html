@@ -4,16 +4,39 @@
   <div class="col-sm-12">
     <h1>Dashboard</h1>
   </div>
-  <div class="col-sm-12">
-      <rickshaw-chart
-        data="surfs"
-        color="blue"
-        renderer="renderer"
-        width="750"
-        height="450"
-      ></rickshaw-chart>
+  <div class="row">
+    <div class="col-sm-12">    
+      <nvd3-pie-chart
+          margin="{left:0,top:0,bottom:0,right:0}"
+          data="boards"
+          id="boards-pie"
+          x="xFunction()"
+          y="yFunction()"
+          width="550"
+          height="300"
+          showLabels="true"
+          pieLabelsOutside="false"
+          showValues="true"
+          toolTips="true">
+          <svg></svg>
+      </nvd3-pie-chart>
     </div>
-
-    </rickshaw-chart>
   </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <nvd3-line-chart
+        data="exampleData"
+        id="surfs-mon-line"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        width="550"
+        height="350"
+        showLabels="true"
+        showXAxis="true"
+        showYAxis="true"
+        toolTips="true">
+        <svg></svg>
+      </nvd3-line-chart>
+    </div>
+  </div>
+
 </div>
