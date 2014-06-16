@@ -1,13 +1,12 @@
 <div ng-include="'partials/navbar.html'"></div>
 
 <div class="row">
-  <div class="col-sm-3">
-    <h1>Sidebar</h1>
-    <ul>
-      <li>Item 1</li>
-      <li>Item 2</li>
-      <li>Item 3</li>
-    </ul>
+  <div class="col-sm-3 list-group">
+    <div class="nav nav-pills nav-stacked">
+      <a class="list-group-item" ng-class="{active: $state.includes('settings.account')}">Account</a>
+      <a class="list-group-item">Quiver</a>
+      <a class="list-group-item">Surf Spots</a>
+    </div>
   </div>
   <div class="col-sm-9">
     <div ui-view=""></div>

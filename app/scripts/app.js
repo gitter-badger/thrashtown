@@ -79,7 +79,6 @@ angular.module('hackathonApp', [
     // Add state to the rootScope for 'activate' class in navbar and sidebars 
     $rootScope.$state = $state;
 
-
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       
