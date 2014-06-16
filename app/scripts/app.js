@@ -4,48 +4,53 @@ angular.module('hackathonApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
-  'nvd3ChartDirectives'
+  'ui.router',
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    
+    $locationProvider.html5Mode(true);
+    // $urlRouterProvider.when('/', '/login');
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('main', {
+        url: '/',
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
-      .when('/login', {
+      .state('login', {
+        url: '/login',
         templateUrl: 'partials/login',
         controller: 'LoginCtrl'
       })
-      .when('/signup', {
+      .state('signup', {
+        url: '/signup',
         templateUrl: 'partials/signup',
         controller: 'SignupCtrl'
       })
-      .when('/settings', {
+      .state('settings', {
+        url: '/settings',
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',
         authenticate: true
       }) 
-      .when('/surf', {
+      .state('surf', {
+        url: '/surf',
         templateUrl: 'partials/createsurf',
         controller: 'CreateSurfCtrl',
         authenticate: true
       })
-      .when('/surfs', {
+      .state('surfs', {
+        url: '/surfs',
         templateUrl: 'partials/surfsessionstable',
         controller: 'SurfSessionsTableCtrl',
         authenticate: true        
       })
-      .when('/dashboard', {
+      .state('dashboard', {
+        url: '/dashboard',
         templateUrl: 'partials/dashboard',
         controller: 'DashboardCtrl',
         authenticate: true        
-      })
-      .otherwise({
-        redirectTo: '/'
       });
-      
-    $locationProvider.html5Mode(true);
       
     // Intercept 401s and redirect you to login
     $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
@@ -65,7 +70,7 @@ angular.module('hackathonApp', [
   .run(function ($rootScope, $location, Auth) {
 
     // Redirect to login if route requires auth and you're not logged in
-    $rootScope.$on('$routeChangeStart', function (event, next) {
+    $rootScope.$on('$stateChangeStart', function (event, next) {
       
       if (next.authenticate && !Auth.isLoggedIn()) {
         $location.path('/login');
