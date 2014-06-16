@@ -1,11 +1,11 @@
 <div ng-include="'partials/navbar.html'"></div>
 
 <div class="row">
-  <div class="col-sm-3 list-group">
-    <div class="nav nav-pills nav-stacked">
+  <div class="col-sm-3">
+    <div class="list-group">
       <a class="list-group-item" ng-class="{active: $state.includes('settings.account')}">Account</a>
-      <a class="list-group-item">Quiver</a>
-      <a class="list-group-item">Surf Spots</a>
+      <a class="list-group-item" ng-class="{active: $state.includes('settings.quiver')}">Quiver</a>
+      <a class="list-group-item" ng-class="{active: $state.includes('settings.surfspots')}">Surf Spots</a>
     </div>
   </div>
   <div class="col-sm-9">
