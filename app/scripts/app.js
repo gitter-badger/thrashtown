@@ -31,8 +31,15 @@ angular.module('hackathonApp', [
         url: '/settings',
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',
+        abstract: true,
         authenticate: true
-      }) 
+      })
+      .state('settings.account', {
+        url: '/account',
+        templateUrl: 'partials/account',
+        controller: 'AccountCtrl',
+        authenticate: true
+      })
       .state('surf', {
         url: '/surf',
         templateUrl: 'partials/createsurf',
@@ -67,7 +74,11 @@ angular.module('hackathonApp', [
       };
     }]);
   })
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $state, $location, Auth) {
+
+    // Add state to the rootScope for 'activate' class in navbar and sidebars 
+    $rootScope.$state = $state;
+
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
