@@ -40,6 +40,12 @@ angular.module('hackathonApp', [
         controller: 'AccountCtrl',
         authenticate: true
       })
+      .state('settings.quiver', {
+        url: '/quiver',
+        templateUrl: 'partials/quiver',
+        controller: 'QuiverCtrl',
+        authenticate: true
+      })
       .state('surf', {
         url: '/surf',
         templateUrl: 'partials/createsurf',
