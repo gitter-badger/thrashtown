@@ -1,0 +1,61 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 ng-if="mode==='edit'">Update Spot</h4>
+    <h4 ng-if="mode==='add'">Add Spot</h4>
+  </div>
+  
+  <div class="panel-body">
+    <form class="form form-horizontal" role="form" name="surfSpotForm" novalidate> 
+
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Name</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" placeholder="Rocky Island" required ng-model="params.name">
+        </div>
+
+        <label class="col-xs-2 control-label">Region</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" placeholder="Marin" required ng-model="params.region">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Latitude</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="number" placeholder="37.698832" ng-model="params.lat">
+        </div>
+
+        <label class="col-xs-2 control-label">Longitude</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="number" placeholder="-123.004344" ng-model="params.long">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Notes</label>
+        <div class="col-xs-10">
+          <input class="form-control" type="textarea" ng-model="params.notes">
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-8">
+          <div class="checkbox">
+            <label>
+              <input name="default" type="checkbox" ng-model="params.default"> Make this my default spot
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-5">
+          <button ng-if="mode==='add'" type="submit" class="btn btn-primary" ng-disabled="surfSpotForm.$invalid" ng-click="updateSurfSpot(surfSpotForm, 'POST')">Save Spot</button>
+          <button ng-if="mode==='edit'" type="submit" class="btn btn-primary" ng-disabled="surfSpotForm.$invalid || surfSpotForm.$pristine" ng-click="updateSurfSpot(surfSpotForm, 'PUT')">Update Spot</button>
+          <a ui-sref="settings.surfSpots" class="btn btn-default">Cancel</a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

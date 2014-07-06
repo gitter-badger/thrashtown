@@ -46,17 +46,58 @@ angular.module('hackathonApp', [
         controller: 'QuiverCtrl',
         authenticate: true
       })
-      .state('surf', {
-        url: '/surf',
-        templateUrl: 'partials/createsurf',
-        controller: 'CreateSurfCtrl',
+      .state('settings.quiver.board', {
+        templateUrl: 'partials/board',
+        controller: 'BoardCtrl',
         authenticate: true
       })
-      .state('surfs', {
-        url: '/surfs',
+      .state('settings.surfSpots', {
+        url: '/surf-spots',
+        templateUrl: 'partials/surfspots',
+        controller: 'SurfSpotsCtrl',
+        authenticate: true
+      })
+      .state('settings.surfSpots.spot', {
+        templateUrl: 'partials/spot',
+        controller: 'SpotCtrl',
+        authenticate: true
+      })
+      // .state('surf', {
+      //   url: '/surf',
+      //   templateUrl: 'partials/createsurf',
+      //   controller: 'CreateSurfCtrl',
+      //   authenticate: true
+      // })
+      .state('surfsold', {
+        url: '/surfsold',
         templateUrl: 'partials/surfsessionstable',
         controller: 'SurfSessionsTableCtrl',
         authenticate: true        
+      })
+      .state('surfs', {
+        url: '/surfs',
+        templateUrl: 'partials/surfs',
+        controller: 'SurfsCtrl',
+        abstract: true,
+        authenticate: true,
+        resolve: {
+          loadUserProfileToRootScope: ['UserProfile', function(UserProfile) {
+            UserProfile.loadUserProfile();
+            UserProfile.loadSurfSessions();
+          }]
+        }        
+      })
+      .state('surfs.review', {
+        url: '/review',
+        templateUrl: 'partials/surfsessionstable',
+        controller: 'SurfSessionsTableCtrl',
+        authenticate: true
+      })
+      .state('surfs.create', {
+        url: '/create',
+        templateUrl: 'partials/createsurf',
+        controller: 'CreateSurfCtrl',
+        authenticate: true
       })
       .state('dashboard', {
         url: '/dashboard',

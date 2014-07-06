@@ -1,0 +1,38 @@
+<div ui-view=""></div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>My Surf Spots</h4>
+  </div>
+  
+  <div class="panel-body">
+    <button class="btn btn-default pull-right" ng-click="loadAddView()">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add Spot
+    </button>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Region</th>
+          <th>Latitude</th>
+          <th class="text-center">Edit</th>
+          <th class="text-center">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="surfSpot in surfSpots">
+          <td>{{surfSpot.name}}<span ng-if="surfSpot.default" id="home-spot" class="glyphicon glyphicon-home"></span> </td>
+          <td>{{surfSpot.region}}</td>
+          <td>{{surfSpot.lat | number}}</td>
+          <td class="text-center">
+            <span ng-click="loadEditView(surfSpot)" class="glyphicon glyphicon-pencil text-success clickable"></span>
+          </td>
+          <td class="text-center">
+            <span ng-click="deleteSurfSpot(surfSpot)" class="glyphicon glyphicon-remove text-danger clickable"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

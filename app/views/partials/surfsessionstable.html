@@ -1,34 +1,38 @@
-<div ng-include="'partials/navbar.html'"></div>
 
 <div class="row">
   <div class="col-sm-12">
-    <h1>Your Sessions</h1>
-  </div>
-  <div class="col-sm-12">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Location</th>
-          <th>Session Date</th>
-          <th>Other Friends</th>
-          <th>Wave Quality</th>
-          <th>Board</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="surf in surfs">
-          <td>{{surf.location}}</td>
-          <td>{{surf.sessionDate | date:'yyyy-MM-dd'}}</td>
-          <td>{{surf.otherFriends}}</td>
-          <td>{{surf.waveQuality}}</td>
-          <td>{{surf.board}}</td>
-          <td><span class="text-success glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="left" title="Tooltip on left"></span></td>
-          <td><span class="text-danger glyphicon glyphicon-remove"></span></td>
-        </tr>
-      </tbody>
-      
-    </table>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4>My Sessions</h4>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Session Date</th>
+              <th>Other Friends</th>
+              <th>Wave Quality</th>
+              <th>Board</th>
+              <th>Comment</th>
+              <th class="text-center">Edit</th>
+              <th class="text-center">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="surf in surfs">
+              <td>{{surfSpots[surf.surfSpot_id].region}} - {{surfSpots[surf.surfSpot_id].name}}</td>
+              <td>{{surf.sessionDate | date:"'MM-dd-yyyy"}}</td>
+              <td>{{surf.otherFriends}}</td>
+              <td>{{surf.waveQuality}}</td>
+              <td>{{boards[surf.board_id].size}} - {{boards[surf.board_id].name}}</td>
+              <td>{{surf.comment | limitTo: 60}}...</td>
+              <td class="text-center"><span class="text-success glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="left" title="Tooltip on left"></span></td>
+              <td class="text-center"><span class="text-danger glyphicon glyphicon-remove"></span></td>
+            </tr>
+          </tbody>      
+        </table>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,14 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+      <a class="list-group-item" ui-sref="surfs.create" ng-class="{active: $state.includes('surfs.create')}">Log Session</a>
+      <a class="list-group-item" ui-sref="surfs.review" ng-class="{active: $state.includes('surfs.review')}">Review Sessions</a>
+      <a class="list-group-item" ui-sref="surfs.dashboard" ng-class="{active: $state.includes('surfs.dashboard')}">Session Dashboard</a>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div ui-view=""></div>
+  </div>
+</div>

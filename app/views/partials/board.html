@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 ng-if="mode==='edit'">Update Board</h4>
+    <h4 ng-if="mode==='add'">Add Board</h4>
+  </div>
+  
+  <div class="panel-body">
+    <form class="form form-horizontal" role="form" name="boardForm" novalidate> 
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Size</label>
+        <div class="col-sm-2">
+          <input class="form-control" type="text" placeholder="6'2&quot" required ng-model="params.size">
+        </div>
+
+        <label class="col-sm-1 control-label">Name</label>
+        <div class="col-sm-5">
+          <input class="form-control" type="text" placeholder="C.I. Flyer II" required ng-model="params.name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Category</label>
+        <div class="col-sm-8">
+          <select class="form-control" name="category" type="text" required ng-model="params.category">
+            <option>Shortboard</option>
+            <option>Fish</option>
+            <option>Step-Up</option>
+            <option>Gun</option>
+            <option>Longboard</option>
+            <option>Funboard/Other</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8">
+          <div class="checkbox">
+            <label>
+              <input name="default" type="checkbox" ng-model="params.default"> Make this the default board
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-5">
+          <button ng-if="mode==='add'" type="submit" class="btn btn-primary" ng-disabled="boardForm.$invalid" ng-click="updateBoard(boardForm, 'POST')">Save Board</button>
+          <button ng-if="mode==='edit'" type="submit" class="btn btn-primary" ng-disabled="boardForm.$invalid || boardForm.$pristine" ng-click="updateBoard(boardForm, 'PUT')">Update Board</button>
+          <a ui-sref="settings.quiver" class="btn btn-default">Cancel</a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

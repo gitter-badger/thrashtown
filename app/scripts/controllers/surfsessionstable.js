@@ -1,18 +1,19 @@
 'use strict';
 
 angular.module('hackathonApp')
-  .controller('SurfSessionsTableCtrl', function ($scope, $http) {
-    $scope.errors = {};
+  .controller('SurfSessionsTableCtrl', function ($scope) {
+    // $scope.errors = {};
 
-    $http({
-      method: 'GET',
-      url: 'api/surfs',
-    })
-    .then(function(data) {
-      $scope.surfs = data.data;
-    })
-    .catch( function() {
-      //TODO: revisit this
-      $scope.errors.other = 'Error with retrieving sessions data.';
-    });
+    // $http({
+    //   method: 'GET',
+    //   url: 'api/surfs',
+    // })
+    // .success(function(data) {
+    //   $scope.surfs = data;
+    // })
+    // .error( function(err) {
+    //   //TODO: revisit this
+    //   console.log(err);
+    //   $scope.errors.other = 'Error with retrieving sessions data.';
+    // });
   });

@@ -1,44 +1,40 @@
-
-<div class="row">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Update Your Quiver</h3>
-    </div>
-    
-    <div class="panel-body">
-      <form class="form" name="form" ng-submit="setQuiver(form)" novalidate>	
-        <div class="form-group">
-          <label>Board 1</label>
-
-          <input type="text" name="board1" class="form-control" ng-model="boards[0]"/>
-          <p class="help-block" ng-show="form.board1.$error">
-            {{form.board1.$error}}
-          </p>
-        </div>
-
-        <div class="form-group">
-          <label>Board 2</label>
-
-          <input type="text" name="board2" class="form-control" ng-model="boards[1]"/>
-          <p class="help-block" ng-show="form.board2.$error">
-            {{form.board2.$error}}
-          </p>
-        </div>
-
-        <div class="form-group">
-          <label>Board 3</label>
-
-          <input type="text" name="board3" class="form-control" ng-model="boards[2]"/>
-          <p class="help-block" ng-show="form.board3.$error">
-            {{form.board3.$error}}
-          </p>
-        </div>
-
-        <p class="help-block"> {{ message }} </p>
-
-        <button class="btn btn-primary" type="submit">Save Quiver</button>
-        <a ui-sref="main" class="btn btn-default">Cancel</a>
-      </form>
-    </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>My Quiver</h4>
+  </div>
+  
+  <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">Default</th>
+          <th>Size</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th class="text-center">Edit</th>
+          <th class="text-center">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="board in boards">
+          <td class="text-center"><span ng-if="board.default" class="glyphicon glyphicon-ok"></span></td>
+          <td>{{board.size}}</td>
+          <td>{{board.name}}</td>
+          <td>{{board.category}}</td>
+          <td class="text-center">
+            <span ng-click="loadEditView(board)" class="glyphicon glyphicon-pencil text-success clickable"></span>
+          </td>
+          <td class="text-center">
+            <span ng-click="deleteBoard(board)" class="glyphicon glyphicon-remove text-danger clickable"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-default pull-right" ng-click="loadAddView()">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add Board
+    </button>
   </div>
 </div>
+
+<div ui-view=""></div>

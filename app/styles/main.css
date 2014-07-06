@@ -77,3 +77,24 @@ body {
     border-bottom: 0;
   }
 }
+
+
+/* Form validation */
+.form-control.ng-dirty.ng-invalid {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+  -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+}
+
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  opacity: 0.60;
+}
+
+#home-spot {
+  margin-left: 10px;
+  color: green;
+}

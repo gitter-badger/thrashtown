@@ -1,33 +1,50 @@
 'use strict';
 
 angular.module('hackathonApp')
-  .controller('QuiverCtrl', function ($scope, $http, $location) {
-    $scope.boards = [];
-    $scope.errors = {};
+  .controller('QuiverCtrl', function ($scope, $rootScope, $state, $http) {
+    // On load, reset in case there was a value
+    $scope.editBoard = null;
 
-    $scope.setQuiver = function(form) {
-      $scope.submitted = true;
-  
-      if(form.$valid) {
-        $http({
-          method: 'POST',
-          url: 'api/users/me/boards',
-          data: $scope.boards
-        })
-        .then(function() {
-          // Account created, redirect to home
-          $location.path('/');
-        })
-        .catch(function(err) {
-          err = err.data;
-          $scope.errors = {};
-
-          // Update validity of form fields that match the mongoose errors
-          angular.forEach(err.errors, function(error, field) {
-            form[field].$setValidity('mongoose', false);
-            $scope.errors[field] = error.message;
-          });
-        });
-      }
+    $scope.loadEditView = function(board) {
+      $scope.editBoard = angular.copy(board);
+      $state.go('settings.quiver.board');
     };
+
+    $scope.loadAddView = function() {
+      $scope.editBoard = null;
+      $state.go('settings.quiver.board');
+    };
+
+    var reloadQuiver = function() {
+      $http({
+        method: 'GET',
+        url: '/api/boards'
+      })
+      .success(function(data) {
+        $rootScope.boards = data.boards.sort(function(a, b) {
+          return a.name > b.name;
+        });
+      })
+      .error(function(err) {
+        console.log(err);
+      });
+    };
+
+    $scope.deleteBoard = function(board) {
+      $http({
+        method: 'DELETE',
+        url: '/api/boards/' + board._id
+      }).
+      success(function(){
+        reloadQuiver();
+      }).
+      error(function(err){
+        console.log(err);
+      });
+    };
+    
+    reloadQuiver();
+
+    $scope.$on('quiver:updated', reloadQuiver);
+
   });
