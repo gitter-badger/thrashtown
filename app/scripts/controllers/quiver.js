@@ -37,6 +37,8 @@ angular.module('hackathonApp')
       }).
       success(function(){
         reloadQuiver();
+        // Need to let other services in the app know.
+        $rootScope.$broadcast('quiver:updated');
       }).
       error(function(err){
         console.log(err);

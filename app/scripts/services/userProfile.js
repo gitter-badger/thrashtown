@@ -2,7 +2,7 @@
 
 angular.module('hackathonApp')
   .factory('UserProfile', function($rootScope, $http) {
-    return {
+    var service = {
       loadUserProfile: function() {
         $http({
           method: 'GET',
@@ -40,4 +40,10 @@ angular.module('hackathonApp')
       }
 
     };
+
+    $rootScope.$on('quiver:updated', service.loadUserProfile);
+    $rootScope.$on('surfSpots:updated', service.loadUserProfile);
+    $rootScope.$on('surf:updated', service.loadSurfSessions);
+
+    return service;
   });

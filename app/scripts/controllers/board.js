@@ -28,6 +28,7 @@ angular.module('hackathonApp')
           data: $scope.params
         })
         .success(function() { 
+          // Need to let other services in the app know.
           $rootScope.$broadcast('quiver:updated');
           $state.go('settings.quiver');
         })

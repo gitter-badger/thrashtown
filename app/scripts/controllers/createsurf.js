@@ -32,6 +32,7 @@ angular.module('hackathonApp')
         })
         .then( function() {
           //TODO: revisit this
+          $rootScope.$broadcast('surf:updated');
           $scope.message = 'Surf session successfully added.';
         })
         .catch( function() {

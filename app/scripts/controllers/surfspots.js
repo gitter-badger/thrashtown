@@ -37,6 +37,8 @@ angular.module('hackathonApp')
       }).
       success(function(){
         reloadSurfSpots();
+        // Need to let other services in the app know.
+        $rootScope.$broadcast('surfSpots:updated');
       }).
       error(function(err){
         console.log(err);
