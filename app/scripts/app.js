@@ -62,12 +62,6 @@ angular.module('hackathonApp', [
         controller: 'SpotCtrl',
         authenticate: true
       })
-      // .state('surf', {
-      //   url: '/surf',
-      //   templateUrl: 'partials/createsurf',
-      //   controller: 'CreateSurfCtrl',
-      //   authenticate: true
-      // })
       .state('surfsold', {
         url: '/surfsold',
         templateUrl: 'partials/surfsessionstable',
@@ -99,7 +93,7 @@ angular.module('hackathonApp', [
         controller: 'CreateSurfCtrl',
         authenticate: true
       })
-      .state('dashboard', {
+      .state('surfs.dashboard', {
         url: '/dashboard',
         templateUrl: 'partials/dashboard',
         controller: 'DashboardCtrl',

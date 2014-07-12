@@ -1,42 +1,11 @@
-<div ng-include="'partials/navbar.html'"></div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <h1>Dashboard</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Dashboard</h4>
   </div>
-  <div class="row">
-    <div class="col-sm-12">    
-      <nvd3-pie-chart
-          margin="{left:0,top:0,bottom:0,right:0}"
-          data="boards"
-          id="boards-pie"
-          x="xFunction()"
-          y="yFunction()"
-          width="550"
-          height="300"
-          showLabels="true"
-          pieLabelsOutside="false"
-          showValues="true"
-          toolTips="true">
-          <svg></svg>
-      </nvd3-pie-chart>
-    </div>
+  <div class="panel-body">
+    Some text
   </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <nvd3-line-chart
-        data="exampleData"
-        id="surfs-mon-line"
-        xAxisTickFormat="xAxisTickFormatFunction()"
-        width="550"
-        height="350"
-        showLabels="true"
-        showXAxis="true"
-        showYAxis="true"
-        toolTips="true">
-        <svg></svg>
-      </nvd3-line-chart>
-    </div>
+  <div class="panel-footer">
+    Some text
   </div>
-
 </div>

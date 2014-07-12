@@ -44,7 +44,7 @@
       </div>
 
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-5">
+        <div class="col-sm-offset-2 col-sm-10">
           <button ng-if="mode==='add'" type="submit" class="btn btn-primary" ng-disabled="boardForm.$invalid" ng-click="updateBoard(boardForm, 'POST')">Save Board</button>
           <button ng-if="mode==='edit'" type="submit" class="btn btn-primary" ng-disabled="boardForm.$invalid || boardForm.$pristine" ng-click="updateBoard(boardForm, 'PUT')">Update Board</button>
           <a ui-sref="settings.quiver" class="btn btn-default">Cancel</a>
