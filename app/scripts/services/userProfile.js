@@ -23,6 +23,9 @@ angular.module('hackathonApp')
             var surfSpot = profile.surfSpots[j];
             $rootScope.surfSpots[surfSpot._id] = surfSpot;
           }
+
+          $rootScope.$broadcast('userProfileLoaded');
+
         }).error(function(err) {
           console.log(err);
         });
@@ -34,6 +37,7 @@ angular.module('hackathonApp')
           url: '/api/surfs'
         }).success(function(surfs){
           $rootScope.surfs = surfs;
+          $rootScope.$broadcast('surfSessionsLoaded');
         }).error(function(err) {
           console.log(err);
         }); 

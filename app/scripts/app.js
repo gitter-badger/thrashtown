@@ -62,12 +62,12 @@ angular.module('hackathonApp', [
         controller: 'SpotCtrl',
         authenticate: true
       })
-      .state('surfsold', {
-        url: '/surfsold',
-        templateUrl: 'partials/surfsessionstable',
-        controller: 'SurfSessionsTableCtrl',
-        authenticate: true        
-      })
+      // .state('surfsold', {
+      //   url: '/surfsold',
+      //   templateUrl: 'partials/surfsessionstable',
+      //   controller: 'SurfSessionsTableCtrl',
+      //   authenticate: true        
+      // })
       .state('surfs', {
         url: '/surfs',
         templateUrl: 'partials/surfs',
@@ -97,7 +97,7 @@ angular.module('hackathonApp', [
         url: '/dashboard',
         templateUrl: 'partials/dashboard',
         controller: 'DashboardCtrl',
-        authenticate: true        
+        authenticate: true      
       });
       
     // Intercept 401s and redirect you to login

@@ -1,87 +1,69 @@
 'use strict';
 
 angular.module('hackathonApp')
-  .controller('DashboardCtrl', function ($scope, $http) {
-    $scope.errors = {};
+  .controller('DashboardCtrl', function ($scope, $rootScope) {
+    // var today = new Date();
+    // $scope.startDate = new Date(today.getFullYear(), 0, 1);
+    // $scope.endDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+    var statsByDayArr = [];
+    var statsByMonthArr = [];
 
-    $http({
-      method: 'GET',
-      url: 'api/surfs',
-    })
-    .then(function(data) {
-      var sessions = data.data;
-      var storage = {
-        boards: {},
-        surfs: {}
-      };
-      for (var i = 0; i < sessions.length; i++) {
-        var session = sessions[i];
-        var board = session.board;
-        var mon = new Date(session.sessionDate);
-        var monStart = new Date(mon.getFullYear(), mon.getMonth(), 1);
-        if (storage.boards[board] === undefined) {
-          storage.boards[board] = 0;
+    // TODO: WIP
+    // var statsByDayArrFiltered = [];
+    // var statsByMonthArrFiltered = [];
+
+    // var filterSessions = function(start, end) {
+
+
+    // };
+
+    var loadSurfSessions = function() {
+      var statsByDayObj = {};
+      var statsByMonthObj = {};
+      for (var i = 0; i < $scope.surfs.length; i++) {
+        var dayKey = $scope.surfs[i].sessionDate.slice(0, 10);
+        var monthKey = $scope.surfs[i].sessionDate.slice(0, 7) + '-01';
+        if (!statsByDayObj[dayKey]) {
+          statsByDayObj[dayKey] = 0;
         }
-        storage.boards[board] += 1;
-               
-        if (storage.surfs[monStart] === undefined) {
-          storage.surfs[monStart] = 0;
+        if (!statsByMonthObj[monthKey]) {
+          statsByMonthObj[monthKey] = 0;
         }
-        storage.surfs[monStart] += 1;
+        statsByDayObj[dayKey] += 1;
+        statsByMonthObj[monthKey] += 1;
       }
 
-      $scope.boards = _.map(storage.boards, function(count, board) {
-        return {key: board, y: count};
-      });
+      for (var day in statsByDayObj) {
+        statsByDayArr.push({date: day, total: statsByDayObj[day]});
+      }
 
-      $scope.exampleData = [{key: 'Sessions by Month'}];
-      $scope.exampleData[0].values = _.map(storage.surfs, function(count, mon) {
-        return [new Date(mon), count];
-      });
+      for (var month in statsByMonthObj) {
+        statsByMonthArr.push({date: month, total: statsByMonthObj[month]});
+      }
 
-      // console.log($scope.exampleData);
-
-      $scope.xAxisTickFormatFunction = function(){
-        return function(d) {
-          return d3.time.format('%Y-%m-%d')(new Date(d));
-        };
+      var sortByKey = function(objectsArr, key) {
+        objectsArr.sort(function(a, b) {
+          if (a[key] > b[key]) {
+            return 1;
+          } else if (a[key] < b[key]) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
       };
 
-      $scope.xFunction = function(){
-        return function(d) {
-            return d.key;
-        };
-      };
-      
-      $scope.yFunction = function(){
-        return function(d) {
-            return d.y;
-        };
-      };
+      sortByKey(statsByDayArr, 'date');
+      sortByKey(statsByMonthArr, 'date');
+      $scope.chartData = statsByMonthArr;
+    };
+    
+    // TODO: revisit this implementation need a way to 'finish' load
+    // in resolve so I don't have to do this
+    if ($scope.surfs) {
+      loadSurfSessions();
+    } else {
+      $rootScope.$on('surfSessionsLoaded', loadSurfSessions);
+    }
 
-      $scope.descriptionFunction = function(){
-        return function(d){
-            return d.key;
-        };
-      };
-
-    })
-    .catch( function() {
-      //TODO: revisit this
-      $scope.errors.other = 'Error with retrieving sessions data.';
-    });
   });
-
-// 'surferName'
-// 'user_id'
-// 'location'
-// 'locationRollup'
-// 'otherFriends'
-// 'waveQuality'
-// 'hollowness'
-// 'funFactor'
-// 'crowdedness'
-// 'board'
-// 'sessionDate'
-// 'waterEntryTime'
-// 'waterExitTime'

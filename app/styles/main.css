@@ -91,10 +91,27 @@ body {
   cursor: pointer;
 }
 .clickable:hover {
-  opacity: 0.60;
+  opacity: .6;
 }
+
 
 #home-spot {
   margin-left: 10px;
-  color: green;
+}
+
+.tt-review-comment {
+  border-top: none !important;
+  padding-left: 16px !important;
+}
+
+.tt-review-date-col {
+  min-width: 120px;
+}
+
+/* D3 Charts */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
