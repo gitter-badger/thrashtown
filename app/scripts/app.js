@@ -62,12 +62,6 @@ angular.module('hackathonApp', [
         controller: 'SpotCtrl',
         authenticate: true
       })
-      // .state('surfsold', {
-      //   url: '/surfsold',
-      //   templateUrl: 'partials/surfsessionstable',
-      //   controller: 'SurfSessionsTableCtrl',
-      //   authenticate: true        
-      // })
       .state('surfs', {
         url: '/surfs',
         templateUrl: 'partials/surfs',
@@ -79,7 +73,7 @@ angular.module('hackathonApp', [
             UserProfile.loadUserProfile();
             UserProfile.loadSurfSessions();
           }]
-        }        
+        }
       })
       .state('surfs.review', {
         url: '/review',
@@ -93,11 +87,17 @@ angular.module('hackathonApp', [
         controller: 'CreateSurfCtrl',
         authenticate: true
       })
+      .state('surfs.edit', {
+        url: '/edit/:surfId',
+        templateUrl: 'partials/createsurf',
+        controller: 'EditSurfCtrl',
+        authenticate: true
+      })
       .state('surfs.dashboard', {
         url: '/dashboard',
         templateUrl: 'partials/dashboard',
         controller: 'DashboardCtrl',
-        authenticate: true      
+        authenticate: true
       });
       
     // Intercept 401s and redirect you to login

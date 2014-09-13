@@ -1,17 +1,18 @@
 'use strict';
 
 angular.module('hackathonApp')
-  .controller('CreateSurfCtrl', function ($rootScope, $scope, $http, $state) {
+  .controller('CreateSurfCtrl', function ($filter, $rootScope, $scope, $http, $state) {
     
     $scope.errors = {};
-    
+    $scope.mode = 'add';
+
     // Default values
     $scope.surf = {
-      sessionDate: new Date().toISOString().substring(0, 10),
+      sessionDate: $filter('date')(Date.now(), 'yyyy-MM-dd'),
       waveQuality: 3,
       hollowness: 3,
       funFactor: 3,
-      crowdFactor: 3,
+      crowdedness: 3,
       otherFriends: 0};
     
     // TODO: revisit this implementation
@@ -38,8 +39,7 @@ angular.module('hackathonApp')
       $rootScope.$on('userProfileLoaded', loadAsyncDefaults);
     }
 
-
-    $scope.createSurf = function(form) {
+    $scope.saveSurf = function(form) {
       if(form.$valid) {
         // To set the session date to midnight of user's local time, not
         // midnight GMT as would otherwise happen if left unmodified from form
@@ -52,15 +52,15 @@ angular.module('hackathonApp')
           url: 'api/surfs',
           data: $scope.surf
         })
-        .then( function() {
+        .then(function() {
           $rootScope.$broadcast('surf:updated');
           $state.go('surfs.review');
-          // $scope.message = 'Surf session successfully added.';
         })
-        .catch( function() {
+        .catch(function() {
           //TODO: revisit this
-          $scope.errors.other = 'Error with saving session.';
+          $scope.errors.other = 'Error saving session.';
         });
       }
     };
+  
   });

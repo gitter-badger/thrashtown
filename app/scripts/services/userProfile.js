@@ -48,6 +48,7 @@ angular.module('hackathonApp')
     $rootScope.$on('quiver:updated', service.loadUserProfile);
     $rootScope.$on('surfSpots:updated', service.loadUserProfile);
     $rootScope.$on('surf:updated', service.loadSurfSessions);
+    $rootScope.$on('surf:deleted', service.loadSurfSessions);
 
     return service;
   });

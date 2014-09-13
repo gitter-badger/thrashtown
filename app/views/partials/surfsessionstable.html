@@ -46,8 +46,8 @@
               <td>{{surf.otherFriends}}</td>
               <td>{{surf.funFactor}}</td>
               <td>{{boards[surf.board_id].size}} - {{boards[surf.board_id].name}}</td>
-              <td class="text-center"><span class="text-success glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="left" title="Tooltip on left"></span></td>
-              <td class="text-center"><span class="text-danger glyphicon glyphicon-remove"></span></td>
+              <td class="text-center"><span class="text-success glyphicon glyphicon-pencil clickable" ng-click="editSurf(surf)"></span></td>
+              <td class="text-center"><span class="text-danger glyphicon glyphicon-remove clickable" ng-click="deleteSurf(surf)"></span></td>
             </tr>
             <tr ng-repeat-end>
               <td class="tt-review-comment text-muted" colspan="7">{{surf.comment}}</td>
