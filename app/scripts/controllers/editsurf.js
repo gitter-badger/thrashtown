@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hackathonApp')
-  .controller('EditSurfCtrl', function ($filter, $http, $scope, $state, $stateParams) {
+  .controller('EditSurfCtrl', function ($filter, $http, $rootScope, $scope, $state, $stateParams) {
     
     $scope.errors = {};
     $scope.mode = 'edit';

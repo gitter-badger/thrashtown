@@ -7,8 +7,11 @@ angular.module('hackathonApp')
     $scope.mode = 'add';
 
     // Default values
+    var d = new Date();
+
     $scope.surf = {
-      sessionDate: $filter('date')(Date.now(), 'yyyy-MM-dd'),
+      sessionDate: "2014-12-30T23:59",
+      sessionHours: 2,
       waveQuality: 3,
       hollowness: 3,
       funFactor: 3,

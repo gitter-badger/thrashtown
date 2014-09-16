@@ -95,17 +95,14 @@ body {
 }
 
 
-#home-spot {
+#tt-home-spot {
   margin-left: 10px;
 }
 
+/* Review Sessions */
 .tt-review-comment {
   border-top: none !important;
   padding-left: 16px !important;
-}
-
-.tt-review-date-col {
-  min-width: 120px;
 }
 
 /* D3 Charts */

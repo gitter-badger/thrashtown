@@ -41,7 +41,7 @@
           </thead>
           <tbody>
             <tr ng-repeat-start="surf in surfs | filter:searchText | orderBy:'sessionDate'">
-              <td class="tt-review-date-col">{{surf.sessionDate | date:"EEE, MMM d yyyy"}}</td>
+              <td>{{surf.sessionDate | date:"EEE, MMM d yyyy"}}</td>
               <td>{{surfSpots[surf.surfSpot_id].region}} - {{surfSpots[surf.surfSpot_id].name}}</td>
               <td>{{surf.otherFriends}}</td>
               <td>{{surf.funFactor}}</td>
