@@ -10,7 +10,11 @@ angular.module('hackathonApp')
     var d = new Date();
 
     $scope.surf = {
-      sessionDate: "2014-12-30T23:59",
+      sessionDate: new Date(d.getFullYear(),
+                            d.getMonth(),
+                            d.getDate(),
+                            d.getHours(),
+                            d.getMinutes()),
       sessionHours: 2,
       waveQuality: 3,
       hollowness: 3,
@@ -46,9 +50,9 @@ angular.module('hackathonApp')
       if(form.$valid) {
         // To set the session date to midnight of user's local time, not
         // midnight GMT as would otherwise happen if left unmodified from form
-        var dateParts = $scope.surf.sessionDate.split('-');
-        var month = parseInt(dateParts[1]) - 1;
-        $scope.surf.sessionDate = new Date(dateParts[0], month, dateParts[2]);
+        // var dateParts = $scope.surf.sessionDate.split('-');
+        // var month = parseInt(dateParts[1]) - 1;
+        // $scope.surf.sessionDate = new Date(dateParts[0], month, dateParts[2]);
         
         $http({
           method: 'POST',

@@ -11,8 +11,14 @@ angular.module('hackathonApp')
       url: 'api/surfs/' + $stateParams.surfId
     }).then(function(response) {
       $scope.surf = response.data;
-      var date = new Date(response.data.sessionDate);
-      $scope.surf.sessionDate = $filter('date')(date, 'yyyy-MM-dd');
+      $scope.surf.sessionDate = new Date($scope.surf.sessionDate);
+      // var d = new Date(response.data.sessionDate);
+      // $scope.surf.sessionDate = new Date(d.getFullYear(),
+      //                                    d.getMonth() + 1,
+      //                                    d.getDate(),
+      //                                    d.getHours(),
+      //                                    d.getMinutes());
+      // $scope.surf.sessionDate = $filter('date')(date, 'yyyy-MM-dd');
     }).catch(function(err) {
       //TODO:
       console.log('Error getting session from DB.', err);
@@ -22,9 +28,9 @@ angular.module('hackathonApp')
       if(form.$valid) {
         // To set the session date to midnight of user's local time, not
         // midnight GMT as would otherwise happen if left unmodified from form
-        var dateParts = $scope.surf.sessionDate.split('-');
-        var month = parseInt(dateParts[1]) - 1;
-        $scope.surf.sessionDate = new Date(dateParts[0], month, dateParts[2]);
+        // var dateParts = $scope.surf.sessionDate.split('-');
+        // var month = parseInt(dateParts[1]) - 1;
+        // $scope.surf.sessionDate = new Date(dateParts[0], month, dateParts[2]);
         
         $http({
           method: 'PUT',
