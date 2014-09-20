@@ -2,7 +2,7 @@
 
 angular.module('hackathonApp')
   .controller('CreateSurfCtrl', function ($filter, $rootScope, $scope, $http, $state) {
-    
+
     $scope.errors = {};
     $scope.mode = 'add';
 
@@ -35,7 +35,7 @@ angular.module('hackathonApp')
         // It's possible that user has not made any spot the default.
         $scope.surf.surfSpot_id = defaultSurfSpot._id;
       } else if ($rootScope.userProfile.surfSpots.length) {
-        // else if b/c surfSpots could be empty
+        // SurfSpots could be empty
         $scope.surf.surfSpot_id = $rootScope.userProfile.surfSpots[0]._id;
       }
     };
@@ -48,11 +48,6 @@ angular.module('hackathonApp')
 
     $scope.saveSurf = function(form) {
       if(form.$valid) {
-        // To set the session date to midnight of user's local time, not
-        // midnight GMT as would otherwise happen if left unmodified from form
-        // var dateParts = $scope.surf.sessionDate.split('-');
-        // var month = parseInt(dateParts[1]) - 1;
-        // $scope.surf.sessionDate = new Date(dateParts[0], month, dateParts[2]);
         
         $http({
           method: 'POST',

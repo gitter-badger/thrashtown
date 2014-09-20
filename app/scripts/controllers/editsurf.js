@@ -9,28 +9,16 @@ angular.module('hackathonApp')
     $http({
       method: 'GET',
       url: 'api/surfs/' + $stateParams.surfId
-    }).then(function(response) {
+    }).then(function (response) {
       $scope.surf = response.data;
       $scope.surf.sessionDate = new Date($scope.surf.sessionDate);
-      // var d = new Date(response.data.sessionDate);
-      // $scope.surf.sessionDate = new Date(d.getFullYear(),
-      //                                    d.getMonth() + 1,
-      //                                    d.getDate(),
-      //                                    d.getHours(),
-      //                                    d.getMinutes());
-      // $scope.surf.sessionDate = $filter('date')(date, 'yyyy-MM-dd');
-    }).catch(function(err) {
+    }).catch(function (err) {
       //TODO:
       console.log('Error getting session from DB.', err);
     });
 
-    $scope.saveSurf = function(form) {
+    $scope.saveSurf = function (form) {
       if(form.$valid) {
-        // To set the session date to midnight of user's local time, not
-        // midnight GMT as would otherwise happen if left unmodified from form
-        // var dateParts = $scope.surf.sessionDate.split('-');
-        // var month = parseInt(dateParts[1]) - 1;
-        // $scope.surf.sessionDate = new Date(dateParts[0], month, dateParts[2]);
         
         $http({
           method: 'PUT',
@@ -53,12 +41,12 @@ angular.module('hackathonApp')
         method: 'DELETE',
         url: 'api/surfs/' + surf._id
       })
-      .then(function() {
+      .then(function () {
         $rootScope.$broadcast('surf:updated');
         $state.go('surfs.review');
       })
-      .catch(function(err){
-        //TODO: probably want to present something to the user
+      .catch(function (err) {
+        //TODO:
         console.log(err);
       });
     };

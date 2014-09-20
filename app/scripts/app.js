@@ -69,7 +69,7 @@ angular.module('hackathonApp', [
         abstract: true,
         authenticate: true,
         resolve: {
-          loadUserProfileToRootScope: ['UserProfile', function(UserProfile) {
+          loadUserProfileToRootScope: ['UserProfile', function (UserProfile) {
             UserProfile.loadUserProfile();
             UserProfile.loadSurfSessions();
           }]
@@ -101,10 +101,10 @@ angular.module('hackathonApp', [
       });
       
     // Intercept 401s and redirect you to login
-    $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
+    $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
       return {
-        'responseError': function(response) {
-          if(response.status === 401) {
+        'responseError': function (response) {
+          if (response.status === 401) {
             $location.path('/login');
             return $q.reject(response);
           }
