@@ -13,7 +13,8 @@
     "angular-route": ">=1.2.*",
     "angular-ui-router": "~0.2.10",
     "underscore": "~1.6.0",
-    "d3": "~3.4.8"
+    "d3": "~3.4.8",
+    "angular-bootstrap": "~0.11.0"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
@@ -21,7 +22,6 @@
   },
   "testPath": "test/client/spec",
   "resolutions": {
-    "d3": "~3.4.8",
     "angular": ">=1.3.*"
   }
 }
