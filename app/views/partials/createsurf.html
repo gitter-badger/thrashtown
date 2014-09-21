@@ -5,7 +5,7 @@
   <div class="panel-body">
     <form class="form-horizontal" name="form" ng-model="surf" ng-submit="saveSurf(form)" novalidate>
       
-      <div class="form-group has-feedback">
+      <div class="form-group">
         <label class="col-md-2 control-label">Session Date</label>
         <div class="col-md-5">
           <input class="form-control" type="datetime-local" ng-model="surf.sessionDate" required>
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="form-group has-feedback">
+      <div class="form-group">
         <label class="col-md-2 control-label">Wave Quality</label>
         <div class="col-md-8">
           <label class="radio-inline">
@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <div class="form-group has-feedback">
+      <div class="form-group">
         <label class="col-md-2 control-label">Hollowness</label>
         <div class="col-md-8">
           <label class="radio-inline">
@@ -78,7 +78,7 @@
         </div>
       </div>
 
-      <div class="form-group has-feedback">
+      <div class="form-group">
         <label class="col-md-2 control-label">Crowdedness</label>
         <div class="col-md-8">
           <label class="radio-inline">
@@ -99,7 +99,7 @@
         </div>
       </div>
 
-      <div class="form-group has-feedback">
+      <div class="form-group">
         <label class="col-md-2 control-label">Fun Factor</label>
         <div class="col-md-8">
           <label class="radio-inline">
@@ -144,15 +144,6 @@
       <div class="form-group">
         <div class="col-md-offset-2 col-md-9">
           <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid"> Submit </button>
-        </div>
-      </div>
-
-      <div class="form-group has-error">
-        <div class="col-md-offset-2 col-md-9">
-          <p class="help-block" ng-show="form.$dirty && form.$invalid">
-             Form invalid: please enter your session details.
-          </p>
-          <p class="help-block">{{ errors.other }}</p>
         </div>
       </div>
       

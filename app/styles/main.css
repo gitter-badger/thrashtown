@@ -80,7 +80,7 @@ body {
 
 
 /* Form validation */
-.form-control.ng-dirty.ng-invalid {
+.form-control.ng-invalid.ng-touched {
   border-color: #a94442;
   -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
   -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
