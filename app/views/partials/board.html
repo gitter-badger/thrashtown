@@ -8,7 +8,7 @@
     <form class="form form-horizontal" role="form" name="boardForm" novalidate> 
 
       <div class="form-group">
-        <label class="col-sm-2 control-label">Size</label>
+        <label class="col-sm-2 control-label"><span tooltip-placement="top" tooltip="Format like 6'2&quot">Size</span></label>
         <div class="col-sm-2">
           <input class="form-control" 
                  name="size"
@@ -48,7 +48,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-8">
           <div class="checkbox">
-            <label>
+            <label tooltip-placement="top" tooltip="Default board when logging sessions">
               <input name="default" type="checkbox" ng-model="params.default"> Make this the default board
             </label>
           </div>

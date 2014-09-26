@@ -11,8 +11,7 @@
           <th>Size</th>
           <th>Name</th>
           <th>Category</th>
-          <th class="text-center">Edit</th>
-          <th class="text-center">Delete</th>
+          <th class="text-center"></th>
         </tr>
       </thead>
       <tbody>
@@ -22,10 +21,8 @@
           <td>{{board.name}}</td>
           <td>{{board.category}}</td>
           <td class="text-center">
-            <span ng-click="loadEditView(board)" class="glyphicon glyphicon-pencil text-success clickable"></span>
-          </td>
-          <td class="text-center">
-            <span ng-click="deleteBoard(board)" class="glyphicon glyphicon-remove text-danger clickable"></span>
+            <span ng-click="loadEditView(board)" class="glyphicon glyphicon-edit text-success clickable"></span>
+            <span ng-click="deleteBoard(board)" class="glyphicon glyphicon-trash text-danger clickable"></span>
           </td>
         </tr>
       </tbody>

@@ -3,6 +3,7 @@
 angular.module('hackathonApp')
   .controller('CreateSurfCtrl', function ($filter, $rootScope, $scope, $http, $state) {
 
+    $scope.alerts = [];
     $scope.errors = {};
     $scope.mode = 'add';
 
@@ -47,8 +48,7 @@ angular.module('hackathonApp')
     }
 
     $scope.saveSurf = function(form) {
-      if(form.$valid) {
-        
+      if(form.$valid) {        
         $http({
           method: 'POST',
           url: 'api/surfs',
@@ -60,7 +60,7 @@ angular.module('hackathonApp')
         })
         .catch(function() {
           //TODO: revisit this
-          $scope.errors.other = 'Error saving session.';
+          $scope.alerts.push = {type:'danger', msg:'Error saving session.'};
         });
       }
     };

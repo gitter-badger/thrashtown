@@ -45,6 +45,8 @@ angular.module('hackathonApp')
       });
     };
     
+    $scope.confirmDeleteHTML = '<button ng-click="deleteBoard(board)">Sure?<button>';
+
     reloadQuiver();
 
     $scope.$on('quiver:updated', reloadQuiver);
