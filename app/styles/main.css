@@ -94,6 +94,10 @@ body {
   opacity: .6;
 }
 
+.tt-table-action {
+  margin-right: 5px;
+  margin-left: 5px;
+}
 
 #tt-home-spot {
   margin-left: 10px;

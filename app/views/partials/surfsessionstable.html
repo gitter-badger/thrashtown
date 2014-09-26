@@ -35,8 +35,7 @@
               <th>Other Friends</th>
               <th>Fun Factor</th>
               <th>Board</th>
-              <th class="text-center">Edit</th>
-              <th class="text-center">Delete</th>
+              <th class="text-center"></th>
             </tr>
           </thead>
           <tbody>
@@ -46,8 +45,10 @@
               <td>{{surf.otherFriends}}</td>
               <td>{{surf.funFactor}}</td>
               <td>{{boards[surf.board_id].size}} - {{boards[surf.board_id].name}}</td>
-              <td class="text-center"><span class="text-success glyphicon glyphicon-edit clickable" ng-click="editSurf(surf)"></span></td>
-              <td class="text-center"><span class="text-danger glyphicon glyphicon-trash clickable" ng-click="deleteSurf(surf)"></span></td>
+              <td class="text-center">
+                <span class="text-success glyphicon glyphicon-pencil tt-table-action clickable" ng-click="editSurf(surf)"></span>
+                <span class="text-danger glyphicon glyphicon-remove tt-table-action clickable" ng-click="deleteSurf(surf)"></span>
+              </td>
             </tr>
             <tr ng-repeat-end>
               <td class="tt-review-comment text-muted" colspan="7">{{surf.comment}}</td>
