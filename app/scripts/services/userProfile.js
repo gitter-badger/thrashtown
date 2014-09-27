@@ -40,7 +40,7 @@ angular.module('hackathonApp')
           $rootScope.$broadcast('surfSessionsLoaded');
         }).error(function(err) {
           console.log(err);
-        }); 
+        });
       }
 
     };

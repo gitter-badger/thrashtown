@@ -21,7 +21,8 @@ angular.module('hackathonApp')
       hollowness: 3,
       funFactor: 3,
       crowdedness: 3,
-      otherFriends: 0};
+      otherFriends: 0
+    };
     
     // TODO: revisit this implementation
     // need a way to 'finish' load in resolve I think
@@ -48,7 +49,7 @@ angular.module('hackathonApp')
     }
 
     $scope.saveSurf = function(form) {
-      if(form.$valid) {        
+      if(form.$valid) {
         $http({
           method: 'POST',
           url: 'api/surfs',

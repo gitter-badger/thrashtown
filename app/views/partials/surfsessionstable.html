@@ -47,7 +47,9 @@
               <td>{{boards[surf.board_id].size}} - {{boards[surf.board_id].name}}</td>
               <td class="text-center">
                 <span class="text-success glyphicon glyphicon-pencil tt-table-action clickable" ng-click="editSurf(surf)"></span>
-                <span class="text-danger glyphicon glyphicon-remove tt-table-action clickable" ng-click="deleteSurf(surf)"></span>
+                <span class="text-danger glyphicon glyphicon-remove tt-table-action clickable" 
+                      tt-confirm-message="Are you sure you want to delete this session?"
+                      tt-confirm-click="deleteSurf(surf)"></span>
               </td>
             </tr>
             <tr ng-repeat-end>

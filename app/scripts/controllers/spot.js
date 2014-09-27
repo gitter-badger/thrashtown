@@ -27,7 +27,7 @@ angular.module('hackathonApp')
           url: apiUrl,
           data: $scope.params
         })
-        .success(function() { 
+        .success(function() {
           // Need to let other services in the app know.
           $rootScope.$broadcast('surfSpots:updated');
           $state.go('settings.surfSpots');

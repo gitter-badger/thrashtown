@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('hackathonApp').
-  directive('horizontalBarChart', function ($parse) {
+angular.module('hackathonApp')
+  .directive('horizontalBarChart', function () {
     return {
       restrict: 'E',
       //this is important,
