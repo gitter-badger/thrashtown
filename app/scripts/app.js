@@ -28,6 +28,8 @@ angular.module('hackathonApp', [
         templateUrl: 'partials/signup',
         controller: 'SignupCtrl'
       })
+      
+      //Settings
       .state('settings', {
         url: '/settings',
         templateUrl: 'partials/settings',
@@ -63,6 +65,8 @@ angular.module('hackathonApp', [
         controller: 'SpotCtrl',
         authenticate: true
       })
+
+      //Surfs
       .state('surfs', {
         url: '/surfs',
         templateUrl: 'partials/surfs',
@@ -126,6 +130,7 @@ angular.module('hackathonApp', [
       
       if (next.authenticate && !Auth.isLoggedIn()) {
         $location.path('/login');
+        // $state.go('login');
       }
     });
   });

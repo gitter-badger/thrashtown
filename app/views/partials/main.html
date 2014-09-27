@@ -1,9 +1,15 @@
 <div ng-include="'partials/navbar'"></div>
 
 <div class="jumbotron">
-  <h1>A minimalist surf journal<h1>
-  <p class="lead">
-  </p>
+  <h1 class="text-center">A Minimalist Surf Journal</h1>
+  <p class="text-center">A simple way to track your surf sessions over time</p>
+  
+  <div ng-if="!currentUser">
+    <p class="text-center">
+      <a class="btn btn-lg btn-primary" ui-sref="signup" role="button">Sign Up</a>
+    </p>
+    <h4 class="text-center text-muted">or <a ui-sref="login">login</a></h4>
+  </div>
 </div>
 
 <div class="footer">
