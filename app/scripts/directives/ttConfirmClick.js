@@ -7,7 +7,7 @@ angular.module('hackathonApp')
    * http://stackoverflow.com/questions/22113456/modal-confirmation-as-an-angular-ui-directive
    * http://plnkr.co/edit/tvc1u7EJVkyRqfLZEtTq?p=preview
    */
-  .directive('ttConfirmClick', function($modal) {
+  .directive('ttConfirmClick', ['$modal', function($modal) {
 
     var modalInstanceCtrl = function($scope, $modalInstance) {
       $scope.ok = function() {
@@ -45,4 +45,4 @@ angular.module('hackathonApp')
         });
       }
     };
-  });
+  }]);
