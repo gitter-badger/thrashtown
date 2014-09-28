@@ -15,6 +15,7 @@ angular.module('hackathonApp')
       $state.go('settings.surfSpots.spot');
     };
 
+    //TODO: refactor to into a service
     var reloadSurfSpots = function() {
       $http({
         method: 'GET',
