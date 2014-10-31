@@ -7,7 +7,7 @@ angular.module('hackathonApp')
    * http://stackoverflow.com/questions/22113456/modal-confirmation-as-an-angular-ui-directive
    * http://plnkr.co/edit/tvc1u7EJVkyRqfLZEtTq?p=preview
    */
-  .directive('ttConfirmClick', ['$modal', function($modal) {
+  .directive('ttConfirmClick', function($modal) {
 
     var modalInstanceCtrl = function($scope, $modalInstance) {
       $scope.ok = function() {
@@ -26,14 +26,14 @@ angular.module('hackathonApp')
       },
       link: function (scope, element, attrs) {
         element.bind('click', function () {
-          var message = attrs.ttConfirmMessage || 'Are you sure ?';
+          var message = attrs.ttConfirmMessage || 'Are you sure?';
 
           var modalHtml = '<div class="modal-body"><h4>' + message + '</h4></div>';
           modalHtml += '<div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-default" ng-click="cancel()">Cancel</button></div>';
 
           var modalInstance = $modal.open({
             template: modalHtml,
-            controller: modalInstanceCtrl
+            controller: ['$scope', '$modalInstance', modalInstanceCtrl]
           });
 
           modalInstance.result.then(function () {
@@ -45,4 +45,4 @@ angular.module('hackathonApp')
         });
       }
     };
-  }]);
+  });
