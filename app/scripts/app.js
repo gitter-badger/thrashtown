@@ -18,6 +18,8 @@ angular.module('hackathonApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
+
+      // Authentication
       .state('login', {
         url: '/login',
         templateUrl: 'partials/login',
@@ -28,8 +30,13 @@ angular.module('hackathonApp', [
         templateUrl: 'partials/signup',
         controller: 'SignupCtrl'
       })
+      .state('forgotPassword', {
+        url: '/forgot-password',
+        templateUrl: '/partials/forgot-password',
+        controller: 'ForgotPasswordCtrl'
+      })
       
-      //Settings
+      // Settings
       .state('settings', {
         url: '/settings',
         templateUrl: 'partials/settings',
@@ -66,7 +73,7 @@ angular.module('hackathonApp', [
         authenticate: true
       })
 
-      //Surfs
+      // Surfs
       .state('surfs', {
         url: '/surfs',
         templateUrl: 'partials/surfs',

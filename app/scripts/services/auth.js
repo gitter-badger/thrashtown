@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hackathonApp')
-  .factory('Auth', function Auth($location, $rootScope, Session, User, $cookieStore) {
+  .factory('Auth', function Auth($http, $location, $rootScope, Session, User, $cookieStore) {
     
     // Get currentUser from cookie
     $rootScope.currentUser = $cookieStore.get('user') || null;
@@ -16,16 +16,16 @@ angular.module('hackathonApp')
        * @param  {Function} callback - optional
        * @return {Promise}            
        */
-      login: function(user, callback) {
+      login: function (user, callback) {
         var cb = callback || angular.noop;
 
         return Session.save({
           email: user.email,
           password: user.password
-        }, function(user) {
+        }, function (user) {
           $rootScope.currentUser = user;
           return cb();
-        }, function(err) {
+        }, function (err) {
           return cb(err);
         }).$promise;
       },
@@ -36,14 +36,14 @@ angular.module('hackathonApp')
        * @param  {Function} callback - optional
        * @return {Promise}           
        */
-      logout: function(callback) {
+      logout: function (callback) {
         var cb = callback || angular.noop;
 
-        return Session.delete(function() {
+        return Session.delete(function () {
             $rootScope.currentUser = null;
             return cb();
           },
-          function(err) {
+          function (err) {
             return cb(err);
           }).$promise;
       },
@@ -55,15 +55,15 @@ angular.module('hackathonApp')
        * @param  {Function} callback - optional
        * @return {Promise}            
        */
-      createUser: function(user, callback) {
+      createUser: function (user, callback) {
         var cb = callback || angular.noop;
 
         return User.save(user,
-          function(user) {
+          function (user) {
             $rootScope.currentUser = user;
             return cb(user);
           },
-          function(err) {
+          function (err) {
             return cb(err);
           }).$promise;
       },
@@ -76,17 +76,29 @@ angular.module('hackathonApp')
        * @param  {Function} callback    - optional
        * @return {Promise}              
        */
-      changePassword: function(oldPassword, newPassword, callback) {
+      changePassword: function (oldPassword, newPassword, callback) {
         var cb = callback || angular.noop;
 
         return User.update({
           oldPassword: oldPassword,
           newPassword: newPassword
-        }, function(user) {
+        }, function (user) {
           return cb(user);
-        }, function(err) {
+        }, function (err) {
           return cb(err);
         }).$promise;
+      },
+
+      /**
+       * Request password reset
+       * 
+       * @param  {String}   email 
+       * @return {Promise}              
+       */
+      requestPasswordReset: function (email) {
+        return $http.post('api/forgot-password', {
+          email: email
+        });
       },
 
       /**
@@ -94,7 +106,7 @@ angular.module('hackathonApp')
        * 
        * @return {Object} user
        */
-      currentUser: function() {
+      currentUser: function () {
         return User.get();
       },
 
@@ -103,7 +115,7 @@ angular.module('hackathonApp')
        * 
        * @return {Boolean}
        */
-      isLoggedIn: function() {
+      isLoggedIn: function () {
         var user = $rootScope.currentUser;
         return !!user;
       },
