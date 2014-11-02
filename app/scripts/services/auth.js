@@ -74,7 +74,7 @@ angular.module('hackathonApp')
        * @param  {String}   oldPassword 
        * @param  {String}   newPassword 
        * @param  {Function} callback    - optional
-       * @return {Promise}              
+       * @return {Promise}
        */
       changePassword: function (oldPassword, newPassword, callback) {
         var cb = callback || angular.noop;
@@ -93,11 +93,34 @@ angular.module('hackathonApp')
        * Request password reset
        * 
        * @param  {String}   email 
-       * @return {Promise}              
+       * @return {Promise}
        */
       requestPasswordReset: function (email) {
         return $http.post('api/forgot-password', {
           email: email
+        });
+      },
+
+      /**
+       * Validate password reset token
+       * 
+       * @param  {String}   token 
+       * @return {Promise}       
+       */
+      validateResetToken: function (token) {
+        return $http.get('api/forgot-password/' + token);
+      },
+
+      /**
+       * Reset password with token
+       * 
+       * @param  {String}   token 
+       * @return {Promise}
+       */
+      resetPasswordWithToken: function (token, password1, password2) {
+        return $http.post('api/forgot-password/' + token, {
+          password1: password1,
+          password2: password2
         });
       },
 

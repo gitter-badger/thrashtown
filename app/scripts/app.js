@@ -35,6 +35,11 @@ angular.module('hackathonApp', [
         templateUrl: '/partials/forgot-password',
         controller: 'ForgotPasswordCtrl'
       })
+      .state('resetPassword', {
+        url: '/forgot-password/:token',
+        templateUrl: '/partials/reset-password',
+        controller: 'ResetPasswordCtrl'
+      })
       
       // Settings
       .state('settings', {
