@@ -46,7 +46,22 @@ module.exports = function (grunt) {
         url: 'http://localhost:<%= express.options.port %>'
       }
     },
+    sass: {
+      dev: {
+        options: {
+          style: 'expanded',
+          compass: false
+        },
+        files: {
+          '<%= yeoman.app %>/styles/style.css':'<%= yeoman.app %>/sass/styles.scss'
+        }
+      }
+    },
     watch: {
+      sass: {
+        files: '<%= yeoman.app%>/sass/{,*/}*.{scss,sass}',
+        tasks: ['sass:dev']
+      },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
@@ -414,7 +429,9 @@ module.exports = function (grunt) {
       }
     }
   });
-
+  
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   // Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function () {
     grunt.log.ok('Waiting for server reload...');
@@ -500,6 +517,7 @@ module.exports = function (grunt) {
     'rev',
     'usemin'
   ]);
+
 
   grunt.registerTask('heroku', function () {
     grunt.log.warn('The `heroku` task has been deprecated. Use `grunt build` to build for deployment.');
