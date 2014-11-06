@@ -1,3 +1,56 @@
+body {
+  line-height: 1.5em;
+  padding: 70px 0 0;
+}
+
+h1, h2, legend, h3, h4, h5, h6 {
+  font-family: georgia;
+  font-weight: 400;
+  line-height: 1.5em;
+  margin: 0 0 0.25em 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2,
+legend {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+p.lead {
+  font-size: 1.125rem;
+}
+
+a {
+  color: #09a25f;
+  cursor: pointer;
+  text-decoration: none;
+}
+a:hover {
+  color: #038049;
+}
+
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
