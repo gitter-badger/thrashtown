@@ -1,0 +1,17 @@
+// =========== Navbar
+
+.navbar{
+	padding:8px;
+
+	.navbar-brand{
+	    position: absolute;
+	    width: 100%;
+	    left: 0;
+	    text-align: center;
+	    margin: auto;
+	}
+
+	a{
+		text-transform: uppercase;
+	}
+}
