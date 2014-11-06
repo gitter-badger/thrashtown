@@ -11,18 +11,20 @@
 // Core
 
 "core/_settings", // Set up your settings and variables first
-"core/_mixins",
-"core/_grid",
-"core/_base", // removing as Bootstrap cover most of this
-"core/_states",
-"core/_layout",
+//"core/_mixins", //deactivating the following as we're using bootstrap for much of these
+//"core/_grid",
+//"core/_base", // removing as Bootstrap cover most of this
+//"core/_states",
+//"core/_layout",
 
 
 // Shared components
 // Components can be used generic through the application and are not connected to content.
 // Example: the component 'buttons' can be used in module 'product', 'blog-article' etc.
 
+
 "shared-components/_buttons",
+/*
 "shared-components/_figure",
 "shared-components/_forms",
 "shared-components/_labels",
@@ -31,7 +33,10 @@
 "shared-components/_panels",
 "shared-components/_quote",
 "shared-components/_tables",
-"shared-components/_tabs",
+"shared-components/_tabs", 
+*/
+//ttown specific
+"shared-components/_navbar",
 
 
 // Modules

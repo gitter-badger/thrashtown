@@ -15,12 +15,30 @@
 
     // 3: Add selectors of the parent element
    // &:hover { property: value; }
+    &.jumbotron{
+      background:url('../images/ttown-home.jpg') top center no-repeat;
+      min-height:540px;
+      background-size:cover;
+      position:relative;
+
+
+    }
+    .anchor{
+      position:absolute;
+       bottom:5px;
+      width: 100%;
+        left: 0;
+        text-align: center;
+        margin: auto;    
+
+    }
 
     // 4: Add states of the parent element
    // &.is-open { property: value; }
 
     // 5: Add nested elements
     strong { font-weight: bold; }
+
 }
 
 // Submodule
