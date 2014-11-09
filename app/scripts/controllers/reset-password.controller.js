@@ -19,9 +19,10 @@ angular.module('hackathonApp')
     var checkToken = function () {
       Auth.validateResetToken(token).then(function () {
         $scope.user.tokenValid = true;
-      }, function (err) {
-        addAlert('danger', err.data.message);
-      });      
+      }, function () {
+        // TODO: add alert
+        // addAlert('danger', err.data.message);
+      });
     };
 
     $scope.closeAlert = function (alert) {
@@ -35,8 +36,8 @@ angular.module('hackathonApp')
     };
 
     $scope.noMatch = function (form) {
-      return !!form && form.password1.$viewValue !== 
-        form.password2.$viewValue && form.password1.$dirty && 
+      return !!form && form.password1.$viewValue !==
+        form.password2.$viewValue && form.password1.$dirty &&
         form.password2.$dirty;
     };
 
@@ -48,7 +49,7 @@ angular.module('hackathonApp')
     $scope.resetPassword = function (form) {
       if(form.$valid) {
         
-        Auth.resetPasswordWithToken(token, $scope.user.password1, 
+        Auth.resetPasswordWithToken(token, $scope.user.password1,
           $scope.user.password2)
             .then(function () {
               clearAlerts();
