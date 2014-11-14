@@ -101,13 +101,22 @@ button.button--alert {
     }
 }
 //ui flat override
+.btn{
+    text-transform: uppercase
+}
 .btn-lg, .btn-group-lg > .btn {
     border-radius: 4px;
 }
-
+.btn-primary{
+    color: $color-brand-40;
+    background:transparent;
+    border:3px solid $color-brand-40;
+}
 .btn-info{
-    background-color: transparent;
-    border:3px solid #ccc;
+    color: $white;
+    background-color: $color-brand-40-a50;
+    border:3px solid $white;
+    padding:10px 70px;
 
 }
 .btn-info:hover,
@@ -117,6 +126,6 @@ button.button--alert {
 .btn-info.active,
 .open > .dropdown-toggle.btn-info {
   color: #fff;
-  background-color: #16a085;
+  background-color: rgba(14, 99,82, .7);
   border-color: #fff;
 }

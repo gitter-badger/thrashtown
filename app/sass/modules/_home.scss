@@ -1,45 +1,71 @@
 // =========== Home Page
-
 // This is an example of a module.
 // A module is directly connected to the content like a product, blog-article or shopping-cart.
-
-
 // Module
+
+$banner-height: 540px;
+$banner-height-small: 300px;
+
 .home {
-
     // 1: Add the direct properties of the element
-    color: blue;
-
     // 2: Add media queries or print styles
-   // @include breakpoint($breakpoint-10) { property: value; }
-
+    // @include breakpoint($breakpoint-10) { property: value; }
     // 3: Add selectors of the parent element
-   // &:hover { property: value; }
-    &.jumbotron{
-      background:url('../images/ttown-home.jpg') top center no-repeat;
-      min-height:540px;
-      background-size:cover;
-      position:relative;
-
-
-    }
-    .anchor{
-      position:absolute;
-       bottom:5px;
-      width: 100%;
+    // &:hover { property: value; }
+    .banner {
+        background: url("../images/ttown-home.jpg") top center no-repeat;
+        min-height: $banner-height-small;
+        width: 100%;
+        background-size: cover;
+        border-radius: 0;
+        position: absolute;
         left: 0;
-        text-align: center;
-        margin: auto;    
-
+        @include breakpoint($breakpoint-20) {
+            min-height: $banner-height;
+        }
     }
+    .anchor {
+        position: relative;
+        min-height: $banner-height-small;
+        display: block;
+        @include breakpoint($breakpoint-20) {
+            //display: inline;
+            min-height: $banner-height;
+        }
 
+        .links {
+            position: absolute;
+            bottom: $banner-height-small/2 - 64px;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            margin: auto;
+            @include breakpoint($breakpoint-20) {
+                    bottom: 40px;
+                }
+
+            .btn-info {
+                display: block;
+                margin-bottom: 10px;
+                @include breakpoint($breakpoint-20) {
+                    display: inline;
+                }
+            }
+        }
+    }
+    h1 {
+        line-height: 1.2;
+        margin: 1.6rem 0 0;
+    }
     // 4: Add states of the parent element
-   // &.is-open { property: value; }
-
+    // &.is-open { property: value; }
     // 5: Add nested elements
-    strong { font-weight: bold; }
-
+    strong {
+        font-weight: bold;
+    }
 }
 
 // Submodule
-.home--details { property: value; }
+.home--details {
+    property: value;
+}

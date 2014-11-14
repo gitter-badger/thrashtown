@@ -11,7 +11,7 @@
 // Core
 
 "core/_settings", // Set up your settings and variables first
-//"core/_mixins", //deactivating the following as we're using bootstrap for much of these
+"core/_mixins", //deactivating the following as we're using bootstrap for much of these
 //"core/_grid",
 "core/_base", // removing as Bootstrap cover most of this
 //"core/_states",
@@ -30,13 +30,16 @@
 "shared-components/_labels",
 "shared-components/_messages",
 "shared-components/_pagination",
+*/
 "shared-components/_panels",
+/*
 "shared-components/_quote",
 "shared-components/_tables",
 "shared-components/_tabs", 
 */
 //ttown specific
 "shared-components/_navbar",
+"shared-components/_navigation",
 
 
 // Modules

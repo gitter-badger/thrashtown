@@ -39,7 +39,7 @@ $border-radius-20: 0.313rem;
 // Media queries
 // Adjust them to you needs or add more
 $breakpoint-property: min-width;
-$breakpoint-10: 590px;
+$breakpoint-10: 640px;
 $breakpoint-20: 769px;
 $breakpoint-30: 960px;
 
@@ -52,11 +52,16 @@ $z-index-30: 30;
 
 // Colors
 // Add your own color variables
+$color-dark:#000;
+
+// Color buttons
 
 // Color brand
-$color-brand-40: #29c882;
+$color-brand-40: #1abc9c;
 $color-brand-50: #09a25f; // Default
 $color-brand-60: #038049;
+$color-brand-40-a50:rgba(14, 99,82, .5);
+$color-brand-40-a10:rgba(14, 99,82, .1);
 
 // Color success
 $color-success-50: #39b924; // Default

@@ -1,17 +1,51 @@
 // =========== Navbar
 
 .navbar{
-	padding:8px;
+	padding:8px 3em;;
+	background:#fff;
 
-	.navbar-brand{
-	    position: absolute;
-	    width: 100%;
-	    left: 0;
-	    text-align: center;
-	    margin: auto;
+	// .navbar-brand{
+	//     position: absolute;
+	//     width: 100%;
+	//     left: 0;
+	//     text-align: center;
+	//     margin: auto;
+	// }
+	float:none;
+
+	.navbar-header{
+		float:none;
+		text-align:center;
+		margin:14px 0;
+		line-height: 1;
+		@include breakpoint($breakpoint-20) { 
+        	text-align:left;
+        	float:left;
+        	margin:0;
+        }
 	}
+	.navbar-brand{
+	
+		float:none;
+		@include breakpoint($breakpoint-20) { 
+        	float:left;
+        	padding-left:0;
+        }
 
+	}
+	
 	a{
 		text-transform: uppercase;
+		color:#000;
+
+		&:hover{
+			//color:$color-success-50;
+		}
+	}
+	li  {
+		a{
+			font-weight: normal;
+		}
+
 	}
 }

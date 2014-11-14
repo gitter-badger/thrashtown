@@ -1,13 +1,23 @@
+html {
+  color: #000;
+  font: 400 16px sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
+  color: #000;
   line-height: 1.5em;
   padding: 70px 0 0;
 }
 
 h1, h2, legend, h3, h4, h5, h6 {
-  font-family: georgia;
   font-weight: 400;
   line-height: 1.5em;
   margin: 0 0 0.25em 0;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -170,13 +180,25 @@ button.button--alert:focus {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+.btn {
+  text-transform: uppercase;
+}
+
 .btn-lg, .btn-group-lg > .btn {
   border-radius: 4px;
 }
 
+.btn-primary {
+  color: #1abc9c;
+  background: transparent;
+  border: 3px solid #1abc9c;
+}
+
 .btn-info {
-  background-color: transparent;
-  border: 3px solid #ccc;
+  color: #fff;
+  background-color: rgba(14, 99, 82, 0.5);
+  border: 3px solid #fff;
+  padding: 10px 70px;
 }
 
 .btn-info:hover,
@@ -186,22 +208,63 @@ button.button--alert:focus {
 .btn-info.active,
 .open > .dropdown-toggle.btn-info {
   color: #fff;
-  background-color: #16a085;
+  background-color: rgba(14, 99, 82, 0.7);
   border-color: #fff;
 }
 
+.panel-default {
+  border-color: #ccc;
+}
+.panel-default > .panel-heading {
+  background: transparent;
+}
+.panel-default .panel-heading h4 {
+  margin-bottom: 0;
+}
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+  color: #1abc9c;
+  background-color: transparent;
+  border-color: #1abc9c;
+}
+
 .navbar {
-  padding: 8px;
+  padding: 8px 3em;
+  background: #fff;
+  float: none;
+}
+.navbar .navbar-header {
+  float: none;
+  text-align: center;
+  margin: 14px 0;
+  line-height: 1;
+}
+@media (min-width: 48.0625rem) {
+  .navbar .navbar-header {
+    text-align: left;
+    float: left;
+    margin: 0;
+  }
 }
 .navbar .navbar-brand {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  text-align: center;
-  margin: auto;
+  float: none;
+}
+@media (min-width: 48.0625rem) {
+  .navbar .navbar-brand {
+    float: left;
+    padding-left: 0;
+  }
 }
 .navbar a {
   text-transform: uppercase;
+  color: #000;
+}
+.navbar li a {
+  font-weight: normal;
+}
+
+a.list-group-item:hover {
+  background: #e9f4f2;
 }
 
 .product {
@@ -221,22 +284,55 @@ button.button--alert:focus {
   property: value;
 }
 
-.home {
-  color: blue;
-}
-.home.jumbotron {
+.home .banner {
   background: url("../images/ttown-home.jpg") top center no-repeat;
-  min-height: 540px;
+  min-height: 300px;
+  width: 100%;
   background-size: cover;
-  position: relative;
+  border-radius: 0;
+  position: absolute;
+  left: 0;
+}
+@media (min-width: 48.0625rem) {
+  .home .banner {
+    min-height: 540px;
+  }
 }
 .home .anchor {
+  position: relative;
+  min-height: 300px;
+  display: block;
+}
+@media (min-width: 48.0625rem) {
+  .home .anchor {
+    min-height: 540px;
+  }
+}
+.home .anchor .links {
   position: absolute;
-  bottom: 5px;
+  bottom: 86px;
   width: 100%;
   left: 0;
   text-align: center;
   margin: auto;
+}
+@media (min-width: 48.0625rem) {
+  .home .anchor .links {
+    bottom: 40px;
+  }
+}
+.home .anchor .links .btn-info {
+  display: block;
+  margin-bottom: 10px;
+}
+@media (min-width: 48.0625rem) {
+  .home .anchor .links .btn-info {
+    display: inline;
+  }
+}
+.home h1 {
+  line-height: 1.2;
+  margin: 1.6rem 0 0;
 }
 .home strong {
   font-weight: bold;
