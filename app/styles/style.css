@@ -58,7 +58,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #038049;
+  color: #1abc9c;
 }
 
 button::-moz-focus-inner,
@@ -188,10 +188,15 @@ button.button--alert:focus {
   border-radius: 4px;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary[disabled] {
   color: #1abc9c;
   background: transparent;
   border: 3px solid #1abc9c;
+}
+
+.btn-primary[disabled] {
+  color: rgba(14, 99, 82, 0.5);
+  border-color: #ccc;
 }
 
 .btn-info {
@@ -206,6 +211,7 @@ button.button--alert:focus {
 .btn-info.focus,
 .btn-info:active,
 .btn-info.active,
+.btn-primary:active,
 .open > .dropdown-toggle.btn-info {
   color: #fff;
   background-color: rgba(14, 99, 82, 0.7);
@@ -259,12 +265,15 @@ button.button--alert:focus {
   text-transform: uppercase;
   color: #000;
 }
+.navbar a:hover {
+  color: #1abc9c;
+}
 .navbar li a {
   font-weight: normal;
 }
 
 a.list-group-item:hover {
-  background: #e9f4f2;
+  background: #f0f8f6;
 }
 
 .product {

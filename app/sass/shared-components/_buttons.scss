@@ -107,10 +107,14 @@ button.button--alert {
 .btn-lg, .btn-group-lg > .btn {
     border-radius: 4px;
 }
-.btn-primary{
+.btn-primary, .btn-primary[disabled]{
     color: $color-brand-40;
     background:transparent;
     border:3px solid $color-brand-40;
+}
+.btn-primary[disabled]{
+    color: $color-brand-40-a50;
+    border-color:#ccc;
 }
 .btn-info{
     color: $white;
@@ -124,6 +128,9 @@ button.button--alert {
 .btn-info.focus,
 .btn-info:active,
 .btn-info.active,
+.btn-primary:active,
+
+
 .open > .dropdown-toggle.btn-info {
   color: #fff;
   background-color: rgba(14, 99,82, .7);
