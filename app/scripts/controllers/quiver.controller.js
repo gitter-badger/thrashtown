@@ -2,7 +2,6 @@
 
 angular.module('hackathonApp')
   .controller('QuiverController', function ($scope, Boards) {
-    // On load, reset in case there was a value
     
     var initialize = function () {
       $scope.formConfig = {};

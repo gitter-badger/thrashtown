@@ -60,13 +60,8 @@ angular.module('hackathonApp', [
       })
       .state('settings.surfSpots', {
         url: '/surf-spots',
-        templateUrl: 'partials/surfspots',
-        controller: 'SurfSpotsCtrl',
-        authenticate: true
-      })
-      .state('settings.surfSpots.spot', {
-        templateUrl: 'partials/spot',
-        controller: 'SpotCtrl',
+        templateUrl: 'partials/surf-spots',
+        controller: 'SurfSpotsController',
         authenticate: true
       })
 
