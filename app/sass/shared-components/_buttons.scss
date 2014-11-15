@@ -119,7 +119,7 @@ button.button--alert {
 .btn-info{
     color: $white;
     background-color: $color-brand-40-a50;
-    border:3px solid $white;
+    border:3px solid  $color-brand-40-a80;
     padding:10px 70px;
 
 }
@@ -129,8 +129,6 @@ button.button--alert {
 .btn-info:active,
 .btn-info.active,
 .btn-primary:active,
-
-
 .open > .dropdown-toggle.btn-info {
   color: #fff;
   background-color: rgba(14, 99,82, .7);

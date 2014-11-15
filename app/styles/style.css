@@ -202,7 +202,7 @@ button.button--alert:focus {
 .btn-info {
   color: #fff;
   background-color: rgba(14, 99, 82, 0.5);
-  border: 3px solid #fff;
+  border: 3px solid rgba(14, 99, 82, 0.8);
   padding: 10px 70px;
 }
 
@@ -266,6 +266,7 @@ li.form--error ul.form--errors li {
   background: transparent;
 }
 .panel-default .panel-heading h4 {
+  color: #1abc9c;
   margin-bottom: 0;
 }
 
