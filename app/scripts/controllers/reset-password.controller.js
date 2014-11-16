@@ -8,7 +8,10 @@ angular.module('hackathonApp')
     
     var initialize = function () {
       $scope.user = {};
-      $scope.alerts = [];
+      $scope.alerts = {
+        success: false,
+        failure: false
+      };
       $scope.user.tokenValid = false;
       checkToken();
     };
@@ -16,46 +19,44 @@ angular.module('hackathonApp')
     var checkToken = function () {
       Auth.validateResetToken(token).then(function () {
         $scope.user.tokenValid = true;
-      }, function (err) {
-        addAlert('danger', err.data.message);
-      });      
-    };
-
-    $scope.closeAlert = function(index) {
-      $scope.alerts.splice(index, 1);
-    };
-
-    var addAlert = function (type, message) {
-      $scope.alerts.push({
-        type: type,
-        message: message
+      }, function () {
+        // TODO: add alert
+        // addAlert('danger', err.data.message);
       });
     };
 
+    $scope.closeAlert = function (alert) {
+      $scope.alerts[alert] = false;
+    };
+
     var clearAlerts = function () {
-      if ($scope.alerts.length) {
-        $scope.alerts = [];
+      for (var alert in $scope.alerts) {
+        $scope.alerts[alert] = false;
       }
     };
 
-    $scope.noMatch = function () {
-      var invalid = ($scope.form.password1.$dirty || $scope.form.password2.$dirty) && 
-        ($scope.user.password1 !== $scope.user.password2);
+    $scope.noMatch = function (form) {
+      return !!form && form.password1.$viewValue !==
+        form.password2.$viewValue && form.password1.$dirty &&
+        form.password2.$dirty;
+    };
 
-      return invalid;
+    $scope.tooShort = function (form) {
+      return form.password1.$touched && form.password1.$error.minlength ||
+        form.password2.$touched && form.password2.$error.minlength ;
     };
 
     $scope.resetPassword = function (form) {
       if(form.$valid) {
         
-        Auth.resetPasswordWithToken(token, $scope.user.password1, 
+        Auth.resetPasswordWithToken(token, $scope.user.password1,
           $scope.user.password2)
             .then(function () {
               clearAlerts();
-              addAlert('success', 'Your password has been successfully updated.');
+              $scope.alerts.success = true;
             }, function () {
               clearAlerts();
-              addAlert('danger', 'Something went wrong.');
+              $scope.alerts.failure = true;
             });
       }
     };

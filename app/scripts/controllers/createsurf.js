@@ -8,14 +8,14 @@ angular.module('hackathonApp')
     $scope.mode = 'add';
 
     // Default values
-    var d = new Date();
+    var today = new Date();
 
     $scope.surf = {
-      sessionDate: new Date(d.getFullYear(),
-                            d.getMonth(),
-                            d.getDate(),
-                            d.getHours(),
-                            d.getMinutes()),
+      sessionDate: new Date(today.getFullYear(),
+                            today.getMonth(),
+                            today.getDate(),
+                            today.getHours(),
+                            today.getMinutes()),
       sessionHours: 2,
       waveQuality: 3,
       hollowness: 3,

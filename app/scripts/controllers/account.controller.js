@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hackathonApp')
-  .controller('AccountCtrl', function ($scope, User, Auth) {
+  .controller('AccountController', function ($scope, User, Auth) {
     $scope.errors = {};
 
     $scope.changePassword = function(form) {

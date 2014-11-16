@@ -15,8 +15,7 @@ angular.module('hackathonApp', [
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'partials/main',
-        controller: 'MainCtrl'
+        templateUrl: 'partials/main'
       })
 
       // Authentication
@@ -45,36 +44,24 @@ angular.module('hackathonApp', [
       .state('settings', {
         url: '/settings',
         templateUrl: 'partials/settings',
-        controller: 'SettingsCtrl',
         abstract: true,
         authenticate: true
       })
       .state('settings.account', {
         url: '/account',
         templateUrl: 'partials/account',
-        controller: 'AccountCtrl',
         authenticate: true
       })
       .state('settings.quiver', {
         url: '/quiver',
         templateUrl: 'partials/quiver',
-        controller: 'QuiverCtrl',
-        authenticate: true
-      })
-      .state('settings.quiver.board', {
-        templateUrl: 'partials/board',
-        controller: 'BoardCtrl',
+        controller: 'QuiverController',
         authenticate: true
       })
       .state('settings.surfSpots', {
         url: '/surf-spots',
-        templateUrl: 'partials/surfspots',
-        controller: 'SurfSpotsCtrl',
-        authenticate: true
-      })
-      .state('settings.surfSpots.spot', {
-        templateUrl: 'partials/spot',
-        controller: 'SpotCtrl',
+        templateUrl: 'partials/surf-spots',
+        controller: 'SurfSpotsController',
         authenticate: true
       })
 
@@ -82,7 +69,6 @@ angular.module('hackathonApp', [
       .state('surfs', {
         url: '/surfs',
         templateUrl: 'partials/surfs',
-        controller: 'SurfsCtrl',
         abstract: true,
         authenticate: true,
         resolve: {
@@ -110,12 +96,7 @@ angular.module('hackathonApp', [
         controller: 'EditSurfCtrl',
         authenticate: true
       })
-      .state('surfs.dashboard', {
-        url: '/dashboard',
-        templateUrl: 'partials/dashboard',
-        controller: 'DashboardCtrl',
-        authenticate: true
-      });
+      ;
       
     // Intercept 401s and redirect you to login
     $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
