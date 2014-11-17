@@ -2,23 +2,17 @@
 <div class="home">
   <div class="banner"></div>
   <div class="anchor">
-    <!--  -->
-    
     <div class='links' ng-if="!currentUser">
       <p class="text-center">
       <a class="btn btn-lg btn-info uppercase" ui-sref="signup" role="button">Sign Up</a>
       <a class="btn btn-lg btn-info" ui-sref="login" role="button">Login</a>
       </p>
-      <!-- <h4 class="text-center text-muted">or <a ui-sref="login">login</a></h4> -->
     </div>
-
     <div class='links' ng-if="currentUser">
       <p class="text-center">
       <a class="btn btn-lg btn-info uppercase" ui-sref="surfs.create" role="button">Log session</a>
       </p>
-      <!-- <h4 class="text-center text-muted">or <a ui-sref="login">login</a></h4> -->
     </div>
-    
   </div>
   <div class='container-fluid'>
     <h1 class="text-center text-capitalize">A Simple Surf Journal</h1>
@@ -26,7 +20,8 @@
   </div>
   <div class="footer">
     <div class="container text-center">
-      <p>by <a href="https://github.com/ramdog">@ramdog</a></p>
+      <p>by <a href="https://github.com/ramdog">@ramdog</a>
+      </p>
     </div>
   </div>
 </div>

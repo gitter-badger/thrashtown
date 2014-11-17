@@ -326,7 +326,7 @@ li.form--error ul.form--errors li {
   color: #1abc9c;
 }
 .navbar li a {
-  font-weight: normal;
+  font-weight: bold;
 }
 
 a.list-group-item:hover {
