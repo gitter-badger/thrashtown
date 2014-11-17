@@ -13,7 +13,10 @@ html {
 body {
     color: $color-dark;
     line-height: 1.5em;
-    padding: 70px 0 0;
+    padding: 53px 0 0;
+    @include breakpoint($breakpoint-20) {
+        padding-top: 70px;
+    }
 }
 
 

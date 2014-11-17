@@ -1,8 +1,11 @@
 // =========== Navbar
 
 .navbar{
-	padding:8px 3em;;
+	padding: 0;
 	background:#fff;
+	@include breakpoint($breakpoint-20) { 
+		padding:8px 3em;
+	}
 
 	// .navbar-brand{
 	//     position: absolute;
@@ -16,8 +19,9 @@
 	.navbar-header{
 		float:none;
 		text-align:center;
-		margin:14px 0;
+		margin:0;
 		line-height: 1;
+
 		@include breakpoint($breakpoint-20) { 
         	text-align:left;
         	float:left;
@@ -27,9 +31,16 @@
 	.navbar-brand{
 	
 		float:none;
+		position:absolute;
+		margin: 0 auto;
+		left:0;
+		right:0;
+		text-align:center;
 		@include breakpoint($breakpoint-20) { 
         	float:left;
         	padding-left:0;
+        	position: static;
+        	text-align:left;
         }
 
 	}

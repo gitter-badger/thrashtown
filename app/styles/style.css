@@ -10,7 +10,12 @@ html {
 body {
   color: #000;
   line-height: 1.5em;
-  padding: 70px 0 0;
+  padding: 53px 0 0;
+}
+@media (min-width: 48.0625rem) {
+  body {
+    padding-top: 70px;
+  }
 }
 
 h1, h2, legend, h3, h4, h5, h6 {
@@ -59,6 +64,46 @@ a {
 }
 a:hover {
   color: #1abc9c;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.is-hidden, .is-invisible {
+  visibility: hidden !important;
+}
+
+.is-active, .is-visible {
+  display: block;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.bkg-opaque {
+  background: rgba(255, 255, 255, 0.6);
 }
 
 button::-moz-focus-inner,
@@ -191,12 +236,11 @@ button.button--alert:focus {
 .btn-primary, .btn-primary[disabled] {
   color: #1abc9c;
   background: transparent;
-  border: 3px solid #444;
+  border: 3px solid #1abc9c;
 }
 
 .btn-primary[disabled] {
   color: rgba(14, 99, 82, 0.5);
-  border-color: #ccc;
 }
 
 .btn-info {
@@ -216,6 +260,11 @@ button.button--alert:focus {
   color: #fff;
   background-color: rgba(14, 99, 82, 0.7);
   border-color: #fff;
+}
+
+.button:hover, input[type=submit]:hover, button:hover {
+  background: transparent !important;
+  color: #fff;
 }
 
 ul.form--checklist {
@@ -261,16 +310,32 @@ li.form--error ul.form--errors li {
 
 .banner {
   background: url("../images/ob-aframe.jpg") center center no-repeat;
-  min-height: 300px;
+  min-height: 540px;
   width: 100%;
   background-size: cover;
   border-radius: 0;
   position: absolute;
   left: 0;
+  z-index: -1;
 }
 @media (min-width: 48.0625rem) {
   .banner {
     min-height: 540px;
+  }
+}
+
+.banner-overlay {
+  margin-top: 3%;
+  padding: 3%;
+}
+@media (min-width: 48.0625rem) {
+  .banner-overlay {
+    margin-top: 50px;
+  }
+}
+@media (min-width: 48.0625rem) {
+  .banner-overlay.signup {
+    margin-top: 20px;
   }
 }
 
@@ -292,14 +357,19 @@ li.form--error ul.form--errors li {
 }
 
 .navbar {
-  padding: 8px 3em;
+  padding: 0;
   background: #fff;
   float: none;
+}
+@media (min-width: 48.0625rem) {
+  .navbar {
+    padding: 8px 3em;
+  }
 }
 .navbar .navbar-header {
   float: none;
   text-align: center;
-  margin: 14px 0;
+  margin: 0;
   line-height: 1;
 }
 @media (min-width: 48.0625rem) {
@@ -311,11 +381,18 @@ li.form--error ul.form--errors li {
 }
 .navbar .navbar-brand {
   float: none;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 @media (min-width: 48.0625rem) {
   .navbar .navbar-brand {
     float: left;
     padding-left: 0;
+    position: static;
+    text-align: left;
   }
 }
 .navbar a {
