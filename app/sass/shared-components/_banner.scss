@@ -1,0 +1,12 @@
+.banner {
+        background: url("../images/ob-aframe.jpg") center center no-repeat;
+        min-height: $banner-height-small;
+        width: 100%;
+        background-size: cover;
+        border-radius: 0;
+        position: absolute;
+        left: 0;
+        @include breakpoint($breakpoint-20) {
+            min-height: $banner-height;
+        }
+}

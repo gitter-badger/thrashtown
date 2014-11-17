@@ -202,7 +202,7 @@ button.button--alert:focus {
 .btn-info {
   color: #fff;
   background-color: rgba(14, 99, 82, 0.5);
-  border: 3px solid rgba(14, 99, 82, 0.8);
+  border: 3px solid  #ccc;
   padding: 10px 70px;
 }
 
@@ -257,6 +257,21 @@ li.form--error ul.form--errors li {
 
 .radio.radio-inline {
   margin-top: 10px;
+}
+
+.banner {
+  background: url("../images/ob-aframe.jpg") center center no-repeat;
+  min-height: 300px;
+  width: 100%;
+  background-size: cover;
+  border-radius: 0;
+  position: absolute;
+  left: 0;
+}
+@media (min-width: 48.0625rem) {
+  .banner {
+    min-height: 540px;
+  }
 }
 
 .panel-default {
