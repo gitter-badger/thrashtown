@@ -111,6 +111,28 @@ a:hover {
   margin-top: -28px;
 }
 
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  opacity: .6;
+}
+
+.tt-table-action {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#tt-home-spot {
+  margin-left: 10px;
+}
+
+/* Review Sessions */
+.tt-review-comment {
+  border-top: none !important;
+  padding-left: 16px !important;
+}
+
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -382,6 +404,15 @@ li.form--error ul.form--errors li {
   color: #16A186;
   background-color: transparent;
   border-color: #16A186;
+}
+
+.tt-table-action {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#tt-home-spot {
+  margin-left: 10px;
 }
 
 .navbar {

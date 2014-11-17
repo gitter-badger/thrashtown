@@ -21,3 +21,25 @@
 .bkg-opaque{ background: rgba(255,255,255, .7)}
 
 .body-offset{margin-top:-$body-offset}
+
+.clickable { 
+	cursor: pointer; 
+	&:hover {
+	  opacity: .6;
+	}
+}
+
+.tt-table-action {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#tt-home-spot {
+  margin-left: 10px;
+}
+
+/* Review Sessions */
+.tt-review-comment {
+  border-top: none !important;
+  padding-left: 16px !important;
+}
