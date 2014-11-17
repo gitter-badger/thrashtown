@@ -134,3 +134,14 @@ li.form--error {
 .radio.radio-inline{
     margin-top:10px;
 }
+
+.form label{
+    margin-bottom:0;
+}
+
+.form-control.ng-invalid.ng-touched {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+  -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+}

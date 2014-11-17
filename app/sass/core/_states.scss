@@ -18,4 +18,6 @@
 
 .nowrap { white-space: nowrap; }
 
-.bkg-opaque{ background: rgba(255,255,255, .6)}
+.bkg-opaque{ background: rgba(255,255,255, .7)}
+
+.body-offset{margin-top:-$body-offset}

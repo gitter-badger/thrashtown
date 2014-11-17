@@ -4,13 +4,13 @@
   <div class="anchor">
     <div class='links' ng-if="!currentUser">
       <p class="text-center">
-      <a class="btn btn-lg btn-info uppercase" ui-sref="signup" role="button">Sign Up</a>
-      <a class="btn btn-lg btn-info" ui-sref="login" role="button">Login</a>
+      <a class="btn btn-lg btn-light" ui-sref="login" role="button">Login</a>
+      <a class="btn btn-lg btn-light uppercase" ui-sref="signup" role="button">Sign Up</a>
       </p>
     </div>
     <div class='links' ng-if="currentUser">
       <p class="text-center">
-      <a class="btn btn-lg btn-info uppercase" ui-sref="surfs.create" role="button">Log session</a>
+      <a class="btn btn-lg btn-light uppercase" ui-sref="surfs.create" role="button">Log session</a>
       </p>
     </div>
   </div>
@@ -20,7 +20,7 @@
   </div>
   <div class="footer">
     <div class="container text-center">
-      <p>by <a href="https://github.com/ramdog">@ramdog</a>
+      <p>
       </p>
     </div>
   </div>

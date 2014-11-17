@@ -13,9 +13,10 @@ html {
 body {
     color: $color-dark;
     line-height: 1.5em;
-    padding: 53px 0 0;
+    margin: 53px 0 0;
+    padding-top: $body-offset;
     @include breakpoint($breakpoint-20) {
-        padding-top: 70px;
+        margin-top: 70px;
     }
 }
 

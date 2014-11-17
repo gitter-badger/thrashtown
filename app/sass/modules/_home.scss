@@ -3,52 +3,39 @@
 // A module is directly connected to the content like a product, blog-article or shopping-cart.
 // Module
 
-$banner-height: 540px;
-$banner-height-small: 300px;
-
 .home {
     // 1: Add the direct properties of the element
     // 2: Add media queries or print styles
     // @include breakpoint($breakpoint-10) { property: value; }
     // 3: Add selectors of the parent element
     // &:hover { property: value; }
-    .banner {
-        background: url("../images/ob-aframe.jpg") center center no-repeat;
-        min-height: $banner-height-small;
-        width: 100%;
-        background-size: cover;
-        border-radius: 0;
-        position: absolute;
-        left: 0;
-        @include breakpoint($breakpoint-20) {
-            min-height: $banner-height;
-        }
-    }
+    margin-top: $body-offset;
     .anchor {
         position: relative;
-        min-height: $banner-height-small;
+        min-height: $banner-height-small - $body-offset;
         display: block;
+        margin-top: -$body-offset;
         @include breakpoint($breakpoint-20) {
             //display: inline;
-            min-height: $banner-height;
+            min-height: $banner-height - $body-offset;
         }
 
         .links {
             position: absolute;
-            bottom: $banner-height-small/2 - 64px;
+            bottom: $banner-height-small / 2 - 64px;
             width: 100%;
             left: 0;
             text-align: center;
             margin: auto;
             @include breakpoint($breakpoint-20) {
-                    bottom: 40px;
-                }
+                bottom: 40px;
+            }
 
-            .btn-info {
+            .btn {
                 display: block;
-                margin-bottom: 10px;
+                margin: 15px auto;
                 @include breakpoint($breakpoint-20) {
-                    display: inline;
+                    display: inline-block;
                 }
             }
         }
@@ -56,6 +43,16 @@ $banner-height-small: 300px;
     h1 {
         line-height: 1.2;
         margin: 1.6rem 0 0;
+        color: $white;
+        @include breakpoint($breakpoint-20) {
+            color: $black;
+        }
+    }
+    p {
+        color: $white;
+        @include breakpoint($breakpoint-20) {
+            color: $black;
+        }
     }
     // 4: Add states of the parent element
     // &.is-open { property: value; }

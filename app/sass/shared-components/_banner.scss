@@ -1,29 +1,29 @@
 .banner {
     background: url("../images/ob-aframe.jpg") center center no-repeat;
-    min-height: $banner-height;
+    height: 100%;
     width: 100%;
     background-size: cover;
     border-radius: 0;
     position: absolute;
     left: 0;
     z-index: -1;
-
+    margin-top: -$body-offset;
     @include breakpoint($breakpoint-20) {
-        min-height: $banner-height;
+        height: $banner-height;
     }
 }
+
 .banner-overlay {
-    margin-top: 3%;
-    padding: 3%;
-
+    margin-top: 10%;
+    padding: 10%;
     @include breakpoint($breakpoint-20) {
-    	margin-top: 50px;
+        margin-top: 50px;
+        padding: 3%;
     }
-    &.signup{
-    	
 
-	 @include breakpoint($breakpoint-20) {
-    	margin-top: 20px;
-    }
+    &.signup {
+        @include breakpoint($breakpoint-20) {
+            margin-top: 18px;
+        }
     }
 }
