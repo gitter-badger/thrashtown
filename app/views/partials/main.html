@@ -1,19 +1,27 @@
 <div ng-include="'partials/navbar'"></div>
-
-<div class="jumbotron">
-  <h1 class="text-center">A Simple Surf Journal</h1>
-  <p class="text-center">Track your surf sessions over time</p>
-  
-  <div ng-if="!currentUser">
-    <p class="text-center">
-      <a class="btn btn-lg btn-primary" ui-sref="signup" role="button">Sign Up</a>
-    </p>
-    <h4 class="text-center text-muted">or <a ui-sref="login">login</a></h4>
+<div class="home">
+  <div class="banner"></div>
+  <div class="anchor">
+    <div class='links' ng-if="!currentUser">
+      <p class="text-center">
+      <a class="btn btn-lg btn-light" ui-sref="login" role="button">Login</a>
+      <a class="btn btn-lg btn-light uppercase" ui-sref="signup" role="button">Sign Up</a>
+      </p>
+    </div>
+    <div class='links' ng-if="currentUser">
+      <p class="text-center">
+      <a class="btn btn-lg btn-light uppercase" ui-sref="surfs.create" role="button">Log session</a>
+      </p>
+    </div>
   </div>
-</div>
-
-<div class="footer">
-  <div class="container text-center">
-    <p>by <a href="https://github.com/ramdog">@ramdog</a></p>
+  <div class='container-fluid'>
+    <h1 class="text-center text-capitalize">A Simple Surf Journal</h1>
+    <p class="text-center">Track your surf sessions over time</p>
+  </div>
+  <div class="footer">
+    <div class="container text-center">
+      <p>
+      </p>
+    </div>
   </div>
 </div>

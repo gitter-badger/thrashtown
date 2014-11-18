@@ -1,0 +1,34 @@
+// =========== Panels
+.panel-default {
+	border-color: #ccc;
+
+	&>.panel-heading{
+		background: transparent;
+		//border-color: $color-brand-40-a50;
+	}
+	.panel-heading{
+		h4{
+			
+			margin-bottom:0;
+
+		}
+	}
+}
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus{
+	color: $color-brand-40; 
+	background-color: transparent;
+	border-color: $color-brand-40;
+}
+// .panel {
+//     background: $color-neutral-10;
+//     border-radius: $border-radius-10;
+//     margin-bottom: $spacing;
+//     padding: $spacing;
+// }
+
+// .panel--callout {
+//     @extend .panel;
+//     background: $color-brand-50;
+//     color: $white;
+// }
