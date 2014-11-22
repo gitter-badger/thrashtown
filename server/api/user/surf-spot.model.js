@@ -2,8 +2,6 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-  
-var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 /**
  * Surf Spot Schema
