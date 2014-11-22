@@ -1,8 +1,10 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var Schema = mongoose.Schema;
+var Board = require('./board.model');
+var SurfSpot = require('./surf-spot.model');
 
 /**
  * User Schema

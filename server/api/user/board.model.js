@@ -1,9 +1,7 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-  
-var authTypes = ['github', 'twitter', 'facebook', 'google'];
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 /**
  * Board Schema
