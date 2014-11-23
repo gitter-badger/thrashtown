@@ -19,8 +19,8 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
-  boards: [Board],
-  surfSpots: [SurfSpot],
+  boards: [Board.schema],
+  surfSpots: [SurfSpot.schema],
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });
