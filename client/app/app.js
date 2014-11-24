@@ -41,12 +41,16 @@ angular.module('thrashtownApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $state, Auth) {
+    // Add state to the rootScope for 'activate' class in navbar and sidebars 
+    $rootScope.$state = $state;
+
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      Auth.isLoggedInAsync(function(loggedIn) {
+      Auth.isLoggedInAsync(function (loggedIn) {
         if (next.authenticate && !loggedIn) {
-          $location.path('/login');
+          $state.go('login');
+          // TODO: delete when confirmed this is not needed: $location.path('/login');
         }
       });
     });

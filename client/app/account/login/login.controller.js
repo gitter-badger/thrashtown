@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location) {
+  .controller('LoginCtrl', function ($scope, $state, Auth) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -15,9 +15,9 @@ angular.module('thrashtownApp')
         })
         .then( function() {
           // Logged in, redirect to home
-          $location.path('/');
+          $state.go('main');
         })
-        .catch( function(err) {
+        .catch( function (err) {
           $scope.errors.other = err.message;
         });
       }
