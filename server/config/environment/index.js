@@ -32,6 +32,10 @@ var all = {
   // List of user roles
   userRoles: ['guest', 'user', 'admin'],
 
+  // SendGrid credentials
+  sendGridUsername: process.env.SENDGRID_USERNAME,
+  sendGridPassword: process.env.SENDGRID_PASSWORD,
+
   // MongoDB connection options
   mongo: {
     options: {
