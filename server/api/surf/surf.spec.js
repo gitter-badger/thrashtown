@@ -1,20 +1,87 @@
 'use strict';
 
-var should = require('should');
+// var should = require('should');
+// var app = require('../../app');
+// var request = require('supertest');
+
+// describe('GET /api/surfs', function() {
+
+//   xit('should respond with JSON array', function(done) {
+//     request(app)
+//       .get('/api/surfs')
+//       .expect(200)
+//       .expect('Content-Type', /json/)
+//       .end(function(err, res) {
+//         if (err) return done(err);
+//         res.body.should.be.instanceof(Array);
+//         done();
+//       });
+//   });
+// });
+
 var app = require('../../app');
+var User = require('../user/user.model');
 var request = require('supertest');
 
-describe('GET /api/surfs', function() {
+describe('User API:', function() {
+  var user;
 
-  it('should respond with JSON array', function(done) {
-    request(app)
-      .get('/api/surfs')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .end(function(err, res) {
+  // Clear users before testing
+  before(function(done) {
+    User.remove(function() {
+      user = new User({
+        name: 'Fake User',
+        email: 'test@test.com',
+        password: 'password'
+      });
+
+      user.save(function(err) {
         if (err) return done(err);
-        res.body.should.be.instanceof(Array);
         done();
       });
+    });
+  });
+
+  // Clear users after testing
+  after(function() {
+    return User.remove().exec();
+  });
+
+  describe('GET /api/users/me', function() {
+    var token;
+
+    before(function(done) {
+      request(app)
+        .post('/auth/local')
+        .send({
+          email: 'test@test.com',
+          password: 'password'
+        })
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          token = res.body.token;
+          done();
+        });
+    });
+
+    it('should respond with a user profile when authenticated', function(done) {
+      request(app)
+        .get('/api/users/me')
+        .set('authorization', 'Bearer ' + token)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          res.body._id.should.equal(user._id.toString());
+          done();
+        });
+    });
+
+    it('should respond with a 401 when not authenticated', function(done) {
+      request(app)
+        .get('/api/users/me')
+        .expect(401)
+        .end(done);
+    });
   });
 });
