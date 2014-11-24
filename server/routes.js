@@ -6,9 +6,11 @@
 
 var errors = require('./components/errors');
 
-module.exports = function(app) {
+module.exports = function (app) {
 
   // Insert routes below
+  app.use('/api/boards', require('./api/board'));
+  app.use('/api/surf-spots', require('./api/surf_spot'));
   app.use('/api/surfs', require('./api/surf'));
   app.use('/api/users', require('./api/user'));
 
@@ -20,7 +22,7 @@ module.exports = function(app) {
 
   // All other routes should redirect to the index.html
   app.route('/*')
-    .get(function(req, res) {
+    .get(function (req, res) {
       res.sendfile(app.get('appPath') + '/index.html');
     });
 };

@@ -1,12 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = require('../user/user.model');
 
-/**
- * Get current user's surfSpots
- */
-exports.getSurfSpots = function(req, res, next) {
+exports.index = function (req, res, next) {
   var userId = req.user._id;
 
   User.findById(userId, function (err, user) {
@@ -17,10 +14,7 @@ exports.getSurfSpots = function(req, res, next) {
   });
 };
 
-/**
- * Set current user's surfSpots
- */
-exports.createSurfSpot = function(req, res, next) {
+exports.create = function (req, res, next) {
   var data = req.body;
   var userId = req.user._id;
 
@@ -38,13 +32,13 @@ exports.createSurfSpot = function(req, res, next) {
     } else if (data.default === true) {
       // make sure only one spot is the default
       for (var i = 0; i < user.surfSpots.length; i++) {
-        if(user.surfSpots[i].default) {
+        if (user.surfSpots[i].default) {
           user.surfSpots[i].default = false;
         }
       }
     }
     user.surfSpots.push(data);
-    user.save(function(err) {
+    user.save(function (err) {
       if (err) {
         return res.send(400);
       }
@@ -54,10 +48,7 @@ exports.createSurfSpot = function(req, res, next) {
   });
 };
 
-/**
- * Set current user's surfSpots
- */
-exports.updateSurfSpot = function(req, res, next) {
+exports.update = function (req, res, next) {
   var data = req.body;
   var userId = req.user._id;
   var surfSpotId = req.params.id;
@@ -82,7 +73,7 @@ exports.updateSurfSpot = function(req, res, next) {
     } else if (data.default === true) {
       // make sure only one surfSpot is the default
       for (var i = 0; i < user.surfSpots.length; i++) {
-        if(user.surfSpots[i].default) {
+        if (user.surfSpots[i].default) {
           user.surfSpots[i].default = false;
         }
       }
@@ -96,7 +87,7 @@ exports.updateSurfSpot = function(req, res, next) {
     surfSpot.lon = data.long;
     surfSpot.notes = data.notes;
 
-    user.save(function(err) {
+    user.save(function (err) {
       if (err) {
         return res.send(400);
       }
@@ -106,10 +97,7 @@ exports.updateSurfSpot = function(req, res, next) {
   });
 };
 
-/**
- * Delete a user's surfSpot
- */
-exports.deleteSurfSpot = function(req, res, next) {
+exports.destroy = function (req, res, next) {
   var data = req.body;
   var userId = req.user._id;
   var surfSpotId = req.params.id;
@@ -123,7 +111,7 @@ exports.deleteSurfSpot = function(req, res, next) {
       return res.send(404);
     }
     user.surfSpots.id(surfSpotId).remove();
-    user.save(function(err) {
+    user.save(function (err) {
       if (err) {
         return res.send(400);
       }

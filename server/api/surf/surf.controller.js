@@ -52,22 +52,20 @@ exports.show = function (req, res) {
 
 };
 
-// Creates a new surf in the DB.
 exports.create = function (req, res) {
   var data = req.body;
   data.user_id = req.user._id;
 
   Surf.create(data, function (err, surf) {
-    if(err) {
+    if (err) {
       return handleError(res, err);
     }
     return res.json(201, surf);
   });
 };
 
-// Updates an existing surf in the DB.
 exports.update = function (req, res) {
-  if(req.body._id) {
+  if (req.body._id) {
     // Do not overwrite the record's _id
     delete req.body._id;
   }
@@ -91,7 +89,6 @@ exports.update = function (req, res) {
   });
 };
 
-// Deletes a surf from the DB.
 exports.destroy = function (req, res) {
   Surf.remove({_id: req.params.id, user_id: req.user._id}, function (err) {
     if (err) {

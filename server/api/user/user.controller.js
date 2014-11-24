@@ -9,7 +9,7 @@ var crypto = require('crypto');
 var sendgrid = require('sendgrid')(config.sendGridUsername, 
   config.sendGridPassword);
 
-var validationError = function(res, err) {
+var validationError = function (res, err) {
   return res.json(422, err);
 };
 
@@ -17,9 +17,9 @@ var validationError = function(res, err) {
  * Get list of users
  * restriction: 'admin'
  */
-exports.index = function(req, res) {
+exports.index = function (req, res) {
   User.find({}, '-salt -hashedPassword', function (err, users) {
-    if(err) return res.send(500, err);
+    if (err) return res.send(500, err);
     res.json(200, users);
   });
 };
@@ -33,7 +33,7 @@ exports.create = function (req, res, next) {
   newUser.role = 'user';
   newUser.surfSpots = spots.surfSpots;
   newUser.boards = [];
-  newUser.save(function(err, user) {
+  newUser.save(function (err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
@@ -57,9 +57,9 @@ exports.show = function (req, res, next) {
  * Deletes a user
  * restriction: 'admin'
  */
-exports.destroy = function(req, res) {
-  User.findByIdAndRemove(req.params.id, function(err, user) {
-    if(err) return res.send(500, err);
+exports.destroy = function (req, res) {
+  User.findByIdAndRemove(req.params.id, function (err, user) {
+    if (err) return res.send(500, err);
     return res.send(204);
   });
 };
@@ -67,15 +67,15 @@ exports.destroy = function(req, res) {
 /**
  * Change a users password
  */
-exports.changePassword = function(req, res, next) {
+exports.changePassword = function (req, res, next) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
 
   User.findById(userId, function (err, user) {
-    if(user.authenticate(oldPass)) {
+    if (user.authenticate(oldPass)) {
       user.password = newPass;
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) return validationError(res, err);
         res.send(200);
       });
@@ -88,11 +88,11 @@ exports.changePassword = function(req, res, next) {
 /**
  * Get my info
  */
-exports.me = function(req, res, next) {
+exports.me = function (req, res, next) {
   var userId = req.user._id;
   User.findOne({
     _id: userId
-  }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
+  }, '-salt -hashedPassword', function (err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.json(401);
     res.json(user);
@@ -115,7 +115,7 @@ exports.forgotPassword = function (req, res, next) {
     }
     
     // TODO: This should probably not all live in the controller
-    crypto.randomBytes(20, function(err, buf) {
+    crypto.randomBytes(20, function (err, buf) {
       if (err) {
         throw err;
       }
@@ -123,7 +123,7 @@ exports.forgotPassword = function (req, res, next) {
       user.resetPasswordToken = token;
       user.resetPasswordExpires = Date.now() + 3600000 * 24; // 24 hours
       console.log(token);
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) {
           return res.send(400);
         }
@@ -135,7 +135,7 @@ exports.forgotPassword = function (req, res, next) {
           text    : 'Well hello there my good thrashtowner! Open this link to reset your password for Thrashtown. www.thrashtown.com/forgot-password/' + token
         };
 
-        sendgrid.send(payload, function(err, json) {
+        sendgrid.send(payload, function (err, json) {
           if (err) {
             console.error(err);
             return res.status(400).send({
@@ -208,7 +208,7 @@ exports.resetPasswordWithToken = function (req, res, next) {
     if (password1 === password2) {
       user.password = password1;
       // TODO: delete the toke and expiration time
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) {
           return res.send(400);
         }
@@ -226,6 +226,6 @@ exports.resetPasswordWithToken = function (req, res, next) {
 /**
  * Authentication callback
  */
-exports.authCallback = function(req, res, next) {
+exports.authCallback = function (req, res, next) {
   res.redirect('/');
 };
