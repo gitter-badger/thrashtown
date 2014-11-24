@@ -22,8 +22,13 @@ exports.show = function(req, res) {
 
 // Creates a new surf in the DB.
 exports.create = function(req, res) {
-  Surf.create(req.body, function(err, surf) {
-    if(err) { return handleError(res, err); }
+  var data = req.body;
+  data.user_id = req.user._id;
+
+  Surf.create(data, function(err, surf) {
+    if(err) {
+      return handleError(res, err);
+    }
     return res.json(201, surf);
   });
 };

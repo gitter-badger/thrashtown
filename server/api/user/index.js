@@ -13,5 +13,8 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
+router.post('/forgot-password', controller.forgotPassword);
+router.get('/forgot-password/:token', controller.confirmToken);
+router.post('/forgot-password/:token', controller.resetPasswordWithToken);
 
 module.exports = router;
