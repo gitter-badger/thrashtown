@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth) {
+  .controller('ProfileCtrl', function ($scope, User, Auth) {
     $scope.errors = {};
 
     $scope.changePassword = function(form) {

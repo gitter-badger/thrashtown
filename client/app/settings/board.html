@@ -1,0 +1,60 @@
+<div class="panel panel-default">
+  <div class="panel-heading" ng-switch="formConfig.mode">
+    <h4 ng-switch-when="add">Add Board</h4>
+    <h4 ng-switch-when="edit">Update Board</h4>
+  </div>
+  <div class="panel-body">
+    <form class="form form-horizontal" role="form" name="boardForm" novalidate> 
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><span tooltip-placement="top" tooltip="Format like 6'2&quot">Size</span></label>
+        <div class="col-sm-2">
+          <input class="form-control" 
+                 name="size"
+                 type="text" 
+                 placeholder="6'2&quot" 
+                 ng-model="formConfig.params.size"
+                 board-dims
+                 required>
+        </div>
+        <label class="col-sm-1 control-label">Name</label>
+        <div class="col-sm-5">
+          <input class="form-control" 
+                 name="name"
+                 type="text" 
+                 placeholder="C.I. Flyer II" 
+                 ng-model="formConfig.params.name"
+                 required
+                 >
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Category</label>
+        <div class="col-sm-8">
+          <select class="form-control" name="category" type="text" required ng-model="formConfig.params.category">
+            <option>Shortboard</option>
+            <option>Fish</option>
+            <option>Step-Up</option>
+            <option>Gun</option>
+            <option>Longboard</option>
+            <option>Funboard/Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8">
+          <div class="checkbox">
+            <label tooltip-placement="top" tooltip="Default board when logging sessions">
+              <input name="default" type="checkbox" ng-model="formConfig.params.default"> Make this the default board
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" ng-disabled="boardForm.$invalid" ng-click="saveBoard(boardForm)">Save Board</button>
+          <button class="btn btn-default" ng-click="resetBoardForm()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
