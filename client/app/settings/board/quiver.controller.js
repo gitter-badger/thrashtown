@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('QuiverCtrl', function ($scope, Boards) {
+  .controller('QuiverCtrl', function ($scope, Board) {
     
     var initialize = function () {
       $scope.formConfig = {};
@@ -11,7 +11,7 @@ angular.module('thrashtownApp')
     };
 
     var loadQuiver = function () {
-      Boards.load().then(function (boards) {
+      Board.load().then(function (boards) {
         $scope.boards = boards;
       }, function () {
         // TODO: handle error
@@ -52,17 +52,17 @@ angular.module('thrashtownApp')
     $scope.saveBoard = function(form) {
       if (form.$valid) {
         if ($scope.formConfig.mode === 'add') {
-          Boards.create($scope.formConfig.params).then(handleSuccess,
+          Board.create($scope.formConfig.params).then(handleSuccess,
             handleError);
         } else if ($scope.formConfig.mode === 'edit') {
-          Boards.update($scope.formConfig.params, $scope.formConfig.params._id)
+          Board.update($scope.formConfig.params, $scope.formConfig.params._id)
             .then(handleSuccess, handleError);
         }
       }
     };
 
     $scope.deleteBoard = function (board) {
-      Boards.delete(board._id).then(function () {
+      Board.delete(board._id).then(function () {
         // TODO: add an alert to confirm success
       });
     };

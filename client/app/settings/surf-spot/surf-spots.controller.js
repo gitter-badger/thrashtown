@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('SurfSpotsCtrl', function ($scope, SurfSpots) {
+  .controller('SurfSpotsCtrl', function ($scope, SurfSpot) {
 
     var initialize = function () {
       $scope.formConfig = {};
@@ -11,7 +11,7 @@ angular.module('thrashtownApp')
     };
 
     var loadSurfSpots = function () {
-      SurfSpots.load().then(function (surfSpots) {
+      SurfSpot.load().then(function (surfSpots) {
         $scope.surfSpots = surfSpots;
       }, function () {
         // TODO: handle error
@@ -50,17 +50,17 @@ angular.module('thrashtownApp')
     $scope.saveSurfSpot = function (form) {
       if (form.$valid) {
         if ($scope.formConfig.mode === 'add') {
-          SurfSpots.create($scope.formConfig.params).then(handleSuccess,
+          SurfSpot.create($scope.formConfig.params).then(handleSuccess,
             handleError);
         } else if ($scope.formConfig.mode === 'edit') {
-          SurfSpots.update($scope.formConfig.params,
+          SurfSpot.update($scope.formConfig.params,
             $scope.formConfig.params._id).then(handleSuccess, handleError);
         }
       }
     };
 
     $scope.deleteSurfSpot = function (surfSpot) {
-      SurfSpots.delete(surfSpot._id).then(function () {
+      SurfSpot.delete(surfSpot._id).then(function () {
         // TODO: add an alert to confirm success
       });
     };

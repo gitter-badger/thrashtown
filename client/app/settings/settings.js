@@ -17,13 +17,13 @@ angular.module('thrashtownApp')
       })
       .state('settings.quiver', {
         url: '/quiver',
-        templateUrl: 'app/settings/quiver.html',
+        templateUrl: 'app/settings/board/quiver.html',
         controller: 'QuiverCtrl',
         authenticate: true
       })
       .state('settings.surfSpots', {
         url: '/surf-spots',
-        templateUrl: 'app/settings/surf-spots.html',
+        templateUrl: 'app/settings/surf-spot/surf-spots.html',
         controller: 'SurfSpotsCtrl',
         authenticate: true
       });
