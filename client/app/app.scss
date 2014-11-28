@@ -36,6 +36,11 @@ body {
   opacity: .6;
 }
 
+.tt-table-action {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 /* Form validation */
 .form-control.ng-invalid.ng-touched {
   border-color: #a94442;

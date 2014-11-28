@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('SurfSpotsCtrl', function ($scope, SurfSpot) {
+  .controller('SurfSpotsCtrl', function ($scope, Modal, SurfSpot) {
 
     var initialize = function () {
       $scope.formConfig = {};
@@ -59,11 +59,11 @@ angular.module('thrashtownApp')
       }
     };
 
-    $scope.deleteSurfSpot = function (surfSpot) {
+    $scope.deleteSurfSpot = Modal.confirm.delete(function (surfSpot) {
       SurfSpot.delete(surfSpot._id).then(function () {
         // TODO: add an alert to confirm success
       });
-    };
+    });
     
     initialize();
 

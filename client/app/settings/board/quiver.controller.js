@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('QuiverCtrl', function ($scope, Board) {
+  .controller('QuiverCtrl', function ($scope, Board, Modal) {
     
     var initialize = function () {
       $scope.formConfig = {};
@@ -61,11 +61,11 @@ angular.module('thrashtownApp')
       }
     };
 
-    $scope.deleteBoard = function (board) {
+    $scope.deleteBoard = Modal.confirm.delete(function (board) {
       Board.delete(board._id).then(function () {
         // TODO: add an alert to confirm success
       });
-    };
+    });
     
     initialize();
 
