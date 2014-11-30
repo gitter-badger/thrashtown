@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = require('../user/user.model');
 
@@ -7,15 +8,19 @@ exports.index = function (req, res, next) {
   var userId = req.user._id;
 
   User.findById(userId, function (err, user) {
-    if (err) return next(err);
-    if (!user) return res.send(404);
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.send(404);
+    }
 
-    res.send({surfSpots: user.surfSpots });
+    res.json(200, user.surfSpots);
   });
 };
 
 exports.create = function (req, res, next) {
-  var data = req.body;
+  var surfSpot = req.body;
   var userId = req.user._id;
 
   User.findById(userId, function (err, user) {
@@ -28,8 +33,8 @@ exports.create = function (req, res, next) {
     }
     if (user.surfSpots.length === 0) {
       // if this is the first spot
-      data.default = true;
-    } else if (data.default === true) {
+      surfSpot.default = true;
+    } else if (surfSpot.default === true) {
       // make sure only one spot is the default
       for (var i = 0; i < user.surfSpots.length; i++) {
         if (user.surfSpots[i].default) {
@@ -37,18 +42,23 @@ exports.create = function (req, res, next) {
         }
       }
     }
-    user.surfSpots.push(data);
+    user.surfSpots.push(surfSpot);
     user.save(function (err) {
       if (err) {
         return res.send(400);
       }
 
-      res.send(200);
+      //TODO: ideally this would be the newly created spot as saved in the db
+      res.json(201, surfSpot);
     });
   });
 };
 
 exports.update = function (req, res, next) {
+  if (req.body._id) {
+    // Do not overwrite the record's _id
+    delete req.body._id;
+  }
   var data = req.body;
   var userId = req.user._id;
   var surfSpotId = req.params.id;
@@ -79,26 +89,18 @@ exports.update = function (req, res, next) {
       }
     }
 
-    surfSpot.name = data.name;
-    surfSpot.region = data.region;
-    surfSpot.default = data.default;
-    surfSpot.private = data.private;
-    surfSpot.lat = data.lat;
-    surfSpot.lon = data.long;
-    surfSpot.notes = data.notes;
-
+    var updated = _.merge(surfSpot, data);
     user.save(function (err) {
       if (err) {
         return res.send(400);
       }
 
-      res.send(200);
+      res.json(200, updated);
     });
   });
 };
 
 exports.destroy = function (req, res, next) {
-  var data = req.body;
   var userId = req.user._id;
   var surfSpotId = req.params.id;
 
@@ -110,13 +112,13 @@ exports.destroy = function (req, res, next) {
     if (!user) {
       return res.send(404);
     }
-    user.surfSpots.id(surfSpotId).remove();
+    var deleted = user.surfSpots.id(surfSpotId).remove();
     user.save(function (err) {
       if (err) {
         return res.send(400);
       }
 
-      res.send(200);
+      res.json(200, deleted);
     });
   });
 };

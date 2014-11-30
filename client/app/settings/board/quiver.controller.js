@@ -49,7 +49,7 @@ angular.module('thrashtownApp')
       // TODO: handle error
     };
 
-    $scope.saveBoard = function(form) {
+    $scope.saveBoard = function (form) {
       if (form.$valid) {
         if ($scope.formConfig.mode === 'add') {
           Board.create($scope.formConfig.params).then(handleSuccess,

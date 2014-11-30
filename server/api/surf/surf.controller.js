@@ -30,7 +30,6 @@ exports.index = function (req, res) {
       if (err) {
         return handleError(res, err);
       }
-      console.log(surfs);
       return res.json(200, surfs);
     });
 };
@@ -84,7 +83,7 @@ exports.update = function (req, res) {
       if (err) { 
         return handleError(res, err);
       }
-      return res.json(200, surf);
+      return res.json(200, updated);
     });
   });
 };
@@ -94,7 +93,10 @@ exports.destroy = function (req, res) {
     if (err) {
       return handleError(res, err);
     }
-    return res.send(204);
+    //TODO: figure out how to pass back the recently deleted item
+    //TODO: trying to pass a secound surf argument to the the cb doesn't work
+    // res.json(200, surf)
+    res.send(200);
   });
 
 };

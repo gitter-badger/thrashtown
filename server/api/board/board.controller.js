@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = require('../user/user.model');
 
@@ -14,12 +15,12 @@ exports.index = function (req, res, next) {
       return res.send(404);
     }
 
-    res.send({ boards: user.boards });
+    res.json(200, user.boards);
   });
 };
 
 exports.create = function (req, res, next) {
-  var data = req.body;
+  var board = req.body;
   var userId = req.user._id;
 
   User.findById(userId, function (err, user) {
@@ -32,8 +33,8 @@ exports.create = function (req, res, next) {
     }
     if (user.boards.length === 0) {
       // if this is the first board
-      data.default = true;
-    } else if (data.default === true) {
+      board.default = true;
+    } else if (board.default === true) {
       // make sure only one board is the default
       for (var i = 0; i < user.boards.length; i++) {
         if (user.boards[i].default) {
@@ -41,18 +42,23 @@ exports.create = function (req, res, next) {
         }
       }
     }
-    user.boards.push(data);
+    user.boards.push(board);
     user.save(function (err) {
       if (err) {
         return res.send(400);
       }
+//TODO: ideally this would be the newly created board as saved in the db
 
-      res.send(200);
+      res.json(201, board);
     });
   });
 };
 
 exports.update = function (req, res, next) {
+  if (req.body._id) {
+    // Do not overwrite the record's _id
+    delete req.body._id;
+  }
   var data = req.body;
   var userId = req.user._id;
   var boardId = req.params.id;
@@ -83,23 +89,18 @@ exports.update = function (req, res, next) {
       }
     }
 
-    board.name = data.name;
-    board.size = data.size;
-    board.category = data.category;
-    board.default = data.default; 
-
+    var updated = _.merge(board, data);
     user.save(function (err) {
       if (err) {
         return res.send(400);
       }
 
-      res.send(200);
+      res.json(200, updated);
     });
   });
 };
 
 exports.destroy = function (req, res, next) {
-  var data = req.body;
   var userId = req.user._id;
   var boardId = req.params.id;
 
@@ -111,13 +112,13 @@ exports.destroy = function (req, res, next) {
     if (!user) {
       return res.send(404);
     }
-    user.boards.id(boardId).remove();
+    var deleted = user.boards.id(boardId).remove();
     user.save(function (err) {
       if (err) {
         return res.send(400);
       }
 
-      res.send(200);
+      res.json(200, deleted);
     });
   });
 };

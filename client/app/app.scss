@@ -31,7 +31,6 @@ body {
 .clickable {
   cursor: pointer;
 }
-
 .clickable:hover {
   opacity: .6;
 }
@@ -39,6 +38,16 @@ body {
 .tt-table-action {
   margin-right: 5px;
   margin-left: 5px;
+}
+
+#tt-home-spot {
+  margin-left: 10px;
+}
+
+/* Review Sessions */
+.tt-review-comment {
+  border-top: none !important;
+  padding-left: 16px !important;
 }
 
 /* Form validation */
@@ -56,5 +65,7 @@ body {
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import 'settings/settings.scss';
+@import 'surf-sessions/review/review.scss';
+@import 'surf-sessions/surf-sessions-base.scss';
 @import 'modal/modal.scss';
 // endinjector
