@@ -1,0 +1,13 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+      <a class="list-group-item" ui-sref="settings.quiver" ng-class="{active: $state.includes('settings.quiver')}">Quiver</a>
+      <a class="list-group-item" ui-sref="settings.surfSpots" ng-class="{active: $state.includes('settings.surfSpots')}">Surf Spots</a>
+      <a class="list-group-item" ui-sref="settings.profile" ng-class="{active: $state.includes('settings.profile')}">Account</a>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div ui-view=""></div>
+  </div>
+</div>

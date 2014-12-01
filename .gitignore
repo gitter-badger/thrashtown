@@ -1,9 +1,9 @@
-.DS_store
 node_modules
 public
 .tmp
 .sass-cache
-app/bower_components
-heroku
-/views
+.idea
+client/bower_components
 dist
+/server/config/local.env.js
+.DS_Store

@@ -1,0 +1,146 @@
+<div class="panel panel-default">
+  <div class="panel-heading" ng-switch="formConfig.mode">
+    <h4 ng-switch-when="add">Log Your Session</h4>
+    <h4 ng-switch-when="edit">Edit Your Session</h4>
+  </div>
+  <div class="panel-body">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+      {{alert.msg}}
+    </alert>
+    <form class="form-horizontal" name="form" ng-submit="saveSurf(form)" novalidate>
+      <div class="form-group">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="When you got in the water">Session Date</span></label>
+        <div class="col-md-5">
+          <input class="form-control" type="datetime-local" ng-model="formConfig.params.sessionDate" required>
+        </div>
+      
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Can use decimals">Hours Surfed</span></label>
+        <div class="col-md-2">
+          <input class="form-control" type="number" ng-model="formConfig.params.sessionHours" min="0" max="10" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="From your saved spots">Location</span></label>
+        <div class="col-md-5">
+          <select class="form-control"
+                  name="surfSpot" 
+                  type="text" 
+                  required 
+                  ng-model="formConfig.params.surfSpot_id"
+                  ng-options="surfSpot._id as surfSpot.name group by surfSpot.region for surfSpot in surfSpots"
+                  >
+          </select>
+        </div>
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Number of friends you surfed with">Other Friends</span></label>
+        <div class="col-md-2">
+          <input class="form-control" type="number" min="0" max="20" ng-model="formConfig.params.otherFriends" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="5 = Epic!">Wave Quality</span></label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio" value="1" ng-model="formConfig.params.waveQuality" required> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="2" ng-model="formConfig.params.waveQuality" required> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="3" ng-model="formConfig.params.waveQuality" required> 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="4" ng-model="formConfig.params.waveQuality" required> 4
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="5" ng-model="formConfig.params.waveQuality" required> 5
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="5 = Barrels Galore">Hollowness</span></label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio" value="1" ng-model="formConfig.params.hollowness" required> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="2" ng-model="formConfig.params.hollowness" required> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="3" ng-model="formConfig.params.hollowness" required> 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="4" ng-model="formConfig.params.hollowness" required> 4
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="5" ng-model="formConfig.params.hollowness" required> 5
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="5 = Elbow-to-Elbow">Crowdedness</span></label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio" value="1" ng-model="formConfig.params.crowdedness" required> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="2" ng-model="formConfig.params.crowdedness" required> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="3" ng-model="formConfig.params.crowdedness" required> 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="4" ng-model="formConfig.params.crowdedness" required> 4
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="5" ng-model="formConfig.params.crowdedness" required> 5
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="5 = Super Fun!">Fun Factor</span></label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio" value="1" ng-model="formConfig.params.funFactor" required> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="2" ng-model="formConfig.params.funFactor" required> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="3" ng-model="formConfig.params.funFactor" required> 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="4" ng-model="formConfig.params.funFactor" required> 4
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="5" ng-model="formConfig.params.funFactor" required> 5
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="From your quiver">Board</span></label>
+        <div class="col-md-9">
+          <select class="form-control"
+                  name="category" 
+                  type="text" 
+                  required 
+                  ng-model="formConfig.params.board_id"
+                  ng-options="board._id as board.size + ' - ' + board.name group by board.category for board in boards"
+                  >
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Comment</label>
+        <div class="col-md-9">
+          <textarea class="form-control" rows="3" maxlength="500" type="textarea" placeholder="Optional comments or notes about session" ng-model="formConfig.params.comment"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-9">
+          <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Save Session</button>
+          <button ng-if="formConfig.mode === 'edit'" ui-sref="surfs.review" class="btn btn-default">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

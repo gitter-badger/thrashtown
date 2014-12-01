@@ -1,0 +1,16 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="jumbotron">
+  <h1 class="text-center">A Simple Surf Journal</h1>
+  <p class="text-center">Track your sessions</p>
+  <div ng-if="!isLoggedIn()">
+    <p class="text-center">
+      <a class="btn btn-lg btn-primary" ui-sref="signup" role="button">Sign Up</a>
+    </p>
+    <h4 class="text-center text-muted">or <a ui-sref="login">login</a></h4>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p><a href="https://github.com/ramdog">@ramdog</a> | <a href="https://github.com/trexr">@trexr</a></p>
+  </div>
+</footer>
