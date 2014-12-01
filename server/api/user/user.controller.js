@@ -110,7 +110,8 @@ exports.forgotPassword = function (req, res, next) {
     
     if (!user) {
       return res.status(400).send({
-        message: 'Sorry, we don\'t know that email.  Try again?'
+        message: 'Sorry, we don\'t know that email.  Try again?',
+        code: 'auth:unknown_email'
       });
     }
     
@@ -122,7 +123,6 @@ exports.forgotPassword = function (req, res, next) {
       var token = buf.toString('hex');
       user.resetPasswordToken = token;
       user.resetPasswordExpires = Date.now() + 3600000 * 24; // 24 hours
-      console.log(token);
       user.save(function (err) {
         if (err) {
           return res.send(400);
@@ -137,10 +137,9 @@ exports.forgotPassword = function (req, res, next) {
 
         sendgrid.send(payload, function (err, json) {
           if (err) {
-            console.error(err);
             return res.status(400).send({
               message: 'Your email bounced.',
-              code: 'invalid_email'
+              code: 'auth:invalid_email'
             });
           }
           res.send(200);
@@ -164,14 +163,14 @@ exports.confirmToken = function (req, res, next) {
     if (!user) {
       return res.status(400).send({
         message: 'That password reset link is not valid.',
-        code: 'invalid_token'
+        code: 'auth:invalid_token'
       });
     }
 
     if (user.resetPasswordExpires < Date.now()) {
       return res.status(400).send({
         message: 'The password reset link has expired.',
-        code: 'expired_token'
+        code: 'auth:expired_token'
       });
     }
     
@@ -192,14 +191,14 @@ exports.resetPasswordWithToken = function (req, res, next) {
     if (!user) {
       return res.status(400).send({
         message: 'That password reset link is not valid.',
-        code: 'invalid_token'
+        code: 'auth:invalid_token'
       });
     }
 
     if (user.resetPasswordExpires < Date.now()) {
       return res.status(400).send({
         message: 'The password reset link has expired.',
-        code: 'expired_token'
+        code: 'auth:expired_token'
       });
     }
     
@@ -207,7 +206,9 @@ exports.resetPasswordWithToken = function (req, res, next) {
     var password2 = String(req.body.password2);
     if (password1 === password2) {
       user.password = password1;
-      // TODO: delete the toke and expiration time
+      // TODO: set to undefined or delete?  What happens with a POST with no data?
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
       user.save(function (err) {
         if (err) {
           return res.send(400);

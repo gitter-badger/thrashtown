@@ -93,6 +93,43 @@ angular.module('thrashtownApp')
       },
 
       /**
+       * Request password reset
+       * 
+       * @param  {String}   email 
+       * @return {Promise}
+       */
+      requestPasswordReset: function (email) {
+        return $http.post('api/users/forgot-password', {
+          email: email
+        });
+      },
+
+      /**
+       * Validate password reset token
+       * 
+       * @param  {String}   token 
+       * @return {Promise}       
+       */
+      validateResetToken: function (token) {
+        return $http.get('api/users/forgot-password/' + token);
+      },
+
+      /**
+       * Reset password with token
+       * 
+       * @param  {String}   token
+       * @param  {Srting}   password1
+       * @param  {Srting}   password2 
+       * @return {Promise}
+       */
+      resetPasswordWithToken: function (token, password1, password2) {
+        return $http.post('api/users/forgot-password/' + token, {
+          password1: password1,
+          password2: password2
+        });
+      },
+
+      /**
        * Gets all available info on authenticated user
        *
        * @return {Object} user
