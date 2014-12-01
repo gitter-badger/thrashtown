@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: SurfsCtrl', function () {
+describe('Controller: SurfLogCtrl', function () {
 
   // load the controller's module
   beforeEach(module('thrashtownApp'));
@@ -10,7 +10,7 @@ describe('Controller: SurfsCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    SurfsCtrl = $controller('SurfsCtrl', {
+    SurfsCtrl = $controller('SurfLogCtrl', {
       $scope: scope
     });
   }));

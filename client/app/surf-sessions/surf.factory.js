@@ -32,7 +32,7 @@ angular.module('thrashtownApp')
       },
 
       delete: function (id) {
-        return $http.delete('/api/surfs/' + id).then(function (response) {
+        return $http.delete('/api/surfs/' + id).then(function () {
           $rootScope.$broadcast('surfs:updated');
           //TODO: see the other to do in the API
           // return response.data;
