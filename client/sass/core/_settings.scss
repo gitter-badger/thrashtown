@@ -5,10 +5,8 @@
 
 
 // Set your own font
-$font-family-body: sans-serif;
-$font-family-heading: georgia;
-
-
+$font-family-body:  sans-serif;
+$font-family-heading: Lato, sans-serif;
 
 
 // The base font-size, all other elements will adjust to this value
@@ -61,7 +59,7 @@ $color-dark:#000;
 // Color buttons
 
 // Color brand
-$color-brand-40: #16A186; // primary & info buttons also hover color for links
+$color-brand-40: #000; // primary & info buttons also hover color for links ~ aqua #16A186
 $color-brand-50: #09a25f; 
 $color-brand-60: #038049;
 $color-brand-40-a80:rgba(14, 99,82, .8);

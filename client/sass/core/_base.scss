@@ -13,17 +13,17 @@ html {
 body {
     color: $color-dark;
     line-height: 1.5em;
-    margin: 53px 0 0;
+    margin: 51px 0 0;
     padding-top: $body-offset;
     @include breakpoint($breakpoint-20) {
-        margin-top: 70px;
+        margin-top: 67px;
     }
 }
 
 
 // Headings
 h1, h2, legend, h3, h4, h5, h6 {
-    //font-family: $font-family-heading;
+    font-family: $font-family-heading;
     font-weight: 400;
     line-height: 1.5em;
     margin: 0 0 0.25em 0;
@@ -56,9 +56,9 @@ p {
 
 // Links
 a {
-    color: $color-brand-50;
+    color: $color-brand-40;
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: underline;
 
     &:hover { color: $color-brand-40; }
 }
@@ -72,7 +72,7 @@ a {
 
 // em { font-style: italic; }
 
-// strong { font-weight: bold; }
+strong, .bold{ font-weight: 700; }
 
 // code, pre { font-family: 'courier new', monospace; }
 
