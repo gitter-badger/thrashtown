@@ -2,13 +2,13 @@
 <div class="banner"></div>
 <div class='container-fluid home'>
 <div class="anchor">
-    <div class='links' ng-if="!currentUser">
+    <div class='links' ng-if="!isLoggedIn()">
         <p class="text-center">
             <a class="btn btn-lg btn-light" ui-sref="login" role="button">Login</a>
             <a class="btn btn-lg btn-light uppercase" ui-sref="signup" role="button">Sign Up</a>
         </p>
     </div>
-    <div class='links' ng-if="currentUser">
+    <div class='links' ng-if="isLoggedIn()">
         <p class="text-center">
             <a class="btn btn-lg btn-light uppercase" ui-sref="surfs.create" role="button">Log session</a>
         </p>
