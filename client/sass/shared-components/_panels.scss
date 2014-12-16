@@ -1,6 +1,7 @@
 // =========== Panels
 .panel-default {
-	border-color: #ccc;
+	border-color: $color-neutral-10;
+	border-radius:0;
 
 	&>.panel-heading{
 		background: transparent;
@@ -16,6 +17,9 @@
 			margin-bottom:0;
 
 		}
+	}
+	.form-horizontal .control-label{
+		line-height: 1.1;
 	}
 }
 
