@@ -1,0 +1,60 @@
+// =========== Navbar
+
+.navbar {
+    padding: 0;
+    background: #fCFCFC;
+    border-bottom:1px solid #f3f3f3;
+    @include breakpoint($breakpoint-20) {
+        padding: 8px 3em;
+    }
+
+    // .navbar-brand{
+    //     position: absolute;
+    //     width: 100%;
+    //     left: 0;
+    //     text-align: center;
+    //     margin: auto;
+    // }
+    float: none;
+    .navbar-header {
+        float: none;
+        text-align: center;
+        margin: 0;
+        line-height: 1;
+        @include breakpoint($breakpoint-20) {
+            text-align: left;
+            float: left;
+            margin: 0;
+        }
+    }
+    .navbar-brand {
+        float: none;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        @include breakpoint($breakpoint-20) {
+            float: left;
+            padding-left: 0;
+            position: static;
+            text-align: left;
+        }
+    }
+    .navbar-toggle:hover, .navbar-toggle:focus
+    {
+    	background:transparent;
+    }
+    a {
+        text-transform: uppercase;
+        color: #000;
+        &:hover {
+            color: $color-brand-40;
+        }
+    }
+    li {
+        a {
+            font-weight: bold;
+        }
+    }
+}
