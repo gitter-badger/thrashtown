@@ -30,11 +30,13 @@ h1, h2, legend, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
-h1 { font-size: 2rem; }
+h1 { 
+    font-size: 1.375rem;//22px 
+}
 
 h2,
 legend {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
 }
 
 h3 { font-size: 1.3rem; }
@@ -63,6 +65,57 @@ a {
     &:hover { color: $color-brand-40; }
 }
 
+
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #E5E5E5;
+  text-align: center;
+  a{
+    font-size: $font-size-00;
+    text-decoration: none;
+  }
+}
+
+/* Warning to users on old browsers */
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  opacity: .6;
+}
+
+.tt-table-action {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#tt-home-spot {
+  margin-left: 10px;
+}
+
+/* Review Sessions */
+.tt-review-comment {
+  border-top: none !important;
+  padding-left: 16px !important;
+}
+
+/* Form validation */
+.form-control.ng-invalid.ng-touched {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+  -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
+}
 
 // Other
 // small {

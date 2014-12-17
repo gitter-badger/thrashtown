@@ -121,8 +121,9 @@ button.button--alert {
     }
     &:hover {
         // background-color: $color-brand-40-a50;
-        // color: $white;
-        opacity: .8;
+        // color: $white
+        color:$black;
+         border-color:$black;
 
     }
 
