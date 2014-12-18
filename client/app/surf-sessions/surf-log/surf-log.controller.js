@@ -10,7 +10,6 @@ angular.module('thrashtownApp')
           mode: mode,
           params: {}
         };
-        $scope.alerts = [];
         loadResources();
 
         if (mode === 'edit') {
