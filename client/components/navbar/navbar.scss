@@ -2,6 +2,7 @@
 
 .navbar {
     padding: 0;
+    
     background: #fCFCFC;
     border-bottom: 1px solid #f3f3f3;
     @include breakpoint($breakpoint-20) {

@@ -8,6 +8,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  * App-wide Styles located in  the following dir
  */
 @import '../sass/styles.scss';
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';

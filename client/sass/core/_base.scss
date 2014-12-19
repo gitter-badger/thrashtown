@@ -65,8 +65,6 @@ a {
     &:hover { color: $color-brand-40; }
 }
 
-
-
 /* Custom page footer */
 .footer {
   padding-top: 19px;
@@ -94,76 +92,6 @@ a {
   opacity: .6;
 }
 
-.tt-table-action {
-  margin-right: 5px;
-  margin-left: 5px;
-}
-
-#tt-home-spot {
-  margin-left: 10px;
-}
-
-/* Review Sessions */
-.tt-review-comment {
-  border-top: none !important;
-  padding-left: 16px !important;
-}
-
-/* Form validation */
-.form-control.ng-invalid.ng-touched {
-  border-color: #a94442;
-  -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
-  -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
-  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);;
-}
-
-// Other
-// small {
-//     color: $color-neutral-50;
-//     font-size: $font-size-20;
-// }
-
-// em { font-style: italic; }
-
 strong, .bold{ font-weight: 700; }
 
-// code, pre { font-family: 'courier new', monospace; }
 
-// pre { overflow-x: auto; }
-
-// abbr { border-bottom: 1px dotted $color-neutral-50; }
-
-// del { text-decoration: line-through; }
-
-// mark { background-color: lighten(yellow, 35%); }
-
-// hr {
-//     background-color: transparent;
-//     border: solid $color-neutral-30;
-//     border-width: 1px 0 0;
-//     clear: both;
-//     margin: 2.5rem $spacing;
-// }
-
-
-// Lists
-// ul, ol { margin: 0 0 $spacing 1.5rem; }
-
-// ul { list-style: disc; }
-
-// ol { list-style: decimal; }
-
-// dl {
-//     margin-bottom: $spacing;
-
-//     dt { font-weight: bold; }
-//     dd { margin-left: $spacing; }
-
-//     &.advanced {
-//         @include grid-container;
-
-//         dt { @include grid(16, 0, 1); }
-
-//         dd { @include grid(32); }
-//     }
-// }
