@@ -10,7 +10,9 @@ input::-moz-focus-inner {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border: 0;
+    // border: 0;
+    border-style: solid;
+    border-width: 2px;  
     border-radius: 0 !important;
     cursor: pointer;
     display: inline-block;
@@ -20,7 +22,7 @@ input::-moz-focus-inner {
     -moz-osx-font-smoothing: grayscale;
     font-weight: bold;
     line-height: 1.5em;
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 0 0;
     padding: 0.5rem 0.75rem;
     text-decoration: none;
     vertical-align: bottom;
@@ -131,7 +133,7 @@ button.button--alert {
 .btn-primary, .btn-primary[disabled]{
     color: $color-brand-40;
     background:transparent;
-    border:3px solid $color-brand-40;
+    border:2px solid $color-brand-40;
     &:hover {
          background-color: $color-brand-40;
          color: $white;
