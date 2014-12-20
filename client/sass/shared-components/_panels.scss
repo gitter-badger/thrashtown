@@ -23,10 +23,14 @@
 	}
 }
 
+.list-group-item {
+	border-color: $color-neutral-10;
+}
+
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus{
 	color: $color-brand-40; 
-	background-color: transparent;
-	border-color: $color-brand-40;
+	background-color: $color-active;
+	border-color: $color-neutral-10;
 }
 .panel-links{
 	a {
