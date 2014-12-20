@@ -1,16 +1,27 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="jumbotron">
-  <h1 class="text-center">A Simple Surf Journal</h1>
-  <p class="text-center">Track your sessions</p>
-  <div ng-if="!isLoggedIn()">
-    <p class="text-center">
-      <a class="btn btn-lg btn-primary" ui-sref="signup" role="button">Sign Up</a>
-    </p>
-    <h4 class="text-center text-muted">or <a ui-sref="login">login</a></h4>
-  </div>
+<div class="banner"></div>
+<div class='container-fluid home'>
+<div class="anchor">
+    <div class='links' ng-if="!isLoggedIn()">
+        <p class="text-center">
+            <a class="btn btn-lg btn-light" ui-sref="login" role="button">Login</a>
+            <a class="btn btn-lg btn-light uppercase" ui-sref="signup" role="button">Sign Up</a>
+        </p>
+    </div>
+    <div class='links' ng-if="isLoggedIn()">
+        <p class="text-center">
+            <a class="btn btn-lg btn-light uppercase" ui-sref="surfs.create" role="button">Log session</a>
+        </p>
+    </div>
 </div>
-<footer class="footer">
-  <div class="container">
-    <p><a href="https://github.com/ramdog">@ramdog</a> | <a href="https://github.com/trexr">@trexr</a></p>
-  </div>
+
+    <h1 class="text-center text-capitalize">A Simple Surf Journal</h1>
+    <p class="text-center">Track your surf sessions over time</p>
+</div>
+
+<footer class="footer hidden-xs">
+    <div class="container hidden-xs">
+        <p><a href="https://github.com/ramdog">@ramdog</a> | <a href="https://github.com/trexr">@trexr</a>
+        </p>
+    </div>
 </footer>

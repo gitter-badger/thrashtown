@@ -1,0 +1,34 @@
+// =========== Includes
+
+@import
+
+// Core
+"core/_settings", // Set up your settings and variables first
+"core/_mixins", //deactivating the following as we're using bootstrap for much of these
+//"core/_grid",
+"core/_base", // removing as Bootstrap covers most of this
+"core/_states",
+//"core/_layout",
+
+
+// Shared components
+"shared-components/_buttons",
+"shared-components/_forms",
+"shared-components/_banner",
+/*
+"shared-components/_figure",
+"shared-components/_labels",
+"shared-components/_messages",
+"shared-components/_pagination",
+*/
+"shared-components/_panels",
+"shared-components/_tables";
+/*
+"shared-components/_quote",
+"shared-components/_tabs", 
+*/
+
+
+// Modules
+// modules are found in their respective controller app dir
+
