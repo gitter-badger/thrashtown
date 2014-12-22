@@ -8,6 +8,14 @@ angular.module('thrashtownApp')
         var mode = !!$stateParams.id ? 'edit' : 'add';
         $scope.formConfig = {
           mode: mode,
+          commentLength: 500,
+          commentCharactersRemaining: function () {
+            var used = 0;
+            if (!!this.params.comment) {
+              used = this.params.comment.length;
+            }
+            return this.commentLength - used;
+          },
           params: {}
         };
         loadResources();

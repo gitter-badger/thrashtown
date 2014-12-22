@@ -1,0 +1,98 @@
+// =========== Base
+
+
+html {
+    color: $color-dark;
+    font: 400 $font-size-base $font-family-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    color: $color-dark;
+    font-family: $font-family-body;
+    line-height: 1.5em;
+    margin: 51px 0 0;
+    padding-top: $body-offset;
+    @include breakpoint($breakpoint-20) {
+        margin-top: 67px;
+    }
+}
+
+
+// Headings
+h1, h2, legend, h3, h4, h5, h6 {
+    font-family: $font-family-heading;
+    font-weight: 400;
+    line-height: 1.5em;
+    margin: 0 0 0.25em 0;
+    text-transform: uppercase;
+}
+
+h1 { 
+    font-size: 1.375rem;//22px 
+}
+
+h2,
+legend {
+    font-size: 1.25rem;
+}
+
+h3 { font-size: 1.3rem; }
+
+h4 { font-size: 1.2rem; }
+
+h5 { font-size: 1.1rem; }
+
+h6 { font-size: 1rem; }
+
+
+// Paragraphs
+p {
+    margin-bottom: $spacing;
+
+    &.lead { font-size: $font-size-40; }
+}
+
+
+// Links
+a {
+    color: $color-brand-40;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover { color: $color-brand-40; }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #E5E5E5;
+  text-align: center;
+  a{
+    font-size: $font-size-00;
+    text-decoration: none;
+  }
+}
+
+/* Warning to users on old browsers */
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  opacity: .6;
+}
+
+strong, .bold{ font-weight: 700; }
+
+

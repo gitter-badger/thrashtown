@@ -1,0 +1,174 @@
+// =========== Buttons
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+%button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    // border: 0;
+    border-style: solid;
+    border-width: 2px;  
+    border-radius: 0 !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-family-body;
+    font-size: $font-size-30;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: bold;
+    line-height: 1.5em;
+    margin: 0 0 0 0;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    vertical-align: bottom;
+
+    &:focus { outline: 0; }
+}
+
+// The standard button has the $color-brand colors
+.button,
+input[type=submit],
+button {
+    @extend %button;
+    background: $color-brand-50;
+    color: $white;
+
+    &:hover {
+        background: $color-brand-60;
+        color: $white;
+    }
+
+    &:active,
+    &:focus {
+        box-shadow: inset 0 1px 3px rgba($black, 0.2);
+    }
+}
+
+.button--neutral,
+input[type=submit].button--neutral,
+button.button--neutral {
+    @extend %button;
+    background: $color-neutral-30;
+    color: $color-neutral-70;
+
+    &:hover {
+        background: $color-neutral-50;
+        color: $color-neutral-70;
+    }
+
+    &:active,
+    &:focus {
+        box-shadow: inset 0 1px 3px rgba($black, 0.2);
+    }
+}
+
+.button--success,
+input[type=submit].button--success,
+button.button--success {
+    @extend %button;
+    background-color: $color-success-50;
+    color: $white;
+
+    &:hover {
+        background-color: $color-success-60;
+        color: $white;
+    }
+
+    &:active,
+    &:focus {
+        box-shadow: inset 0 1px 3px rgba($black, 0.2);
+    }
+}
+
+.button--alert,
+input[type=submit].button--alert,
+button.button--alert {
+    @extend %button;
+    background-color: $color-alert-50;
+    color: $white;
+
+    &:hover {
+        background-color: $color-alert-60;
+        color: $white;
+    }
+
+    &:active,
+    &:focus {
+        box-shadow: inset 0 1px 3px rgba($black, 0.2);
+    }
+}
+//ui flat override
+.btn{
+     @extend %button;
+    text-transform: uppercase
+}
+.btn-lg, .btn-group-lg > .btn {
+    border-radius: 4px;
+    
+}
+
+//
+
+.btn-light{
+    color: $white;
+    background:transparent;
+    border:3px solid $white;
+    &.btn-lg{
+        width:200px;
+    }
+    &:hover {
+        // background-color: $color-brand-40-a50;
+        // color: $white
+        color:$black;
+         border-color:$black;
+
+    }
+
+}
+.btn-primary, .btn-primary[disabled]{
+    color: $color-brand-40;
+    background:transparent;
+    border:2px solid $color-brand-40;
+    &:hover {
+         background-color: $color-brand-40;
+         color: $white;
+         border-color: $color-brand-40-a10;
+       // opacity: .4;
+
+    }
+}
+.btn-primary[disabled]{
+   opacity:.4;
+}
+
+
+.btn-info{
+    color: $white;
+    background-color: $color-brand-40-a50;
+    border:3px solid  #ccc;
+    padding:10px 70px;
+
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info.focus,
+.btn-info:active,
+.btn-info.active,
+//.btn-primary:active,
+.open > .dropdown-toggle.btn-info {
+  color: #fff;
+  background-color: rgba(14, 99,82, .7);
+  border-color: #fff;
+}
+
+
+//hamburger
+// .button:hover, input[type=submit]:hover, button:hover {
+// background: transparent !important; 
+// color: #fff;
+// }
