@@ -4,9 +4,7 @@
     <h4 ng-switch-when="edit">Edit Your Session</h4>
   </div>
   <div class="panel-body">
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
-      {{alert.msg}}
-    </alert>
+    <div ng-include="'components/ui/alert/alerts.html'"></div>
     <form class="form-horizontal" name="form" ng-submit="saveSurf(form)" novalidate>
       <div class="form-group">
         <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="When you got in the water">Session Date</span></label>

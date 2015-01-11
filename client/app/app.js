@@ -41,7 +41,7 @@ angular.module('thrashtownApp', [
     };
   })
 
-  .run(function ($rootScope, $state, Auth) {
+  .run(function ($rootScope, $state, Alert, Auth) {
     // Add state to the rootScope for 'activate' class in navbar and sidebars 
     $rootScope.$state = $state;
 
@@ -53,5 +53,8 @@ angular.module('thrashtownApp', [
           // TODO: delete when confirmed this is not needed: $location.path('/login');
         }
       });
+
+      Alert.closeAll();
+
     });
   });
