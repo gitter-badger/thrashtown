@@ -66,7 +66,7 @@ a {
     &:hover { color: $color-brand-40; }
 }
 
-/* Custom page footer */
+// Custom page footer
 .footer {
   padding-top: 19px;
   color: #777;
@@ -78,7 +78,7 @@ a {
   }
 }
 
-/* Warning to users on old browsers */
+// Warning to users on old browsers
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -95,4 +95,8 @@ a {
 
 strong, .bold{ font-weight: 700; }
 
+// Set all border radii to 0
+* {
+  border-radius: 0 !important;
+}
 
