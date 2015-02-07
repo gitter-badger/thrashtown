@@ -21,6 +21,8 @@ var UserSchema = new Schema({
   salt: String,
   boards: [Board.schema],
   surfSpots: [SurfSpot.schema],
+  friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  invitations: [{type: Schema.Types.ObjectId, ref: 'Invitation'}],
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });
