@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .factory('Board', function($http, $rootScope) {
+  .factory('Board', function ($http, $rootScope) {
     // TODO: consider using $cacheFactor or other caching technique
     var service = {
       load: function (asObject) {

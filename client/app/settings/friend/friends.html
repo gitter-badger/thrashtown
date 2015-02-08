@@ -11,20 +11,15 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Email</th>
-          <th>Name</th>
-          <th>Invitation Status</th>
-          <th class="text-center"></th>
+          <th>Friend Requests</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="friend in friends">
-          <td>{{friend.name}}<span ng-if="surfSpot.default" id="tt-home-spot" class="glyphicon glyphicon-home"></span> </td>
-          <td>{{friend.email}}</td>
-          <td>{{friend.invitationSatus}}</td>
+        <tr ng-repeat="invitation in invitations">
+          <td>{{invitation}}</td>
           <td class="text-center">
-            <span class="glyphicon glyphicon-remove text-danger tt-table-action clickable"
-                  ng-click=""></span>
+            <span class="glyphicon glyphicon-thumbs-up text-danger tt-table-action clickable"
+                  ng-click="acceptInviation(invitation)"></span>
           </td>
         </tr>
       </tbody>

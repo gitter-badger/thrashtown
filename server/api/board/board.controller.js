@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-var mongoose = require('mongoose');
 var User = require('../user/user.model');
 
 exports.index = function (req, res, next) {

@@ -4,43 +4,44 @@ var _ = require('lodash');
 var Invitation = require('./invitation.model');
 var User = require('../user/user.model');
 
-// Get list of invitations
+// Get list of pending invitation for the current user
 exports.index = function(req, res) {
-  Invitation.find(function (err, invitations) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, invitations);
+  var userId = req.user._id;
+  User.findById(userId, function (err, user) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!user) {
+      return res.send(404);
+    }
+
+    res.json(200, user.invitations);
   });
 };
 
-// Get a single invitation
-exports.show = function(req, res) {
-  Invitation.findById(req.params.id, function (err, invitation) {
-    if(err) { return handleError(res, err); }
-    if(!invitation) { return res.send(404); }
-    return res.json(invitation);
-  });
-};
-
-// Creates a new invitation in the DB.
-exports.create = function(req, res, next) {
-  var invitedUserId = req.body;
+// Creates a new invitation by the inviting user for the invited user
+exports.create = function(req, res) {
+  var invitedUserEmail = req.body.email;
   var invitingUserId = req.user._id;
 
-  User.findById(invitedUserId, function (err, invitedUser) {
+  User.findOne({email: invitedUserEmail}, function (err, invitedUser) {
     if (err) {
-      return next(err);
+      return handleError(res, err);
     }
     
     if (!invitedUser) {
-      // No user exists.
+      // Attempting to invite a user that doesn't exist
       return res.send(404);
     }
     
     var invited = invitedUser.invitations.some(function (invitation) {
+      console.log('inside', invitation);
       return invitation.equals(invitingUserId);
     });
+    console.log(invited, !!invited);
 
-    if (invited) {
+    if (!!invited) {
+      // Attempting to invite a user already invited
       // TODO: need to message to the user that an invitation already exists
       return res.send(200);
     } else {
@@ -53,20 +54,6 @@ exports.create = function(req, res, next) {
         return res.json(201, invitation);
       });
     }
-  });
-};
-
-// Updates an existing invitation in the DB.
-exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Invitation.findById(req.params.id, function (err, invitation) {
-    if (err) { return handleError(res, err); }
-    if(!invitation) { return res.send(404); }
-    var updated = _.merge(invitation, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, invitation);
-    });
   });
 };
 

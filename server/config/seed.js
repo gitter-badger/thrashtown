@@ -98,24 +98,25 @@ var quiver2 = [
 User.find({}).remove(function () {
   User.create({
     provider: 'local',
-    name: 'A Friend',
+    name: 'Friend',
     email: 'friend@test.com',
     password: 'test',
     boards: quiver2,
     surfSpots: spots.surfSpots,
-  }, function (err, result) {
-    setupSurf(result._id, result.boards[0]._id, result.surfSpots[0]._id);
+  }, function (err, user1) {
+    setupSurf(user1._id, user1.boards[0]._id, user1.surfSpots[0]._id);
+    console.log('>> Test user1 created with quiver and spots. User:', user1.id);
     User.create({
       provider: 'local',
       name: 'Test User',
       email: 'test@test.com',
       password: 'test',
       boards: quiver,
-      friends: [result._id],
+      friends: [user1._id],
       surfSpots: spots.surfSpots,
-    }, function (err, result) {
-        console.log('>> Test user created with quiver and spots.')
-        setupSurf(result._id, result.boards[0]._id, result.surfSpots[0]._id);
+    }, function (err, user2) {
+        console.log('>> Test user2 created with quiver and spots. User:', user2.id);
+        setupSurf(user2._id, user2.boards[0]._id, user2.surfSpots[0]._id);
       }
     );
   })
