@@ -34,24 +34,29 @@ exports.create = function(req, res) {
       return res.send(404);
     }
     
-    var invited = invitedUser.invitations.some(function (invitation) {
-      console.log('inside', invitation);
-      return invitation.equals(invitingUserId);
+    var alreadyInvited = invitedUser.invitations.some(function (invitation) {
+      return invitation.invitedBy.equals(invitingUserId);
     });
-    console.log(invited, !!invited);
 
-    if (!!invited) {
-      // Attempting to invite a user already invited
-      // TODO: need to message to the user that an invitation already exists
-      return res.send(200);
+    var alreadyFriends = invitedUser.friends.some(function (friend) {
+      // Note: this works because once friends, both users get added to each
+      // other.  Might be better to check the inviting user, too.
+      return friend.equals(invitingUserId);
+    });
+
+    if (alreadyInvited) {
+      // TODO: need a better, standard practice for this type of thing
+      return res.send(200, 'You have already invited this user to be friends.');
+    } else if (alreadyFriends) {
+      // TODO: need a better, standard practice for this type of thing
+      return res.send(200, 'You are already friends with this user.');
     } else {
-      // invitedUser.invitations.push(invitingUserId);
-      Invitation.create(req.body, function(err, invitation) {
+      invitedUser.invitations.push({invitedBy: invitingUserId});
+      invitedUser.save(function(err, user) {
         if (err) { 
           return handleError(res, err); 
         }
-        invitedUser.invitations.push(invitation);
-        return res.json(201, invitation);
+        return res.json(201, user.profile);
       });
     }
   });

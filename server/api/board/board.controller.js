@@ -41,6 +41,7 @@ exports.create = function (req, res, next) {
         }
       }
     }
+    console.log(board);
     user.boards.push(board);
     user.save(function (err) {
       if (err) {

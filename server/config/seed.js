@@ -112,7 +112,6 @@ User.find({}).remove(function () {
       email: 'test@test.com',
       password: 'test',
       boards: quiver,
-      friends: [user1._id],
       surfSpots: spots.surfSpots,
     }, function (err, user2) {
         console.log('>> Test user2 created with quiver and spots. User:', user2.id);

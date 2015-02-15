@@ -5,6 +5,7 @@ var crypto = require('crypto');
 var Schema = mongoose.Schema;
 var Board = require('../board/board.model');
 var SurfSpot = require('../surf_spot/surf-spot.model');
+var Invitation = require('../invitation/invitation.model');
 
 /**
  * User Schema
@@ -21,8 +22,8 @@ var UserSchema = new Schema({
   salt: String,
   boards: [Board.schema],
   surfSpots: [SurfSpot.schema],
+  invitations: [Invitation.schema],
   friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
-  invitations: [{type: Schema.Types.ObjectId, ref: 'Invitation'}],
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });
