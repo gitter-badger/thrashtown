@@ -1,13 +1,15 @@
 'use strict';
 
 var _ = require('lodash');
-var Invitation = require('./invitation.model');
 var User = require('../user/user.model');
 
 // Get list of pending invitation for the current user
 exports.index = function(req, res) {
   var userId = req.user._id;
-  User.findById(userId, function (err, user) {
+  User
+    .findById(userId)
+    .populate('invitations', 'name email')
+    .exec(function (err, user) {
     if (err) {
       return handleError(res, err);
     }
@@ -35,7 +37,7 @@ exports.create = function(req, res) {
     }
     
     var alreadyInvited = invitedUser.invitations.some(function (invitation) {
-      return invitation.invitedBy.equals(invitingUserId);
+      return invitation.equals(invitingUserId);
     });
 
     var alreadyFriends = invitedUser.friends.some(function (friend) {
@@ -51,7 +53,7 @@ exports.create = function(req, res) {
       // TODO: need a better, standard practice for this type of thing
       return res.send(200, 'You are already friends with this user.');
     } else {
-      invitedUser.invitations.push({invitedBy: invitingUserId});
+      invitedUser.invitations.push(invitingUserId);
       invitedUser.save(function(err, user) {
         if (err) { 
           return handleError(res, err); 
