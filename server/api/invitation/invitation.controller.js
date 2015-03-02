@@ -64,8 +64,78 @@ exports.create = function(req, res) {
   });
 };
 
+exports.accept = function (req, res) {
+  // Remember that as implemented, the invitedUser has the pending invitation 
+  // in `invitations`.  When they accept, we should:
+  //    1. Verify the invited user really has that inviation  
+  //    2. Add the inviting user to their friends array
+  //    3. Also add the invited user to the friends array of the inviting user
+  //    4. Delete the invitation from the invited user's invitation array
+  var invitedUserId = req.user._id;
+  var invitingUserId = req.params.id;
+  User.findById(invitedUserId, function (err, invitedUser) {
+    if (err) {
+      return handleError(res, err);
+    }
+    
+    var invitationIndex = -1;
+    if (!!invitedUser) {
+      invitationIndex = invitedUser.invitations.indexOf(invitingUserId);
+    }
+    
+    if (!invitedUser || invitationIndex === -1) {
+      return res.send(404);
+    }
+
+    // Invited users exists and actually has that inviation POSTed, proceed...
+    User.findById(invitingUserId, function (err, invitingUser) {
+      if (err) {
+        return handleError(res, err);
+      }
+
+      if (!invitingUser) {
+        return res.send(404);
+      }
+      
+      var alreadyFriends1 = invitedUser.friends.some(function (friend) {
+        return friend.equals(invitingUserId);
+      });
+
+      if (!alreadyFriends1) {
+        invitedUser.friends.push(invitingUserId);
+      }
+      invitedUser.invitations.remove(invitingUserId);
+
+      var alreadyFriends2 = invitingUser.friends.some(function (friend) {
+        return friend.equals(invitedUserId);
+      });
+      
+      if (!alreadyFriends2) {
+        invitingUser.friends.push(invitedUserId);
+      }
+
+      invitedUser.save(function (err) {
+        if (err) { 
+          return handleError(res, err); 
+        }
+        invitingUser.save(function (err, user) {
+          if (err) { 
+            return handleError(res, err); 
+          }  
+          return res.json(200, user.profile);
+        });
+      });
+
+    })
+
+  });
+
+
+};
+
 // Deletes a invitation from the DB.
 exports.destroy = function(req, res) {
+  // TODO: change this
   Invitation.findById(req.params.id, function (err, invitation) {
     if(err) { return handleError(res, err); }
     if(!invitation) { return res.send(404); }

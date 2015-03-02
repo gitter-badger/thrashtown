@@ -15,6 +15,15 @@ angular.module('thrashtownApp')
           $rootScope.$broadcast('friend:invited');
           return response.data;
         });
+      },
+
+      acceptInvitation: function (friendId) {
+        // TODO: how can I make this POST more RESTful.  Verb currently in path!
+        return $http.post('/api/invitations/' + friendId + '/accept').
+          then(function (response) {
+            $rootScope.$broadcast('friend:accepted');
+            return response.data;
+          });
       } 
     };
 
