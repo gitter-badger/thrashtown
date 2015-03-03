@@ -7,6 +7,7 @@ angular.module('thrashtownApp')
       $scope.formConfig = {};
       $scope.resetFriendForm();
       loadInvitations();
+      loadFriends();
       // $scope.$on('friends:updated', loadInvitations);
     };
 
@@ -15,6 +16,12 @@ angular.module('thrashtownApp')
         $scope.invitations = invitations;
       }, function () {
         // TODO: handle error
+      });
+    };
+
+    var loadFriends = function () {
+      Friend.loadFriends().then(function (friends) {
+        $scope.friends = friends;
       });
     };
 
@@ -28,10 +35,18 @@ angular.module('thrashtownApp')
       $scope.formConfig.show = true;
     };
 
-    var handleSuccess = function () {
-      // TODO: add an alert to confirm success
+    var handleSuccess = function (data) {
       $scope.resetFriendForm();
-      Alert.add('success', 'Your friend has been invited to connect.');
+      var alertMessage;
+      var alertType;
+      if (!!data.code) {
+        alertType = 'info';
+        alertMessage = data.message;
+      } else {
+        alertType = 'success';
+        alertMessage = 'Your friend has been invited to connect.';
+      }
+      Alert.add(alertType, alertMessage);
     };
 
     var handleError = function (email) {
@@ -46,8 +61,10 @@ angular.module('thrashtownApp')
         Alert.closeAll();
         Friend
           .createInvitation($scope.formConfig.params)
-          .then(handleSuccess, function () {
-            handleError($scope.formConfig.params.email)
+          .then(function (data) {
+            handleSuccess(data);
+          }, function () {
+            handleError($scope.formConfig.params.email);
           });
       }
     };

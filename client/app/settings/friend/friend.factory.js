@@ -4,6 +4,12 @@ angular.module('thrashtownApp')
   .factory('Friend', function ($http, $rootScope) {
     // TODO: consider using $cacheFactor or other caching technique
     var service = {
+      loadFriends: function () {
+        return $http.get('/api/friends').then(function (response) {
+          return response.data;
+        });
+      },
+
       loadInvitations: function () {
         return $http.get('/api/invitations').then(function (response) {
           return response.data;

@@ -48,10 +48,16 @@ exports.create = function(req, res) {
 
     if (alreadyInvited) {
       // TODO: need a better, standard practice for this type of thing
-      return res.send(200, 'You have already invited this user to be friends.');
+      return res.json(200, {
+        code: 'ALREADY_INVITED', 
+        message: 'You have already invited this user to be friends.'
+      });
     } else if (alreadyFriends) {
       // TODO: need a better, standard practice for this type of thing
-      return res.send(200, 'You are already friends with this user.');
+      return res.json(200, {
+        code: 'ALREADY_FRIENDS', 
+        message: 'You are already friends with this user.'
+      });
     } else {
       invitedUser.invitations.push(invitingUserId);
       invitedUser.save(function(err, user) {
@@ -134,17 +140,18 @@ exports.accept = function (req, res) {
 };
 
 // Deletes a invitation from the DB.
-exports.destroy = function(req, res) {
-  // TODO: change this
-  Invitation.findById(req.params.id, function (err, invitation) {
-    if(err) { return handleError(res, err); }
-    if(!invitation) { return res.send(404); }
-    invitation.remove(function(err) {
-      if(err) { return handleError(res, err); }
-      return res.send(204);
-    });
-  });
-};
+// TODO:
+// exports.destroy = function(req, res) {
+//   // TODO: change this
+//   Invitation.findById(req.params.id, function (err, invitation) {
+//     if(err) { return handleError(res, err); }
+//     if(!invitation) { return res.send(404); }
+//     invitation.remove(function(err) {
+//       if(err) { return handleError(res, err); }
+//       return res.send(204);
+//     });
+//   });
+// };
 
 function handleError(res, err) {
   return res.send(500, err);
