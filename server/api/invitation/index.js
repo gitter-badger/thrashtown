@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.get('/', auth.isAuthenticated(), controller.index);
 router.post('/', auth.isAuthenticated(), controller.create);
-router.post('/:id/accept', auth.isAuthenticated(), controller.accept);
+router.post('/:id', auth.isAuthenticated(), controller.respondToInvitation);
 // router.delete('/:id', auth.isAuthenticated(), controller.destroy);
 
 module.exports = router;

@@ -23,11 +23,10 @@ angular.module('thrashtownApp')
         });
       },
 
-      acceptInvitation: function (friendId) {
-        // TODO: how can I make this POST more RESTful.  Verb currently in path!
-        return $http.post('/api/invitations/' + friendId + '/accept').
-          then(function (response) {
-            $rootScope.$broadcast('friend:accepted');
+      respondToInvitation: function (friendId, accept) {
+        return $http.post('/api/invitations/' + friendId, 
+          {acceptInvitation: !!accept}).then(function (response) {
+            $rootScope.$broadcast('friend:invitationResponse');
             return response.data;
           });
       } 

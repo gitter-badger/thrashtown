@@ -26,6 +26,7 @@ exports.create = function(req, res) {
   var invitedUserEmail = req.body.email;
   var invitingUserId = req.user._id;
 
+  // TODO: we should also verify the invitingUser exists
   User.findOne({email: invitedUserEmail}, function (err, invitedUser) {
     if (err) {
       return handleError(res, err);
@@ -70,7 +71,7 @@ exports.create = function(req, res) {
   });
 };
 
-exports.accept = function (req, res) {
+exports.respondToInvitation = function (req, res) {
   // Remember that as implemented, the invitedUser has the pending invitation 
   // in `invitations`.  When they accept, we should:
   //    1. Verify the invited user really has that inviation  
@@ -79,6 +80,7 @@ exports.accept = function (req, res) {
   //    4. Delete the invitation from the invited user's invitation array
   var invitedUserId = req.user._id;
   var invitingUserId = req.params.id;
+  var acceptInvitation = req.body.acceptInvitation;
   User.findById(invitedUserId, function (err, invitedUser) {
     if (err) {
       return handleError(res, err);
@@ -93,46 +95,65 @@ exports.accept = function (req, res) {
       return res.send(404);
     }
 
-    // Invited users exists and actually has that inviation POSTed, proceed...
-    User.findById(invitingUserId, function (err, invitingUser) {
-      if (err) {
-        return handleError(res, err);
-      }
-
-      if (!invitingUser) {
-        return res.send(404);
-      }
-      
-      var alreadyFriends1 = invitedUser.friends.some(function (friend) {
-        return friend.equals(invitingUserId);
-      });
-
-      if (!alreadyFriends1) {
-        invitedUser.friends.push(invitingUserId);
-      }
+    if (!acceptInvitation) {
       invitedUser.invitations.remove(invitingUserId);
-
-      var alreadyFriends2 = invitingUser.friends.some(function (friend) {
-        return friend.equals(invitedUserId);
-      });
-      
-      if (!alreadyFriends2) {
-        invitingUser.friends.push(invitedUserId);
-      }
-
-      invitedUser.save(function (err) {
-        if (err) { 
-          return handleError(res, err); 
+      invitedUser.save(function (err, user) {
+        if (err) {
+          return handleError(res, err);
         }
-        invitingUser.save(function (err, user) {
-          if (err) { 
-            return handleError(res, err); 
-          }  
-          return res.json(200, user.profile);
+  
+        return res.json(200, {
+          type: 'warning',
+          code: 'INVITATION_REJECTED',
+          message: 'You have rejected the invitation to connect.'
         });
       });
+    } else {
+    // Invited users exists and actually has that inviation POSTed, and wants
+    // to accept the invitatio - proceed...
+      User.findById(invitingUserId, function (err, invitingUser) {
+        if (err) {
+          return handleError(res, err);
+        }
 
-    })
+        // First delete the invitation because whatever the outcome (i.e. 
+        // user doesn't exist, or accepting) we'll want to delete it      
+        invitedUser.invitations.remove(invitingUserId);
+        
+        if (!invitingUser) {
+          return res.send(404);
+        }
+        
+        var alreadyFriends1 = invitedUser.friends.some(function (friend) {
+          return friend.equals(invitingUserId);
+        });
+
+        if (!alreadyFriends1) {
+          invitedUser.friends.push(invitingUserId);
+        }
+
+        var alreadyFriends2 = invitingUser.friends.some(function (friend) {
+          return friend.equals(invitedUserId);
+        });
+        
+        if (!alreadyFriends2) {
+          invitingUser.friends.push(invitedUserId);
+        }
+
+        invitedUser.save(function (err) {
+          if (err) { 
+            return handleError(res, err); 
+          }
+          invitingUser.save(function (err, user) {
+            if (err) { 
+              return handleError(res, err); 
+            }  
+            return res.json(200, user.profile);
+          });
+        });
+
+      });
+    }
 
   });
 
