@@ -26,5 +26,12 @@ angular.module('thrashtownApp')
         templateUrl: 'app/settings/surf-spot/surf-spots.html',
         controller: 'SurfSpotsCtrl',
         authenticate: true
-      });
+      })
+      .state('settings.friends', {
+        url: '/friends',
+        templateUrl: 'app/settings/friend/friends.html',
+        controller: 'FriendsCtrl',
+        authenticate: true
+      })
+      ;
   });

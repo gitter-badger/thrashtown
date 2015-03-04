@@ -10,7 +10,7 @@ var Surf = require('../api/surf/surf.model');
 var spots = require('./surf-spots-data');
 
 // Would prefer this below, but can't anymore due I think to the way the
-// models are being bootstrapped compared to the old version.
+// models are being bootstrapped compared to the old version of the generator.
 // var mongoose = require('mongoose');
 // var User = mongoose.model('User');
 
@@ -67,22 +67,59 @@ var quiver = [
     default: false,
     size: '7\'5"',
     category: 'Step-Up'
-  }];
+  }
+];
+
+var quiver2 = [
+  {
+    name: 'C.I. Flyer',
+    default: true,
+    size: '6\'2"',
+    category: 'Shortboard'
+  }, {
+    name: 'Gary Hanel',
+    default: false,
+    size: '5\'11"',
+    category: 'Fish'
+  }, {
+    name: 'Michael Junod',
+    default: false,
+    size: '8\'0"',
+    category: 'Funboard/Other'
+  }, {
+    name: 'Danny Hess',
+    default: false,
+    size: '7\'5"',
+    category: 'Step-Up'
+  }
+];
 
 // Clear old users, then add a default users
 User.find({}).remove(function () {
   User.create({
     provider: 'local',
-    name: 'Test User',
-    email: 'test@test.com',
+    name: 'Friend',
+    email: 'friend@test.com',
     password: 'test',
-    boards: quiver,
+    boards: quiver2,
     surfSpots: spots.surfSpots,
-  }, function (err, result) {
-      console.log('>> Test user created with quiver and spots.')
-      setupSurf(result._id, result.boards[0]._id, result.surfSpots[0]._id);
-    }
-  );
+  }, function (err, user1) {
+    setupSurf(user1._id, user1.boards[0]._id, user1.surfSpots[0]._id);
+    console.log('>> Test user1 created with quiver and spots. User:', user1.id);
+    User.create({
+      provider: 'local',
+      name: 'Test User',
+      email: 'test@test.com',
+      password: 'test',
+      boards: quiver,
+      surfSpots: spots.surfSpots,
+    }, function (err, user2) {
+        console.log('>> Test user2 created with quiver and spots. User:', user2.id);
+        setupSurf(user2._id, user2.boards[0]._id, user2.surfSpots[0]._id);
+      }
+    );
+  })
+
   
   User.create({
     provider: 'local',

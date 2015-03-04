@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-var mongoose = require('mongoose');
 var User = require('../user/user.model');
 
 exports.index = function (req, res, next) {
@@ -42,6 +41,7 @@ exports.create = function (req, res, next) {
         }
       }
     }
+    console.log(board);
     user.boards.push(board);
     user.save(function (err) {
       if (err) {

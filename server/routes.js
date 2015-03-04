@@ -9,6 +9,8 @@ var errors = require('./components/errors');
 module.exports = function (app) {
 
   // Insert routes below
+  app.use('/api/friends', require('./api/friend'));
+  app.use('/api/invitations', require('./api/invitation'));
   app.use('/api/boards', require('./api/board'));
   app.use('/api/surf-spots', require('./api/surf_spot'));
   app.use('/api/surfs', require('./api/surf'));
