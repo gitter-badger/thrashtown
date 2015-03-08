@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var timestamps = require('mongoose-timestamp');
+var idvalidator = require('mongoose-id-validator');
 
 /**
  * Surf Schema
@@ -10,6 +11,7 @@ var timestamps = require('mongoose-timestamp');
 var SurfSchema = new Schema({
   user_id: {type: Schema.Types.ObjectId, ref: 'User'},
   otherFriends: {type: Number, default: 0, required: true},
+  friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
   waveQuality: {type: Number, default: 3, min: 1, max: 5, required: true},
   hollowness: {type: Number, default: 3, min: 1, max: 5, required: true},
   funFactor: {type: Number, default: 3, min: 1, max: 5, required: true},
@@ -25,6 +27,9 @@ var SurfSchema = new Schema({
 
 // Provides createdAt and updatedAt timestamps on creation and modifcation
 SurfSchema.plugin(timestamps);
+
+// Validate friends and boards
+SurfSchema.plugin(idvalidator);
 
 /**
  * Validations

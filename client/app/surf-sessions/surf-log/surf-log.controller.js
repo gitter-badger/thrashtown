@@ -2,7 +2,7 @@
 
 angular.module('thrashtownApp')
   .controller('SurfLogCtrl', 
-    function ($scope, $state, $stateParams, Board, Surf, SurfSpot) {
+    function ($scope, $state, $stateParams, Board, Friend, Surf, SurfSpot) {
 
       var initialize = function () {
         var mode = !!$stateParams.id ? 'edit' : 'add';
@@ -48,7 +48,8 @@ angular.module('thrashtownApp')
           hollowness: 3,
           funFactor: 3,
           crowdedness: 3,
-          otherFriends: 0
+          otherFriends: 0,
+          friends: ['54fc9b89d776655caf565926']
         };
       };
 
@@ -68,15 +69,20 @@ angular.module('thrashtownApp')
           $scope.surfSpots = surfSpots;
           $scope.formConfig.params.surfSpot_id = getDefaultResource(surfSpots);
         });
+
+        Friend.loadFriends().then(function (friends) {
+          $scope.friends = friends;
+        });
       };
 
       var handleSuccess = function () {
         $state.go('surfs.review');
       };
 
-      var handleError = function () {
+      var handleError = function (err) {
         // TODO: handle error
       };
+      
       $scope.saveSurf = function (form) {
         if (form.$valid) {
           if ($scope.formConfig.mode === 'add') {
