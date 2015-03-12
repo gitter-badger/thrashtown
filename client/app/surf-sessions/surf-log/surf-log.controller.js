@@ -6,6 +6,7 @@ angular.module('thrashtownApp')
 
       var initialize = function () {
         var mode = !!$stateParams.id ? 'edit' : 'add';
+        $scope.surfLoaded = false;
         $scope.formConfig = {
           mode: mode,
           commentLength: 500,
@@ -25,6 +26,9 @@ angular.module('thrashtownApp')
             .then(function (surf) {
               surf.sessionDate = new Date(surf.sessionDate);
               $scope.formConfig.params = surf;
+              // TODO: unfortunately, this flag is necessary to due to an issue
+              // with the ui-select directive trying to bind and throwing errors
+              $scope.surfLoaded = true;
             })
             .catch(function () {
               //TODO: We should alert the user somehow the session was not found
@@ -32,6 +36,7 @@ angular.module('thrashtownApp')
             });
         } else {
           loadDefaultSession();
+          $scope.surfLoaded = true;
         }
       };
 
@@ -49,7 +54,7 @@ angular.module('thrashtownApp')
           funFactor: 3,
           crowdedness: 3,
           otherFriends: 0,
-          friends: ['54fc9b89d776655caf565926']
+          friends: []
         };
       };
 

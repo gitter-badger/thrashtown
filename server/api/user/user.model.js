@@ -3,8 +3,55 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 var Schema = mongoose.Schema;
-var Board = require('../board/board.model');
-var SurfSpot = require('../surf_spot/surf-spot.model');
+// var BoardSchema = require('../board/board.model');
+// var SurfSpotSchema = require('../surf_spot/surf-spot.model');
+
+/**
+ * Board Schema
+ */
+var BoardSchema = new Schema({
+  name: String,
+  default: {
+    type: Boolean,
+    default: false
+  },
+  size: String,
+  category: String,
+  notes: String
+});
+
+/**
+ * Board Schema Validations
+ */
+BoardSchema.path('size').validate(function (value) {
+  var boardSizeRegexp = /^[1-9][0-9]?'(?:1[0-1]|[0-9])"$/;
+  return boardSizeRegexp.test(value);
+}, 'Board Size must be in the format of <feet>\'<inches>\" (i.e. 6\'3\" or 7\'0\").');
+
+/**
+ * Surf Spot Schema
+ */
+var SurfSpotSchema = new Schema({
+  name: String,
+  region: String,
+  default: {
+    type: Boolean,
+    default: false
+  },
+  private: {
+    type: Boolean,
+    default: false
+  },
+  lat: {
+    type: Number,
+    default: null
+  },
+  long: {
+    type: Number,
+    default: null
+  },
+  notes: String
+});
 
 /**
  * User Schema
@@ -19,8 +66,8 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
-  boards: [Board.schema],
-  surfSpots: [SurfSpot.schema],
+  boards: [BoardSchema],
+  surfSpots: [SurfSpotSchema],
   invitations: [{type: Schema.Types.ObjectId, ref: 'User'}],
   friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
   resetPasswordToken: String,

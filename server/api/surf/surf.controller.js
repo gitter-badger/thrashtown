@@ -10,6 +10,7 @@ var Surf = require('./surf.model');
 var queryFields = 'user_id '+
                   'surfSpot_id '+
                   'otherFriends '+
+                  'friends ' +
                   'waveQuality '+
                   'hollowness '+
                   'funFactor '+
@@ -78,7 +79,7 @@ exports.update = function (req, res) {
     if (!surf.user_id.equals(req.user._id)) {
       return res.send(403);
     }
-    var updated = _.merge(surf, req.body);
+    var updated = _.assign(surf, req.body);
     updated.save(function (err) {
       if (err) { 
         return handleError(res, err);

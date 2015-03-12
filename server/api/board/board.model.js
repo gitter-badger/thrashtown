@@ -25,4 +25,5 @@ BoardSchema.path('size').validate(function (value) {
   return boardSizeRegexp.test(value);
 }, 'Board Size must be in the format of <feet>\'<inches>\" (i.e. 6\'3\" or 7\'0\").');
 
-module.exports = mongoose.model('Board', BoardSchema);
+// module.exports = mongoose.model('Board', BoardSchema);
+// exports.BoardSchema = BoardSchema;

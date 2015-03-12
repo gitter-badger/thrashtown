@@ -28,4 +28,5 @@ var SurfSpotSchema = new Schema({
   notes: String
 });
 
-module.exports = mongoose.model('SurfSpot', SurfSpotSchema);
+// module.exports = mongoose.model('SurfSpot', SurfSpotSchema);
+// exports.SurfSpotSchema = SurfSpotSchema;
