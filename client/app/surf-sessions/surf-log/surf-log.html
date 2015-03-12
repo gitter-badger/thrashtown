@@ -11,7 +11,6 @@
         <div class="col-md-5">
           <input class="form-control" type="datetime-local" ng-model="formConfig.params.sessionDate" required>
         </div>
-      
         <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Can use decimals">Hours Surfed</span></label>
         <div class="col-md-2">
           <input class="form-control" type="number" ng-model="formConfig.params.sessionHours" min="0" max="10" required>
@@ -32,6 +31,20 @@
         <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Number of friends you surfed with">Other Friends</span></label>
         <div class="col-md-2">
           <input class="form-control" type="number" min="0" max="20" ng-model="formConfig.params.otherFriends" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Friends</label>
+        <div class="col-md-9">
+          <ui-select multiple ng-model="formConfig.params.friends" theme="bootstrap" ng-if="surfLoaded">
+            <ui-select-match placeholder="Select person...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+            <ui-select-choices repeat="person._id as person in friends | propsFilter: {name: $select.search, email: $select.search}">
+              <div ng-bind-html="person.name | highlight: $select.search"></div>
+              <small>
+                email: <span ng-bind-html="person.email | highlight: $select.search"></span>
+              </small>
+            </ui-select-choices>
+          </ui-select>
         </div>
       </div>
       <div class="form-group">

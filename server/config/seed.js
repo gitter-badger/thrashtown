@@ -113,9 +113,12 @@ User.find({}).remove(function () {
       password: 'test',
       boards: quiver,
       surfSpots: spots.surfSpots,
+      friends: [user1._id]
     }, function (err, user2) {
         console.log('>> Test user2 created with quiver and spots. User:', user2.id);
         setupSurf(user2._id, user2.boards[0]._id, user2.surfSpots[0]._id);
+        user1.friends = [user2._id];
+        user1.save();
       }
     );
   })

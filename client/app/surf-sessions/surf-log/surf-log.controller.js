@@ -2,10 +2,11 @@
 
 angular.module('thrashtownApp')
   .controller('SurfLogCtrl', 
-    function ($scope, $state, $stateParams, Board, Surf, SurfSpot) {
+    function ($scope, $state, $stateParams, Board, Friend, Surf, SurfSpot) {
 
       var initialize = function () {
         var mode = !!$stateParams.id ? 'edit' : 'add';
+        $scope.surfLoaded = false;
         $scope.formConfig = {
           mode: mode,
           commentLength: 500,
@@ -25,6 +26,9 @@ angular.module('thrashtownApp')
             .then(function (surf) {
               surf.sessionDate = new Date(surf.sessionDate);
               $scope.formConfig.params = surf;
+              // TODO: unfortunately, this flag is necessary to due to an issue
+              // with the ui-select directive trying to bind and throwing errors
+              $scope.surfLoaded = true;
             })
             .catch(function () {
               //TODO: We should alert the user somehow the session was not found
@@ -32,6 +36,7 @@ angular.module('thrashtownApp')
             });
         } else {
           loadDefaultSession();
+          $scope.surfLoaded = true;
         }
       };
 
@@ -48,7 +53,8 @@ angular.module('thrashtownApp')
           hollowness: 3,
           funFactor: 3,
           crowdedness: 3,
-          otherFriends: 0
+          otherFriends: 0,
+          friends: []
         };
       };
 
@@ -68,15 +74,20 @@ angular.module('thrashtownApp')
           $scope.surfSpots = surfSpots;
           $scope.formConfig.params.surfSpot_id = getDefaultResource(surfSpots);
         });
+
+        Friend.loadFriends().then(function (friends) {
+          $scope.friends = friends;
+        });
       };
 
       var handleSuccess = function () {
         $state.go('surfs.review');
       };
 
-      var handleError = function () {
+      var handleError = function (err) {
         // TODO: handle error
       };
+      
       $scope.saveSurf = function (form) {
         if (form.$valid) {
           if ($scope.formConfig.mode === 'add') {

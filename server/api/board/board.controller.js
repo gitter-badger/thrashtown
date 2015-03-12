@@ -89,7 +89,7 @@ exports.update = function (req, res, next) {
       }
     }
 
-    var updated = _.merge(board, data);
+    var updated = _.assign(board, data);
     user.save(function (err) {
       if (err) {
         return res.send(400);
