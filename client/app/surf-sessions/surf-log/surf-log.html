@@ -12,7 +12,7 @@
           <input class="form-control" type="datetime-local" ng-model="formConfig.params.sessionDate" required>
         </div>
         <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Can use decimals">Hours Surfed</span></label>
-        <div class="col-md-2">
+        <div class="col-md-3">
           <input class="form-control" type="number" ng-model="formConfig.params.sessionHours" min="0" max="10" required>
         </div>
       </div>
@@ -28,14 +28,21 @@
                   >
           </select>
         </div>
-        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Number of friends you surfed with">Other Friends</span></label>
-        <div class="col-md-2">
-          <input class="form-control" type="number" min="0" max="20" ng-model="formConfig.params.otherFriends" required>
+        <label class="col-md-1 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="From your quiver">Board</span></label>
+        <div class="col-md-4">
+          <select class="form-control"
+                  name="category" 
+                  type="text" 
+                  required 
+                  ng-model="formConfig.params.board_id"
+                  ng-options="board._id as board.size + ' - ' + board.name group by board.category for board in boards"
+                  >
+          </select>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-md-2 control-label">Friends</label>
-        <div class="col-md-9">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="From your connected friends">Friends</span></label>
+        <div class="col-md-10">
           <ui-select multiple ng-model="formConfig.params.friends" theme="bootstrap" ng-if="surfLoaded">
             <ui-select-match placeholder="Select person...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
             <ui-select-choices repeat="person._id as person in friends | propsFilter: {name: $select.search, email: $select.search}">
@@ -45,6 +52,12 @@
               </small>
             </ui-select-choices>
           </ui-select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Friends you have not yet connected to on Thrashtown">Other Friends</span></label>
+        <div class="col-md-2">
+          <input class="form-control" type="number" min="0" max="20" ng-model="formConfig.params.otherFriends" required>
         </div>
       </div>
       <div class="form-group">
@@ -128,21 +141,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="From your quiver">Board</span></label>
-        <div class="col-md-9">
-          <select class="form-control"
-                  name="category" 
-                  type="text" 
-                  required 
-                  ng-model="formConfig.params.board_id"
-                  ng-options="board._id as board.size + ' - ' + board.name group by board.category for board in boards"
-                  >
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
         <label class="col-md-2 control-label">Comment</label>
-        <div class="col-md-9">
+        <div class="col-md-10">
           <textarea class="form-control" rows="3" maxlength="{{formConfig.commentLength}}" type="textarea" placeholder="Optional comments or notes about your session" ng-model="formConfig.params.comment"></textarea>
           <div class="text-right" ng-class="{'text-muted': formConfig.commentCharactersRemaining() >= 20, 'text-danger': formConfig.commentCharactersRemaining() < 20}"
           >
