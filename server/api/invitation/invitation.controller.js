@@ -2,6 +2,9 @@
 
 var _ = require('lodash');
 var User = require('../user/user.model');
+var config = require('../../config/environment');
+var sendgrid = require('sendgrid')(config.sendGridUsername, 
+  config.sendGridPassword);
 
 // Get list of pending invitation for the current user
 exports.index = function(req, res) {
@@ -65,6 +68,24 @@ exports.create = function(req, res) {
         if (err) { 
           return handleError(res, err); 
         }
+
+        var payload   = {
+          to: user.email,
+          from: 'admin@thrashtown.com',
+          fromname: 'Thrashtown',
+          subject : 'You have a Thrashtown friend request!',
+          html: '<h2>Friend Request!</h2>' +
+                '<p>The user <strong>' + req.user.name + ' (' + req.user.email + 
+                ')</strong> just invited you to connect on Thrashtown. ' + 
+                'Accept or reject the invitation here: ' +
+                'www.thrashtown.com/settings/friends</p><p>Happy Thrashing!</p>'
+        };
+
+        sendgrid.send(payload, function (err, json) {
+          // TODO: should we notify user email success/failure?
+          return;
+        });
+
         return res.json(201, user.profile);
       });
     }
@@ -147,7 +168,26 @@ exports.respondToInvitation = function (req, res) {
           invitingUser.save(function (err, user) {
             if (err) { 
               return handleError(res, err); 
-            }  
+            }
+            var payload   = {
+              to: user.email,
+              from: 'admin@thrashtown.com',
+              fromname: 'Thrashtown',
+              subject : 'Your friend accepted your invitation to connect!',
+              html: '<h2>Friend Request Accepted!</h2>' +
+                    '<p>Your friend <strong>' + invitedUser.name + ' (' + 
+                    invitedUser.email + ')</strong> just accepted your ' + 
+                    'invitation to connect on Thrashtown.  You may now ' + 
+                    'start tagging them in sessions here: ' +
+                    'www.thrashtown.com/surfs/create</p><p>Also ' +
+                    'remember you can tag them in any old sessions logged by ' +
+                    'editing those sessions</p><p>Happy Thrashing!</p>'
+            };
+
+            sendgrid.send(payload, function (err, json) {
+              // TODO: should we notify user email success/failure?
+              return;
+            });              
             return res.json(200, user.profile);
           });
         });
