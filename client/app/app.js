@@ -45,17 +45,30 @@ angular.module('thrashtownApp', [
   .run(function ($rootScope, $state, Alert, Auth) {
     // Add state to the rootScope for 'activate' class in navbar and sidebars 
     $rootScope.$state = $state;
+    var bypassAuthCheck = false;
 
     // Redirect to login if route requires auth and you're not logged in
-    $rootScope.$on('$stateChangeStart', function (event, next) {
+    $rootScope.$on('$stateChangeStart', function (event, next, toParams) {
+      // TODO: Seems a bit weird to handle this here, might be better to 
+      // listen for $stateChangeStart in the alert service and do this
+      Alert.closeAll();
+
+      if (!next.authenticate || (next.authenticate && bypassAuthCheck)) {
+        return;
+      }
+
+      event.preventDefault();
+
       Auth.isLoggedInAsync(function (loggedIn) {
-        if (next.authenticate && !loggedIn) {
+        if (!loggedIn) {
+          bypassAuthCheck = false;
           $state.go('login');
-          // TODO: delete when confirmed this is not needed: $location.path('/login');
+        } else {
+          bypassAuthCheck = true;
+          $state.go(next, toParams);
         }
       });
 
-      Alert.closeAll();
-
     });
-  });
+  }); 
+  

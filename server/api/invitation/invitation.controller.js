@@ -181,7 +181,7 @@ exports.respondToInvitation = function (req, res) {
                     'start tagging them in sessions here: ' +
                     'www.thrashtown.com/surfs/create</p><p>Also ' +
                     'remember you can tag them in any old sessions logged by ' +
-                    'editing those sessions</p><p>Happy Thrashing!</p>'
+                    'editing those sessions.</p><p>Happy Thrashing!</p>'
             };
 
             sendgrid.send(payload, function (err, json) {
