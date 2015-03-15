@@ -68,21 +68,21 @@ angular.module('thrashtownApp')
 
     $scope.respondToInvitation = function (index, accept, email) {
       Friend.respondToInvitation($scope.invitations[index]._id, accept)
-            .then(function (data) {
-              // TODO: Need a better unified object structure back from the API
-              // TODO: regardless of action taken
-              if (data.code === 'INVITATION_REJECTED') {
-                Alert.add('warning', data.message);
-              } else {
-                Alert.add('success', 'You are now friends with ' + data.name +
-                          ' (' + email + ')');
-                loadFriends();
-              }
-              $scope.invitations.splice(index);
-            }, function () {
-              Alert.add('danger', 'Oops, something went wrong');
-              // TODO: splice out the invitation (maybe?)
-            });
+        .then(function (data) {
+          // TODO: Need a better unified object structure back from the API
+          // TODO: regardless of action taken
+          if (data.code === 'INVITATION_REJECTED') {
+            Alert.add('warning', data.message);
+          } else {
+            Alert.add('success', 'You are now friends with ' + data.name +
+                      ' (' + email + ')');
+            loadFriends();
+          }
+          $scope.invitations.splice(index, 1);
+        }, function () {
+          Alert.add('danger', 'Oops, something went wrong');
+          // TODO: splice out the invitation (maybe?)
+        });
     };
     
     initialize();
