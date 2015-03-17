@@ -20,6 +20,26 @@ var queryFields = 'user_id '+
                   'sessionHours '+
                   'comment';
 
+exports.feed = function (req, res) {
+  var userId = req.user._id;
+  var userIds = req.user.friends.push(userId);
+
+  Surf
+    .find({user_id: {$in: userIds}})
+    .populate('user_id', 'name email')
+    .populate('board_id', 'name size')
+    .populate('surfSpot_id', 'name region')
+    .populate('friends', 'name email')
+    .exec(function (err, surfs) {
+      if (err) {
+        return handleError(res, err);
+      }
+      return res.json(200, surfs);
+    });
+
+
+};
+
 // Get list of surfs
 exports.index = function (req, res) {
   var userId = req.user._id;
