@@ -26,5 +26,12 @@ angular.module('thrashtownApp')
         templateUrl: 'app/surf-sessions/review/review.html',
         controller: 'ReviewSurfsCtrl',
         authenticate: true
-      });
+      })
+      .state('surfs.feed', {
+        url: '/feed',
+        templateUrl: 'app/surf-sessions/feed/feed.html',
+        controller: 'FeedCtrl',
+        authenticate: true
+      })
+      ;
   });

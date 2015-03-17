@@ -22,12 +22,15 @@ var queryFields = 'user_id '+
 
 exports.feed = function (req, res) {
   var userId = req.user._id;
-  var userIds = req.user.friends.push(userId);
+  var userIds = req.user.friends;
+  userIds.push(userId);
+
+  // TODO: help!
 
   Surf
     .find({user_id: {$in: userIds}})
     .populate('user_id', 'name email')
-    .populate('board_id', 'name size')
+    // .populate('board_id', 'name size')
     .populate('surfSpot_id', 'name region')
     .populate('friends', 'name email')
     .exec(function (err, surfs) {
