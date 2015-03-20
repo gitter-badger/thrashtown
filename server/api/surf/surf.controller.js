@@ -21,22 +21,51 @@ var queryFields = 'user_id '+
                   'comment';
 
 exports.feed = function (req, res) {
-  var userId = req.user._id;
-  var userIds = req.user.friends;
-  userIds.push(userId);
-
-  // TODO: help!
+  // var userId = req.user._id;
+  var userIds = [].concat(req.user.friends);
+  // userIds.push(userId);
 
   Surf
     .find({user_id: {$in: userIds}})
-    .populate('user_id', 'name email')
-    // .populate('board_id', 'name size')
-    .populate('surfSpot_id', 'name region')
-    .populate('friends', 'name email')
+    .populate('user_id', 'name boards surfSpots')
+    .populate('friends', 'name')
+    .lean()
     .exec(function (err, surfs) {
       if (err) {
         return handleError(res, err);
       }
+
+      // surfs.forEach(function (surf) {
+      //   surf.set('boardInfo', surf.user_id.boards.id(surf.board_id), {strict: false});
+      //   surf.set('spotInfo', surf.user_id.surfSpots.id(surf.surfSpot_id), {strict: false});
+      //   surf = surf.toObject();
+      //   delete surf.user_id.boards;
+      //   delete surf.user_id.surfSpots;
+      // });
+
+      surfs.forEach(function (surf) {
+        surf.board = _.find(surf.user_id.boards, function (board) {
+          return board._id.toString() === surf.board_id.toString();
+        });
+        
+        surf.surfSpot = _.find(surf.user_id.surfSpots, function (surfSpot) {
+          return surfSpot._id.toString() === surf.surfSpot_id.toString();
+        });
+      });
+
+      // Note: It seems that each surf.user_id shares a reference to the same 
+      // object.  Originally, I was deleting this inside the forEach thinking
+      // that each surf had it's own user_id object - does not seem to be the
+      // case.  Hence this one delete at the end to remove the quiver and spots.
+      if (surfs.length > 0) {
+        if (!!surfs[0].user_id.boards) {
+          delete surfs[0].user_id.boards;
+        }
+        if (!!surfs[0].user_id.surfSpots) {
+          delete surfs[0].user_id.surfSpots;
+        }
+      }
+
       return res.json(200, surfs);
     });
 

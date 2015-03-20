@@ -26,7 +26,7 @@
             <tr>
               <th>Session Date</th>
               <th>Location</th>
-              <th>Other Friends</th>
+              <th>Friends</th>
               <th>Fun Factor</th>
               <th>Board</th>
               <th class="text-center"></th>
@@ -36,7 +36,7 @@
             <tr ng-repeat-start="surf in surfs | filter:searchText | orderBy:'sessionDate':true">
               <td>{{surf.sessionDate | date:"EEE, MMM d yyyy"}}</td>
               <td>{{surfSpots[surf.surfSpot_id].region}} - {{surfSpots[surf.surfSpot_id].name}}</td>
-              <td>{{surf.otherFriends}}</td>
+              <td>{{surf.friends.length + surf.otherFriends}}</td>
               <td>{{surf.funFactor}}</td>
               <td>{{boards[surf.board_id].size}} - {{boards[surf.board_id].name}}</td>
               <td class="text-center">
