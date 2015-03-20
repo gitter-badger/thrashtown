@@ -29,19 +29,12 @@ exports.feed = function (req, res) {
     .find({user_id: {$in: userIds}})
     .populate('user_id', 'name boards surfSpots')
     .populate('friends', 'name')
+    .sort({sessionDate: -1})
     .lean()
     .exec(function (err, surfs) {
       if (err) {
         return handleError(res, err);
       }
-
-      // surfs.forEach(function (surf) {
-      //   surf.set('boardInfo', surf.user_id.boards.id(surf.board_id), {strict: false});
-      //   surf.set('spotInfo', surf.user_id.surfSpots.id(surf.surfSpot_id), {strict: false});
-      //   surf = surf.toObject();
-      //   delete surf.user_id.boards;
-      //   delete surf.user_id.surfSpots;
-      // });
 
       surfs.forEach(function (surf) {
         surf.board = _.find(surf.user_id.boards, function (board) {
