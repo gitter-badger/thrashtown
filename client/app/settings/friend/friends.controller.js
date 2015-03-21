@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('FriendsCtrl', function ($scope, Alert, Friend, Modal) {
+  .controller('FriendsCtrl', function ($scope, Alert, Friend) {
         
     var initialize = function () {
       $scope.formConfig = {};

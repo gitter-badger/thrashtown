@@ -198,3 +198,5 @@ UserSchema.methods = {
 };
 
 module.exports = mongoose.model('User', UserSchema);
+// mongoose.model('User.boards', BoardSchema);
+// mongoose.model('User.surfSpots', SurfSpotSchema);

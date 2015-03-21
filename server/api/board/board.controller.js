@@ -47,7 +47,7 @@ exports.create = function (req, res, next) {
       if (err) {
         return res.send(400);
       }
-//TODO: ideally this would be the newly created board as saved in the db
+      //TODO: ideally this would be the newly created board as saved in the db
 
       res.json(201, board);
     });

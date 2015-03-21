@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>Session Feed</h4></div>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="surf in surfs">
+          <div class="row">
+            <div class="col-xs-8">
+              <h6>{{surf.sessionDate | date:"EEE, MMM d, yyyy"}} - {{ surf.user_id.name }}</h6>
+            </div>
+            <div class="col-xs-4">
+              <h6><span class="pull-right">{{ surf.surfSpot.region }} - {{ surf.surfSpot.name}}</span></h6>
+            </div>
+          </div>
+          <div class="row fluid-wrap">
+            <div class="col-xs-12 text-muted"><strong>{{surf.board.size}} - {{ surf.board.name }}</strong> <span ng-if="!!surf.comment">- {{ surf.comment }}</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
