@@ -143,7 +143,6 @@ exports.destroy = function (req, res) {
     }
     //TODO: figure out how to pass back the recently deleted item
     //TODO: trying to pass a secound surf argument to the the cb doesn't work
-    // res.json(200, surf)
     res.send(200);
   });
 
@@ -165,7 +164,8 @@ function notifyFriends (friendIds, user, surf) {
         html: '<h2>You were tagged in a Session</h2>' +
               '<p>Your friend <strong>' + user.name + ' (' + user.email + 
               ')</strong> just tagged you in a session on ' + 
-              surf.sessionDate.toLocaleDateString() + '. ' +
+              surf.sessionDate.toLocaleDateString() + '. You can read it ' +
+              ' here: www.thrashtown.com/surfs/feed</p><p>' +
               'Remember to log your session, too, if you haven\'t yet: ' +
               'www.thrashtown.com/surfs/create</p><p>Happy Thrashing!</p>'
       };
