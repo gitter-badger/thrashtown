@@ -2,10 +2,11 @@
 
 var _ = require('lodash');
 var mongoose = require('mongoose');
-// var User = mongoose.model('User');
 var User = require('../user/user.model')
-// var Surf = mongoose.model('Surf');
 var Surf = require('./surf.model');
+var config = require('../../config/environment');
+var sendgrid = require('sendgrid')(config.sendGridUsername, 
+  config.sendGridPassword);
 
 var queryFields = 'user_id '+
                   'surfSpot_id '+
@@ -21,9 +22,9 @@ var queryFields = 'user_id '+
                   'comment';
 
 exports.feed = function (req, res) {
-  // var userId = req.user._id;
+  var userId = req.user._id;
   var userIds = [].concat(req.user.friends);
-  // userIds.push(userId);
+  userIds.push(userId);
 
   Surf
     .find({user_id: {$in: userIds}})
@@ -105,6 +106,7 @@ exports.create = function (req, res) {
     if (err) {
       return handleError(res, err);
     }
+    notifyFriends(data.friends, req.user, surf);
     return res.json(201, surf);
   });
 };
@@ -146,6 +148,37 @@ exports.destroy = function (req, res) {
   });
 
 };
+
+function notifyFriends (friendIds, user, surf) {
+  _.forEach(friendIds, function (friendId) {
+    User.findById(friendId, function (err, friend) {  
+      if (err) {
+        // TODO: Should we do something else?
+        return;
+      }
+      
+      var payload   = {
+        to: friend.email,
+        from: user.email,
+        fromname: 'Thrashtown',
+        subject : 'Your Thrashtown friend tagged you in a session!',
+        html: '<h2>You were tagged in a Session</h2>' +
+              '<p>Your friend <strong>' + user.name + ' (' + user.email + 
+              ')</strong> just tagged you in a session on ' + 
+              surf.sessionDate.toLocaleDateString() + '. ' +
+              'Remember to log your session, too, if you haven\'t yet: ' +
+              'www.thrashtown.com/surfs/create</p><p>Happy Thrashing!</p>'
+      };
+
+      sendgrid.send(payload, function () {
+        // TODO: probably nothing?
+      });
+
+
+    });
+  });
+  
+}
 
 function handleError(res, err) {
   return res.send(500, err);

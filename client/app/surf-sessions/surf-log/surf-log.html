@@ -44,7 +44,7 @@
         <label class="col-md-2 control-label"><span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="From your connected friends">Friends</span></label>
         <div class="col-md-10">
           <ui-select multiple ng-model="formConfig.params.friends" theme="bootstrap" ng-if="surfLoaded">
-            <ui-select-match placeholder="Select person...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+            <ui-select-match placeholder="Who you surfed with...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
             <ui-select-choices repeat="person._id as person in friends | propsFilter: {name: $select.search, email: $select.search}">
               <div ng-bind-html="person.name | highlight: $select.search"></div>
               <small>
