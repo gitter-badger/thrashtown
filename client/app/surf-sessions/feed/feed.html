@@ -2,6 +2,15 @@
   <div class="col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading"><h4>Session Feed</h4></div>
+      
+
+      <div class="panel-body">
+        <div class="btn-group">
+          <label class="btn btn-primary" ng-model="selectedFilter" btn-radio="'all'">All</label>
+          <label class="btn btn-primary" ng-model="selectedFilter" btn-radio="'friends'">Friends</label>
+          <label class="btn btn-primary" ng-model="selectedFilter" btn-radio="'mine'">Mine</label>
+        </div>
+      </div>
       <ul class="list-group">
         <li class="list-group-item" ng-repeat="surf in surfs">
           <div class="row">
