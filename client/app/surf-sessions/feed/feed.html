@@ -2,27 +2,59 @@
   <div class="col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading"><h4>Session Feed</h4></div>
-      
-
       <div class="panel-body">
-        <div class="btn-group">
-          <label class="btn btn-primary" ng-model="selectedFilter" btn-radio="'all'">All</label>
-          <label class="btn btn-primary" ng-model="selectedFilter" btn-radio="'friends'">Friends</label>
-          <label class="btn btn-primary" ng-model="selectedFilter" btn-radio="'mine'">Mine</label>
+        <div class="row">
+            <div class="btn-group col-sm-6">
+              <div class="text-center">
+                <span>FILTER:</span>
+                <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'all'">ALL</label>
+                <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'friends'">FRIENDS</label>
+                <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'mine'">MINE</label>
+              </div>
+            </div>
+            <div class="btn-group col-sm-6">
+              <div class="text-center">
+                <span>ORDER:</span>
+                <label class="btn btn-default" ng-model="sortBy" btn-radio="'sessionDate'">DATE SURFED</label>
+                <label class="btn btn-default" ng-model="sortBy" btn-radio="'createdAt'">DATE LOGGED</label>
+              </div>
+            </div>
         </div>
       </div>
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="surf in surfs">
+        <li class="list-group-item" ng-repeat="surf in surfs | orderBy:'-'+sortBy">
           <div class="row">
             <div class="col-xs-8">
-              <h6>{{surf.sessionDate | date:"EEE, MMM d, yyyy"}} - {{ surf.user_id.name }}</h6>
+              <h6>
+                {{surf.sessionDate | date:"EEE, MMM d"}} - {{ surf.user_id.name }}
+                <small>Logged: {{surf.createdAt | date:"MMM d"}}</small>
+                <small ng-if="surf.user_id._id === userId"><span class="bg-warning">Mine</span> </small>
+              </h6>
             </div>
             <div class="col-xs-4">
-              <h6><span class="pull-right">{{ surf.surfSpot.region }} - {{ surf.surfSpot.name}}</span></h6>
+              <h6 class="pull-right">
+                <span>{{surf.surfSpot.region}} - {{surf.surfSpot.name}}</span>
+              </h6>
             </div>
           </div>
           <div class="row fluid-wrap">
-            <div class="col-xs-12 text-muted"><strong>{{surf.board.size}} - {{ surf.board.name }}</strong> <span ng-if="!!surf.comment">- {{ surf.comment }}</span></div>
+            <div class="col-xs-12 text-muted">
+              <strong>{{surf.board.size}} - {{surf.board.name}} - {{ surf.board.category }}</strong>
+              <span ng-repeat="friend in surf.friends"><span class="label label-primary">{{friend.name}}</span> </span>
+              <strong class="pull-right">
+                <span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Quality">Q{{surf.waveQuality}}</span>
+                <span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Hollowness">H{{surf.hollowness}}</span>
+                <span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Crowdedness">C{{surf.crowdedness}}</span>
+                <span tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="Fun">F{{surf.funFactor}}</span>
+              </strong>
+              <br>
+              <span ng-if="!!surf.comment">{{surf.comment}}</span>
+              <span class="pull-right" ng-if="surf.user_id._id === userId">
+                <span class="text-success glyphicon glyphicon-pencil tt-table-action clickable" ng-click="editSurf(surf)"></span>
+                <span class="text-danger glyphicon glyphicon-remove tt-table-action clickable" 
+                        ng-click="deleteSurf('this surf session', surf)"></span>
+              </span>
+            </div>
           </div>
         </li>
       </ul>
