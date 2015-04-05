@@ -81,7 +81,7 @@ angular.module('thrashtownApp')
       };
 
       var handleSuccess = function () {
-        $state.go('surfs.review');
+        $state.go('surfs.feed');
       };
 
       var handleError = function (err) {

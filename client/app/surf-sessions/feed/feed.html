@@ -4,17 +4,17 @@
       <div class="panel-heading"><h4>Session Feed</h4></div>
       <div class="panel-body">
         <div class="row">
-            <div class="btn-group col-sm-6">
-              <div class="text-center">
-                <span>FILTER:</span>
+            <div class="col-md-6 text-center">
+              <span>FILTER:</span>
+              <div class="btn-group">
                 <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'all'">ALL</label>
                 <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'friends'">FRIENDS</label>
                 <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'mine'">MINE</label>
               </div>
             </div>
-            <div class="btn-group col-sm-6">
-              <div class="text-center">
-                <span>ORDER:</span>
+            <div class="col-md-6 text-center">
+              <span>SORT:</span>
+              <div class="btn-group">
                 <label class="btn btn-default" ng-model="sortBy" btn-radio="'sessionDate'">DATE SURFED</label>
                 <label class="btn btn-default" ng-model="sortBy" btn-radio="'createdAt'">DATE LOGGED</label>
               </div>
@@ -24,14 +24,14 @@
       <ul class="list-group">
         <li class="list-group-item" ng-repeat="surf in surfs | orderBy:'-'+sortBy">
           <div class="row">
-            <div class="col-xs-8">
+            <div class="col-sm-8">
               <h6>
                 {{surf.sessionDate | date:"EEE, MMM d"}} - {{ surf.user_id.name }}
                 <small>Logged: {{surf.createdAt | date:"MMM d"}}</small>
                 <small ng-if="surf.user_id._id === userId"><span class="bg-warning">Mine</span> </small>
               </h6>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4">
               <h6 class="pull-right">
                 <span>{{surf.surfSpot.region}} - {{surf.surfSpot.name}}</span>
               </h6>
