@@ -1,0 +1,16 @@
+
+// For long user-input values (i.e. seems to happen with links in comments)
+.fluid-wrap {
+  word-wrap: break-word;
+}
+
+/* pull-right on all except sm devices */
+@media (min-width: 992px) {
+    .pull-right-sm {
+        float: right;
+    }
+}
+
+.rating {
+  cursor: default;
+}
