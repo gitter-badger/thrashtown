@@ -10,6 +10,7 @@ Ensure you have these installed on your machine first:
   - node.js - server
   - yeoman - for various useful generators install with `npm install -g yo`
 
+Steps to get the app running locally:
 1. Clone the project
 2. From terminal, run `mongod` to start mongoDB
 3. From the project root, run `grunt serve` - this should launch the app in a new Chrome tab
