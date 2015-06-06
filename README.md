@@ -9,10 +9,14 @@ Ensure you have these installed on your machine first:
   - mongoDB - database
   - node.js - server
   - yeoman - for various useful generators install with `npm install -g yo`
+  - grunt-cli `npm install -g grunt-cli`
+  - ruby and ruby-sass (https://github.com/gruntjs/grunt-contrib-sass)
 
 Steps to get the app running locally:
 
 1. Clone the project
 2. From terminal, run `mongod` to start mongoDB
-3. From the project root, run `grunt serve` - this should launch the app in a new Chrome tab
+3. Run `npm install` and `bower install`
+4. Set the `THRASHTOWN_SECRET` environment variable in `server/config/local.env.js`
+5. From the project root, run `grunt serve` - this should launch the app in a new Chrome tab
 
