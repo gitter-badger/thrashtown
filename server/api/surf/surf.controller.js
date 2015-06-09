@@ -32,6 +32,7 @@ exports.feed = function (req, res) {
   console.log(page);
   var data = {
     total: 0,
+    resultsPerPage: resultsPerPage,
     surfs: []
   };
 
