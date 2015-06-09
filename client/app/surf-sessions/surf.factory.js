@@ -6,7 +6,9 @@ angular.module('thrashtownApp')
     var service = {
       feed: function (page) {
         var config = {
-          page: page
+          params: {
+            page: page
+          }
         };
         
         return $http.get('/api/surfs/feed', config).then(function (response) {

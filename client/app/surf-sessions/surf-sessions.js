@@ -22,7 +22,7 @@ angular.module('thrashtownApp')
         authenticate: true
       })
       .state('surfs.feed', {
-        url: '/feed',
+        url: '/feed?page',
         templateUrl: 'app/surf-sessions/feed/feed.html',
         controller: 'FeedCtrl',
         authenticate: true

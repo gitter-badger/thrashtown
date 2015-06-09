@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('FeedCtrl', function ($http, $q, $scope, $state, Modal, Surf, User) {
+  .controller('FeedCtrl', function ($q, $scope, $state, $stateParams, Modal, Surf, User) {
     var initialize = function () {
+      $scope.currentPage = !!$stateParams.page ? +$stateParams.page : 1;
+
       $scope.isLoading = true;
       $q.all([
         loadUser(),
@@ -18,10 +20,11 @@ angular.module('thrashtownApp')
       });
     };
 
-    var loadFeed = function () {
-      return Surf.feed().then(function (data) {
+    var loadFeed = function (page) {
+      return Surf.feed(page).then(function (data) {
         $scope.surfs = data.surfs;
-        $scope.total = data.total;
+        $scope.resultsPerPage = data.resultsPerPage;
+        $scope.totalSurfs = data.total;
       }, function () {
         //TODO: handle errors
       });
@@ -36,6 +39,10 @@ angular.module('thrashtownApp')
         // TODO: add an alert to confirm success
       });
     });
+
+    $scope.changePage = function (page) {
+      loadFeed(page);
+    };
 
     $scope.$on('surfs:updated', loadFeed);
 
