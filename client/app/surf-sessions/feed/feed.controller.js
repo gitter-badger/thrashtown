@@ -2,19 +2,14 @@
 
 angular.module('thrashtownApp')
   .controller('FeedCtrl', function ($http, $q, $scope, $state, Modal, Surf, User) {
-    var cachedSessions;
     var initialize = function () {
       $scope.isLoading = true;
-      $scope.sortBy = 'sessionDate';
-      $scope.selectedFilter = 'all';
       $q.all([
         loadUser(),
         loadFeed()
       ]).then(function () {
         $scope.isLoading = false;
       });
-      loadUser();
-      loadFeed();
     };
     
     var loadUser = function () {
@@ -24,25 +19,11 @@ angular.module('thrashtownApp')
     };
 
     var loadFeed = function () {
-      return $http.get('/api/surfs/feed').then(function (response) {
-        cachedSessions = response.data;
-        filterSessions();
+      return Surf.feed().then(function (data) {
+        $scope.surfs = data.surfs;
+        $scope.total = data.total;
       }, function () {
         //TODO: handle errors
-      });
-    };
-
-    // If mine === true, only show mine, if false show everything but mine
-    var filterSessions = function () {
-      $scope.surfs = _.filter(cachedSessions, function (session) {
-        var id = session.user_id._id;
-        if ($scope.selectedFilter === 'all') {
-          return true;
-        } else if ($scope.selectedFilter === 'mine') {
-          return id === $scope.userId;
-        } else {
-          return id !== $scope.userId;
-        }
       });
     };
 
@@ -56,13 +37,6 @@ angular.module('thrashtownApp')
       });
     });
 
-    // var sortSessions = function () {
-    //   $scope.surfs.sort(function (a, b) {
-    //     return a[$scope.sortBy] < b[$scope.sortBy];
-    //   });
-    // };
-
-    $scope.$watch('selectedFilter', filterSessions);
     $scope.$on('surfs:updated', loadFeed);
 
     initialize();

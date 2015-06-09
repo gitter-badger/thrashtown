@@ -4,6 +4,16 @@ angular.module('thrashtownApp')
   .factory('Surf', function($http, $rootScope) {
     // TODO: consider using $cacheFactor or other caching technique
     var service = {
+      feed: function (page) {
+        var config = {
+          page: page
+        };
+        
+        return $http.get('/api/surfs/feed', config).then(function (response) {
+          return response.data;
+        });
+      },
+
       load: function () {
         return $http.get('/api/surfs').then(function (response) {
           return response.data;

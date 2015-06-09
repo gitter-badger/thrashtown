@@ -7,22 +7,22 @@
             <div class="col-md-6 text-center">
               <span>FILTER:&nbsp;</span>
               <div class="btn-group btn-group-sm">
-                <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'all'">ALL</label>
-                <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'friends'">FRIENDS</label>
-                <label class="btn btn-default" ng-model="selectedFilter" btn-radio="'mine'">MINE</label>
+                <label class="btn btn-default">ALL</label>
+                <label class="btn btn-default">FRIENDS</label>
+                <label class="btn btn-default">MINE</label>
               </div>
             </div>
             <div class="col-md-6 text-center">
               <span>SORT:&nbsp;</span>
               <div class="btn-group btn-group-sm">
-                <label class="btn btn-default" ng-model="sortBy" btn-radio="'sessionDate'">DATE SURFED</label>
-                <label class="btn btn-default" ng-model="sortBy" btn-radio="'createdAt'">DATE LOGGED</label>
+                <label class="btn btn-default">DATE SURFED</label>
+                <label class="btn btn-default">DATE LOGGED</label>
               </div>
             </div>
         </div>
       </div>
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="surf in surfs | orderBy:'-'+sortBy">
+        <li class="list-group-item" ng-repeat="surf in surfs">
           <div class="row">
             <div class="col-md-7">
               <h6>
