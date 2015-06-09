@@ -21,48 +21,70 @@ var queryFields = 'user_id '+
                   'sessionHours '+
                   'comment';
 
+var resultsPerPage = 25;
+
 exports.feed = function (req, res) {
   var userId = req.user._id;
   var userIds = [].concat(req.user.friends);
   userIds.push(userId);
 
-  Surf
-    .find({user_id: {$in: userIds}})
-    .populate('user_id', 'name boards surfSpots')
-    .populate('friends', 'name')
-    .sort({sessionDate: -1})
-    .lean()
-    .exec(function (err, surfs) {
-      if (err) {
-        return handleError(res, err);
-      }
+  var page = req.query.page || 1;
+  console.log(page);
+  var data = {
+    total: 0,
+    surfs: []
+  };
 
-      surfs.forEach(function (surf) {
-        surf.board = _.find(surf.user_id.boards, function (board) {
-          return board._id.toString() === surf.board_id.toString();
+  // TODO: promisify this
+  Surf.count({user_id: {$in: userIds}}, function (err, count) {
+    if (err) {
+      return handleError(res, err);
+    }
+
+    data.total = count;
+  
+    Surf
+      .find({user_id: {$in: userIds}})
+      .populate('user_id', 'name boards surfSpots')
+      .populate('friends', 'name')
+      .skip(resultsPerPage * (page - 1))
+      .limit(resultsPerPage)
+      .sort({sessionDate: -1})
+      .lean()
+      .exec(function (err, surfs) {
+        if (err) {
+          return handleError(res, err);
+        }
+
+        // Interesting reading: https://github.com/Automattic/mongoose/issues/2772
+        surfs.forEach(function (surf) {
+          surf.board = _.find(surf.user_id.boards, function (board) {
+            return board._id.toString() === surf.board_id.toString();
+          });
+          
+          surf.surfSpot = _.find(surf.user_id.surfSpots, function (surfSpot) {
+            return surfSpot._id.toString() === surf.surfSpot_id.toString();
+          });
         });
-        
-        surf.surfSpot = _.find(surf.user_id.surfSpots, function (surfSpot) {
-          return surfSpot._id.toString() === surf.surfSpot_id.toString();
-        });
+
+        // Note: It seems that each surf.user_id shares a reference to the same 
+        // object.  Originally, I was deleting this inside the forEach thinking
+        // that each surf had it's own user_id object - does not seem to be the
+        // case.  Hence this one delete at the end to remove the quiver and spots.
+        if (surfs.length > 0) {
+          if (!!surfs[0].user_id.boards) {
+            delete surfs[0].user_id.boards;
+          }
+          if (!!surfs[0].user_id.surfSpots) {
+            delete surfs[0].user_id.surfSpots;
+          }
+        }
+
+        data.surfs = surfs;
+
+        return res.json(200, data);
       });
-
-      // Note: It seems that each surf.user_id shares a reference to the same 
-      // object.  Originally, I was deleting this inside the forEach thinking
-      // that each surf had it's own user_id object - does not seem to be the
-      // case.  Hence this one delete at the end to remove the quiver and spots.
-      if (surfs.length > 0) {
-        if (!!surfs[0].user_id.boards) {
-          delete surfs[0].user_id.boards;
-        }
-        if (!!surfs[0].user_id.surfSpots) {
-          delete surfs[0].user_id.surfSpots;
-        }
-      }
-
-      return res.json(200, surfs);
-    });
-
+  });
 
 };
 
