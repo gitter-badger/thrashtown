@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('thrashtownApp')
-  .controller('FeedCtrl', function ($q, $scope, $state, $stateParams, Modal, Surf, User) {
+  .controller('FeedCtrl', function ($location, $q, $scope, $state, $stateParams, Modal, Surf, User) {
     var initialize = function () {
-      $scope.currentPage = !!$stateParams.page ? +$stateParams.page : 1;
-
+      $scope.currentPage = $stateParams.page || 1;
       $scope.isLoading = true;
       $q.all([
         loadUser(),
-        loadFeed()
+        loadFeed($scope.currentPage)
       ]).then(function () {
         $scope.isLoading = false;
       });
@@ -40,8 +39,9 @@ angular.module('thrashtownApp')
       });
     });
 
+    // Need the ng-if in the template, due to this: https://github.com/angular-ui/bootstrap/issues/3118
     $scope.changePage = function (page) {
-      loadFeed(page);
+      $location.search('page', page);
     };
 
     $scope.$on('surfs:updated', loadFeed);

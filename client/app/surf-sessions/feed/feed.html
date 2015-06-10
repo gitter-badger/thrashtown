@@ -58,17 +58,15 @@
           </div>
         </li>
       </ul>
-
-        <nav class="text-center">
-          <pagination total-items="totalSurfs" 
-                      items-per-page="resultsPerPage" 
-                      ng-model="currentPage" 
-                      max-size="10" 
-                      ng-change="changePage(currentPage)"
-                      boundary-links="true">
-          </pagination>
-        </nav>
-
+      <nav class="text-center" ng-if="!isLoading">
+        <pagination total-items="totalSurfs" 
+                    items-per-page="resultsPerPage" 
+                    ng-model="currentPage" 
+                    max-size="10" 
+                    ng-change="changePage(currentPage)"
+                    boundary-links="true">
+        </pagination>
+      </nav>
     </div>
   </div>
 </div>

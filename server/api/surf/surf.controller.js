@@ -29,7 +29,6 @@ exports.feed = function (req, res) {
   userIds.push(userId);
 
   var page = req.query.page || 1;
-  console.log(page);
   var data = {
     total: 0,
     resultsPerPage: resultsPerPage,
